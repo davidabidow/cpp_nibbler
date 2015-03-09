@@ -1,30 +1,30 @@
 ##
-## Makefile for LemiPC in /home/jibb/rendu/PSU_2014_lemipc
-##
-## Made by Jean-Baptiste Grégoire
-## Login   <jibb@epitech.net>
-##
-## Started on  Fri Feb 27 11:27:47 2015 Jean-Baptiste Grégoire
-## Last update Mon Mar  9 14:24:21 2015 David Tran
+## Makefile for nibbler in /home/tran_0/rendu/cpp_nibbler
+## 
+## Made by David Tran
+## Login   <tran_0@epitech.net>
+## 
+## Started on  Mon Mar  9 14:56:07 2015 David Tran
+## Last update Mon Mar  9 14:56:57 2015 David Tran
 ##
 
 DEBUG		= 	yes
 
 NAME		=	nibbler
 
-SRC		=	src/main.c		\
+SRC		=	src/main.cpp		\
 
-OBJ		=	$(SRC:.c=.o)
+OBJ		=	$(SRC:.cpp=.o)
 
 RM		=	rm -f
 
-CC		=	gcc
+CC		=	g++
 
 INCLUDES	=	includes/
 
 FOLDER_SRC	=	src/
 
-CFLAGS		=	-W -Wall -Wextra -I $(INCLUDES)
+CPPFLAGS		=	-W -Wall -Wextra -I $(INCLUDES)
 
 ifeq ($(DEBUG),yes)
 	CFLAGS 	+= -g3
