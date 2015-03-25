@@ -5,7 +5,7 @@
 ** Login   <gregoi_j@epitech.net>
 **
 ** Started on  Tue Mar  24 16:11:37 2015 Jean-Baptiste Grégoire
-// Last update Tue Mar 24 17:09:56 2015 Jean-Baptiste Grégoire
+// Last update Wed Mar 25 16:58:00 2015 David Tran
 */
 
 #ifndef SNAKE_HPP_
@@ -14,23 +14,25 @@
 # include <iostream>
 # include <string>
 
-enum direction
+typedef enum	direction
 {
   NORTH, WEST, SOUTH, EAST
-};
+}		Way;
 
 class Snake
 {
 public:
-  Snake();
-  bool turnLeft();
-  bool turnRight();
-  bool isAlive();
+  Snake(int MaxX, int MaxY);
+  bool	turnLeft();
+  bool	turnRight();
+  bool	isAlive();
+  bool	moveAhead();
+  bool	isDead();
   ~Snake();
 
 private:
-  int direction;
-  int nbPoints;
+  Way		direction;
+  size_t	nbPoints;
   std::vector<std::pair<int, int> snake;
 };
 
