@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 // 
 // Started on  Wed Mar 25 14:15:03 2015 David Tran
-// Last update Wed Mar 25 16:32:59 2015 David Tran
+// Last update Wed Mar 25 19:41:36 2015 David Tran
 //
 
 #ifndef ALIBGRAPH_HPP_
@@ -23,6 +23,7 @@ public:
   virtual void		Destroy() = 0;
   virtual bool		DrawQuadra() = 0;
   virtual bool		DrawHUD() = 0;
+  virtual char		HandleEvent() = 0;
 private:
   int			maxX;
   int			maxY;
