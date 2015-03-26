@@ -14,24 +14,25 @@
 # include "nibbler.hpp"
 # include "Snake.hpp"
 
-class	MAP
+class	Map
 {
 public:
-  MAP(int x, int y) : maxX(x), maxY(y){}
-  ~MAP();
+  Map(int x, int y) : maxX(x), maxY(y) {}
+  ~Map();
   bool		genObj();
   void		setPts(int const objID);
   void		setCoord(int const x, int const y);
   int		getMaxX() const;
   int		getMaxY() const;
+
 private:
-  std::string	Map;
-  int		Pts;
+  std::string	map;
+  int		  pts;
   bool		apple;
   size_t	time;
   Snake		snake;
-  int		maxX;
-  int		maxY;
+  int     maxX;
+  int     maxY;
 };
 
 #endif

@@ -13,6 +13,8 @@
 
 # include <iostream>
 # include <string>
+# include <vector>
+# include <utility>
 
 typedef enum	direction
 {
@@ -22,7 +24,7 @@ typedef enum	direction
 class Snake
 {
 public:
-  Snake(int maxX, int maxY);
+  Snake();
   bool	turnLeft();
   bool	turnRight();
   bool	isAlive();
@@ -33,7 +35,7 @@ public:
 private:
   Way					direction;
   size_t				nbPoints;
-  std::vector<std::pair<int, int>	snake;
+  std::vector<std::pair<int, int> >	snake;
 };
 
 #endif /* SNAKE_HPP_ */

@@ -8,11 +8,11 @@
 // Last update Tue Mar 24 17:10:08 2015 Jean-Baptiste Grégoire
 */
 
-#include "Snake.cpp"
+#include "Snake.hpp"
 
 Snake::Snake() : direction(NORTH), nbPoint(0)
 {
-
+		
 }
 
 bool	Snake::turnLeft()

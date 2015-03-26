@@ -18,11 +18,11 @@ class		ALibGraph
 {
 public:
   virtual	~ALibGraph(){}
-  ALibGraph(int x, int y) : maxX(x), maxY(y){}
+  ALibGraph(int x, int y) : maxX(x), maxY(y) {}
   bool		Init() = 0;
-  bool		DrawMap(MAP const &map) = 0;
+  bool		DrawMap(Map const &map) = 0;
   void		Destroy() = 0;
-  bool		DrawQuadra(MAP const &map) = 0;
+  bool		DrawQuadra(Map const &map) = 0;
   bool		DrawHUD() = 0;
   char		HandleEvent() = 0;
   int		getMaxX(){return (maxX);}
