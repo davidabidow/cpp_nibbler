@@ -5,10 +5,10 @@
 // Login   <gregoi_j@epitech.net>
 //
 // Started on  Wed Mar  25 18:29:42 2015 Jean-Baptiste Grégoire
-// Last update Wed Mar  25 18:29:42 2015 Jean-Baptiste Grégoire
+// Last update Thu Mar 26 21:01:33 2015 Jean-Baptiste Grégoire
 //
 
-#include "OpenGlib.cpp"
+#include "OpenGlib.hpp"
 
 OpenGlib::OpenGlib() : maxX(1280), maxY(720), screen()
 {
@@ -32,7 +32,7 @@ bool		OpenGlib::Init(int x, int y, int argc, char **argv) : minX(x), minY(y)
 	glutSpecialFunc(ManageKeys);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluPerspective(FOVY, static_cast<double>(x / y), NEAR, FAR);
+	gluPerspective(WIN_FOVY, static_cast<double>(x / y), NEAR, FAR);
 
 	//glEnable(GLUT_DEPTH_TEST);
 
@@ -62,7 +62,7 @@ void		OpenGlib::ManageKeys(unsigned char key, int x, int y)
 
 bool		OpenGlib::DrawMap()
 {
-	
+
 }
 
 void		OpenGlib::Destroy()

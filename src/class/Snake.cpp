@@ -5,10 +5,10 @@
 ** Login   <gregoi_j@epitech.net>
 **
 ** Started on  Tue Mar  24 16:43:11 2015 Jean-Baptiste Grégoire
-// Last update Fri Mar 27 00:05:32 2015 David Tran
+// Last update Fri Mar 27 00:07:09 2015 David Tran
 */
 
-#include "Snake.cpp"
+#include "Snake.hpp"
 
 Snake::Snake(int maxX, int maxY) : direction(WEST), nbPoint(0)
 {
@@ -16,7 +16,6 @@ Snake::Snake(int maxX, int maxY) : direction(WEST), nbPoint(0)
   std::pair	coor;
 
   i = maxX / ;
-  
 }
 
 bool	Snake::turnLeft()
