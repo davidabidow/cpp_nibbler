@@ -21,6 +21,10 @@
 # define FOVY		70
 # define NEAR		1
 # define FAR		1000
+# define WIN_POS_X	100
+# define WIN_POS_Y	100
+# define WIN_WIDTH	1280
+# define WIN_HEIGHT	720
 
 class OpenGlib : public ALibGraph
 {
@@ -31,6 +35,7 @@ public:
   	void		Destroy();
   	bool		DrawQuadra();
   	bool		DrawHUD();
+  	char		HandleEvent();
   	void		ManageKeys(unsigned char key, int x, int y);
 	~OpenGlib();
 
