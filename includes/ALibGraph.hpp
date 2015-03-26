@@ -5,25 +5,28 @@
 // Login   <tran_0@epitech.net>
 // 
 // Started on  Wed Mar 25 14:15:03 2015 David Tran
-// Last update Wed Mar 25 19:41:36 2015 David Tran
+// Last update Thu Mar 26 18:13:51 2015 David Tran
 //
 
 #ifndef ALIBGRAPH_HPP_
 # define ALIBGRAPH_HPP_
 
 # include "nibbler.hpp"
+# include "Map.hpp"
 
 class		ALibGraph
 {
 public:
-  virtual		~ALibGraph(){}
-  ALibGraph(){}
-  virtual bool		Init(int x, int y) = 0;
-  virtual bool		DrawMap() = 0;
-  virtual void		Destroy() = 0;
-  virtual bool		DrawQuadra() = 0;
-  virtual bool		DrawHUD() = 0;
-  virtual char		HandleEvent() = 0;
+  virtual	~ALibGraph(){}
+  ALibGraph(int x, int y) : maxX(x), maxY(y){}
+  bool		Init() = 0;
+  bool		DrawMap(Map const &map) = 0;
+  void		Destroy() = 0;
+  bool		DrawQuadra() = 0;
+  bool		DrawHUD() = 0;
+  char		HandleEvent() = 0;
+  int		getMaxX(){return (maxX);}
+  int		getMaxY(){return (maxY);}
 private:
   int			maxX;
   int			maxY;
