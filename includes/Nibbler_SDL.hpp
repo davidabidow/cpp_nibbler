@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 // 
 // Started on  Tue Mar 24 21:39:31 2015 David Tran
-// Last update Wed Mar 25 14:24:49 2015 David Tran
+// Last update Thu Mar 26 18:26:16 2015 David Tran
 //
 
 #ifndef NIBBLER_SDL_HPP
@@ -15,6 +15,7 @@
 # include <SDL/SDL_image.h>
 # include <SDL/SDL_gfxPrimitives.h>
 # include "ALibGraph.hpp"
+# include "Map.hpp"
 
 class	N_SDL : public ALibGraph
 {
@@ -22,10 +23,11 @@ public:
   N_SDL();
   virtual ~N_SDL();
   bool		Init(int x, int y);
-  bool		DrawMap(Snake const &s);
+  bool		DrawMap(MAP const &s);
   void		Destroy();
-  bool		DrawQuadra();
+  bool		DrawQuadra(MAP const &s);
   bool		DrawHUD();
+  char		HandleEvent();
 private:
   SQL_Rect	pos;
   SDL_Surface	*screen;
