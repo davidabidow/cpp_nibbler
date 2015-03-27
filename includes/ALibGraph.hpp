@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Wed Mar 25 14:15:03 2015 David Tran
-// Last update Fri Mar 27 02:03:06 2015 Jean-Baptiste Grégoire
+// Last update Fri Mar 27 02:04:02 2015 Jean-Baptiste Grégoire
 //
 
 #ifndef ALIBGRAPH_HPP_
@@ -29,9 +29,9 @@ public:
   virtual bool		DrawQuadra(Map const &map) = 0;
   virtual bool		DrawHUD() = 0;
   virtual char		HandleEvent() = 0;
-  int             getMaxX() const {return (maxX);}
-  int             getMaxY() const {return (maxY);}
-protected:
+  int			getMaxX() const {return (maxX);}
+  int			getMaxY() const {return (maxY);}
+private:
   int			maxX;
   int			maxY;
 };
