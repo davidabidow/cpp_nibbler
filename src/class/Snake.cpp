@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 // 
 // Started on  Fri Mar 27 00:10:35 2015 David Tran
-// Last update Fri Mar 27 01:55:24 2015 David Tran
+// Last update Fri Mar 27 15:04:28 2015 David Tran
 //
 
 #include "Snake.hpp"
@@ -70,9 +70,22 @@ bool	Snake::moveAhead()
     *it.first += 1;
 }
 
-bool	Snake::isAlive()
+bool	Snake::isAlive(int maxX, int maxY)
 {
+  std::vector<std::pair<int, int> >::iterator	it = snake.begin();
+  std::pair<int, int>				first;
 
+  if (*it.first < 0 || *it.first > maxX || *it.second < 0 || *it.second > maxY)
+    return (false);
+  first = *it;
+  it++;
+ while (it < snake.end())
+    {
+      if (first.first == *it.first && first.second == *it.second)
+	return (false);
+      it++;
+    }
+ return (true);
 }
 
 Snake::~Snake()

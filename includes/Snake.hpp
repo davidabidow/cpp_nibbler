@@ -5,7 +5,7 @@
 ** Login   <gregoi_j@epitech.net>
 **
 ** Started on  Tue Mar  24 16:11:37 2015 Jean-Baptiste Grégoire
-// Last update Fri Mar 27 00:08:03 2015 David Tran
+// Last update Fri Mar 27 13:21:02 2015 David Tran
 */
 
 #ifndef SNAKE_HPP_
@@ -24,11 +24,11 @@ typedef enum	direction
 class Snake
 {
 public:
-  Snake();
+  Snake(int maxX, int maxY);
   bool	turnLeft();
   bool	turnRight();
   bool	moveAhead();
-  bool	isDead();
+  bool	isAlive(int maxX, int maxY);
   ~Snake();
 
 private:
