@@ -10,23 +10,30 @@
 
 #include "Map.hpp"
 
-MAP::MAP()
+Map Map::_instance = Map();
+
+Map::Map()
 {}
 
-MAP::~MAP()
+Map::~Map()
 {}
 
-bool	MAP::genObj()
+Map 	&Map::getInstance()
+{
+	return (_instance);
+}
+
+bool	Map::genObj()
 {
   
 }
 
-void	MAP::setPts()
+void	Map::setPts()
 {
 
 }
 
-void	MAP::setCoord()
+void	Map::setCoord()
 {
 
 }
