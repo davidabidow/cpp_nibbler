@@ -24,6 +24,7 @@ public:
   void		setCoord(int const x, int const y);
   int		getMaxX() const;
   int		getMaxY() const;
+  static Map   &getInstance();
 
 private:
   std::string	map;

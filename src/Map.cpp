@@ -10,33 +10,40 @@
 
 #include "Map.hpp"
 
-MAP::MAP()
+Map Map::_instance = Map();
+
+Map::Map()
 {}
 
-MAP::~MAP()
+Map 	&Map::getInstance()
+{
+	return (_instance);
+}
+
+Map::~Map()
 {}
 
-bool	MAP::genObj()
+bool	Map::genObj()
 {
   
 }
 
-void	MAP::setPts()
+void	Map::setPts()
 {
 
 }
 
-void	MAP::setCoord()
+void	Map::setCoord()
 {
 
 }
 
-int		MAP::getMaxX() const
+int		Map::getMaxX() const
 {
   return (maxX);
 }
 
-int		MAP::getMaxY() const
+int		Map::getMaxY() const
 {
   return (maxY);
 }
