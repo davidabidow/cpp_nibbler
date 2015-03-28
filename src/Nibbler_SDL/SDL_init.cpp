@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 // 
 // Started on  Tue Mar 24 21:56:30 2015 David Tran
-// Last update Thu Mar 26 21:05:31 2015 David Tran
+// Last update Sat Mar 28 20:06:38 2015 David Tran
 //
 
 #include "Nibbler_SDL.hpp"
@@ -34,12 +34,44 @@ void		N_SDL::Destroy()
   SDL_Quit();
 }
 
-bool		N_SDL::DrawMap(MAP const &map)
+void		N_SDL::init_pos(int x, int y)
 {
-  
+  pos.x = WIN_LEN / maxX * x;
+  pos.y = WIN_LEN / maxY * y;
+  pos.w = WIN_LEN / maxX;
+  pos.h = WIN_LEN / maxY;
 }
 
-bool		N_SDL::DrawQuadra(MAP const &map)
+void		N_SDL::fill_point_rect(int x, int y, std::string::const_iterator it)
+{
+  if (*it == 1)
+      SDL_FillRect(screen, &pos, SDL_MapRGB(screen->format, 51, 204, 51));
+  else if (*it == 2)
+    SDL_FillRect(screen, &pos, SDL_MapRGB(screen->format, 251, 0, 0));
+}
+
+bool		N_SDL::DrawMap(MAP const &map) const
+{
+  std::string::const_iterator	pars = map.getMap().begin();
+  int		x;
+  int		y;
+
+  y = 0;
+  while (y < maxY)
+    {
+      x = 0;
+      while (x < maxX)
+	{
+	  init_pos(x, y);
+	  fill_point_rect(x, y, pars);
+	  x++;
+	  it++;
+	}
+      y++;
+    }
+}
+
+bool		N_SDL::DrawQuadra(MAP const &map) const
 {
   int		i;
 
