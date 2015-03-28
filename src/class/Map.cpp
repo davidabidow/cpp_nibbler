@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 // 
 // Started on  Wed Mar 25 15:29:59 2015 David Tran
-// Last update Sat Mar 28 19:16:46 2015 David Tran
+// Last update Sat Mar 28 19:23:40 2015 David Tran
 //
 
 #include "Map.hpp"
@@ -20,7 +20,7 @@ MAP::MAP(int x, int y) : maxX(x), maxY(y)
   map = newmap;
 }
 
-MAP::~MAP()
+Map::~Map()
 {}
 
 bool	MAP::CheckinSnake(std::pair<int, int> t_check, std::vector<std::pair<int, int> > snake)
