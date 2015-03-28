@@ -5,13 +5,12 @@
 // Login   <tran_0@epitech.net>
 // 
 // Started on  Wed Mar 25 14:15:03 2015 David Tran
-// Last update Fri Mar 27 00:43:52 2015 David Tran
+// Last update Sat Mar 28 18:21:24 2015 David Tran
 //
 
 #ifndef ALIBGRAPH_HPP_
 # define ALIBGRAPH_HPP_
 
-# include "nibbler.hpp"
 # include "Map.hpp"
 
 # define WIN_WIDTH  1280

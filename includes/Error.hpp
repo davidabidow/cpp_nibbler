@@ -5,14 +5,14 @@
 // Login   <tran_0@epitech.net>
 // 
 // Started on  Thu Mar 26 16:34:32 2015 David Tran
-// Last update Thu Mar 26 17:35:58 2015 David Tran
+// Last update Sat Mar 28 18:21:12 2015 David Tran
 //
 
 #ifndef ERROR_HPP_
 # define ERROR_HPP_
 
 # include <exception>
-# include "Nibbler.hpp"
+# include "Map.hpp"
 
 class	Nibbler_Error : public std::exception
 {

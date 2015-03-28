@@ -5,7 +5,7 @@
 ** Login   <gregoi_j@epitech.net>
 **
 ** Started on  Tue Mar  24 16:11:37 2015 Jean-Baptiste Grégoire
-// Last update Fri Mar 27 13:21:02 2015 David Tran
+// Last update Sat Mar 28 18:49:43 2015 David Tran
 */
 
 #ifndef SNAKE_HPP_
@@ -15,6 +15,7 @@
 # include <string>
 # include <vector>
 # include <utility>
+# include "Map.hpp"
 
 typedef enum	direction
 {
@@ -25,10 +26,11 @@ class Snake
 {
 public:
   Snake(int maxX, int maxY);
-  bool	turnLeft();
-  bool	turnRight();
-  bool	moveAhead();
-  bool	isAlive(int maxX, int maxY);
+  bool							turnLeft();
+  bool							turnRight();
+  bool							moveAhead();
+  bool							isAlive(int maxX, int maxY);
+  std::vector<std::pair<int, int> >			getVector() {return (snake);}
   ~Snake();
 
 private:

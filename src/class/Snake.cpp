@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 // 
 // Started on  Fri Mar 27 00:10:35 2015 David Tran
-// Last update Fri Mar 27 15:04:28 2015 David Tran
+// Last update Sat Mar 28 17:45:00 2015 David Tran
 //
 
 #include "Snake.hpp"
@@ -89,6 +89,4 @@ bool	Snake::isAlive(int maxX, int maxY)
 }
 
 Snake::~Snake()
-{
-
-}
+{}
