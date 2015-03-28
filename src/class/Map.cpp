@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 // 
 // Started on  Wed Mar 25 15:29:59 2015 David Tran
-// Last update Sat Mar 28 19:23:40 2015 David Tran
+// Last update Sat Mar 28 19:51:58 2015 David Tran
 //
 
 #include "Map.hpp"
@@ -109,7 +109,7 @@ void	MAP::fill_string()
 
   while (it != snak.end())
     {
-      map[*it.first * *it.second] = 1;
+      map[*it.second * maxX + *it.first] = 1;
       it++;
     }
 }
