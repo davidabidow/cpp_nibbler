@@ -1,11 +1,11 @@
 //
 // Snake.cpp for nibbler in /home/tran_0/rendu/cpp_nibbler/src
-// 
+//
 // Made by David Tran
 // Login   <tran_0@epitech.net>
-// 
+//
 // Started on  Fri Mar 27 00:10:35 2015 David Tran
-// Last update Mon Mar 30 18:52:05 2015 David Tran
+// Last update Mon Mar 30 19:11:37 2015 David Tran
 //
 
 #include "Snake.hpp"
@@ -80,7 +80,7 @@ bool	Snake::isAlive(int maxX, int maxY)
     return (false);
   first = *it;
   it++;
- while (it < snake.end())
+  while (it < snake.end())
     {
       if (first.first == (*it).first && first.second == (*it).second)
 	return (false);

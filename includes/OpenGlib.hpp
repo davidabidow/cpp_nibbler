@@ -5,7 +5,7 @@
 // Login   <gregoi_j@epitech.net>
 //
 // Started on  Wed Mar  25 18:16:29 2015 Jean-Baptiste Grégoire
-// Last update Fri Mar 27 02:02:06 2015 Jean-Baptiste Grégoire
+// Last update Fri Mar 27 19:40:53 2015 Jean-Baptiste Grégoire
 //
 
 #ifndef OPENGLIB_HPP
@@ -17,6 +17,8 @@
 #  include <GL/glut.h>
 # endif
 
+# include <SFML/Window.hpp>
+# include <SFML/OpenGL.hpp>
 # include "ALibGraph.hpp"
 
 # define ESC_KEY	27
@@ -43,7 +45,7 @@ public:
   ~OpenGlib();
 
 private:
-  int 			screen;
+  sf::Window	window;
 };
 
 #endif // OPENGLIB_HPP
