@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 // 
 // Started on  Wed Mar 25 14:27:26 2015 David Tran
-// Last update Mon Mar 30 18:45:55 2015 David Tran
+// Last update Mon Mar 30 23:03:19 2015 David Tran
 //
 
 #ifndef MAP_HPP_
@@ -17,6 +17,8 @@
 # include <ctime>
 # include <unistd.h>
 # include "Snake.hpp"
+
+class	ALibGraph;
 
 class	Map
 {
@@ -38,11 +40,14 @@ public:
   Snake			*getSnake() const;
   void			setMaxX(int a) {maxX = a;};
   void			setMaxY(int a) {maxY = a;};
+  void			loop_game(ALibGraph *);
+  void			eat_apple();
 
 private:
   std::string	map;
   int		pts;
   bool		apple;
+  int		p_apple;
   size_t	time;
   Snake		*snake;
   int		maxX;

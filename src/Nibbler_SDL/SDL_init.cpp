@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 // 
 // Started on  Tue Mar 24 21:56:30 2015 David Tran
-// Last update Mon Mar 30 18:44:08 2015 David Tran
+// Last update Mon Mar 30 23:05:17 2015 David Tran
 //
 
 #include "Nibbler_SDL.hpp"
@@ -45,12 +45,14 @@ void		N_SDL::init_pos(int x, int y)
   pos = tmp;
 }
 
-void		N_SDL::fill_point_rect(std::string it, int i)
+void		N_SDL::fill_point_rect(std::string it, int i, Map const &map)
 {
   if (it[i] == 1)
     SDL_FillRect(screen, &pos, SDL_MapRGB(screen->format, 51, 204, 51));
-  else if (it[i] == 2)
+  else if (it[i] == 2 && map.getApple() == true)
     SDL_FillRect(screen, &pos, SDL_MapRGB(screen->format, 251, 0, 0));
+  else
+    SDL_FillRect(screen, &pos, SDL_MapRGB(screen->format, 0, 0, 0));
 }
 
 bool		N_SDL::DrawMap(Map const &map)
@@ -67,11 +69,8 @@ bool		N_SDL::DrawMap(Map const &map)
       x = 0;
       while (x < map.getMaxX())
 	{
-	  if (pars[i] != 0)
-	    {
-	      init_pos(x, y);
-	      fill_point_rect(pars, i);
-	    }
+	  init_pos(x, y);
+	  fill_point_rect(pars, i, map);
 	  x++;
 	  i++;
 	}
@@ -108,5 +107,17 @@ bool		N_SDL::DrawHUD()
 
 char		N_SDL::HandleEvent()
 {
-  return (true);
+  char		button;
+
+  button = 0;
+  while (SDL_PollEvent(&even))
+    {
+      if (even.key.keysym.sym == SDLK_ESCAPE || even.type == SDL_QUIT)
+	button = -1;
+      else if (even.key.keysym.sym == SDLK_LEFT)
+	button = 1;
+      else if (even.key.keysym.sym == SDLK_RIGHT)
+	button = 2;
+    }
+  return (button);
 }

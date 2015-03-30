@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 // 
 // Started on  Tue Mar 24 21:39:31 2015 David Tran
-// Last update Mon Mar 30 18:44:47 2015 David Tran
+// Last update Mon Mar 30 23:15:54 2015 David Tran
 //
 
 #ifndef NIBBLER_SDL_HPP
@@ -31,7 +31,7 @@ public:
   bool		DrawQuadra(Map const &);
   bool		DrawHUD();
   char		HandleEvent();
-  void		fill_point_rect(std::string, int);
+  void		fill_point_rect(std::string, int, Map const &);
   void		init_pos(int, int);
 private:
   SDL_Rect	pos;

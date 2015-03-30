@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 // 
 // Started on  Mon Mar  9 14:49:22 2015 David Tran
-// Last update Mon Mar 30 18:46:32 2015 David Tran
+// Last update Mon Mar 30 22:35:45 2015 David Tran
 //
 
 #include "Map.hpp"
@@ -48,11 +48,8 @@ int		main(int ac, char **av)
     {
       ALibGraph		*lib = new N_SDL(map->getMaxX(), map->getMaxY());
 
-      lib->Init();
-      map->fill_string();
-      lib->DrawMap(*map);
-      sleep(5);
-      //      lib->Destroy();
+      map->loop_game(lib);
+      lib->Destroy();
     }
   return (0);
 }

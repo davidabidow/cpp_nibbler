@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Fri Mar 27 00:10:35 2015 David Tran
-// Last update Mon Mar 30 19:11:37 2015 David Tran
+// Last update Mon Mar 30 23:21:51 2015 David Tran
 //
 
 #include "Snake.hpp"
@@ -34,11 +34,12 @@ Snake::Snake(int maxX, int maxY) : direction(WEST), nbPoints(0)
 void	Snake::turnLeft()
 {
   direction = (Way)((direction + 1) % 4);
+  std::cout << direction << std::endl;
 }
 
 void	Snake::turnRight()
 {
-  direction = (Way)((direction - 1) % 4);
+  direction = (Way)((direction - 1) >= 0 ? direction - 1 : 3);
 }
 
 void	Snake::moveAhead()
@@ -87,6 +88,29 @@ bool	Snake::isAlive(int maxX, int maxY)
       it++;
     }
  return (true);
+}
+
+Way	Snake::getDirection() const
+{
+  return (direction);
+}
+
+void	Snake::addQueue()
+{
+  std::pair<int, int>	add;
+
+  /*add = *(snake.end() - 1);
+    if (direction == NORTH)
+    add.second += 1;
+  else if (direction == WEST)
+    add.first += 1;
+  else if (direction == SOUTH)
+    add.second -= 1;
+  else
+  add.first -= 1;*/
+  add.first = 0;
+  add.second = 0;
+  snake.push_back(add);
 }
 
 Snake::~Snake()
