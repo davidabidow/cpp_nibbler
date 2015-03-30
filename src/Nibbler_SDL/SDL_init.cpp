@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 // 
 // Started on  Tue Mar 24 21:56:30 2015 David Tran
-// Last update Sat Mar 28 20:06:38 2015 David Tran
+// Last update Mon Mar 30 18:44:08 2015 David Tran
 //
 
 #include "Nibbler_SDL.hpp"
@@ -20,7 +20,7 @@ bool		N_SDL::Init()
 {
   if (SDL_Init(SDL_INIT_VIDEO) == -1)
     return (false);
-  if (!(screen = SDL_SetVideoMode(x, y, 32, SDL_HWSURFACE)))
+  if (!(screen = SDL_SetVideoMode(WIN_WIDTH, WIN_HEIGHT, 32, SDL_HWSURFACE)))
     {
       SDL_Quit();
       return (false);
@@ -36,68 +36,77 @@ void		N_SDL::Destroy()
 
 void		N_SDL::init_pos(int x, int y)
 {
-  pos.x = WIN_LEN / maxX * x;
-  pos.y = WIN_LEN / maxY * y;
-  pos.w = WIN_LEN / maxX;
-  pos.h = WIN_LEN / maxY;
+  SDL_Rect	tmp;
+
+  tmp.x = WIN_WIDTH / getMaxX() * x;
+  tmp.y = WIN_HEIGHT / getMaxY() * y;
+  tmp.w = WIN_WIDTH / getMaxX();
+  tmp.h = WIN_HEIGHT / getMaxY();
+  pos = tmp;
 }
 
-void		N_SDL::fill_point_rect(int x, int y, std::string::const_iterator it)
+void		N_SDL::fill_point_rect(std::string it, int i)
 {
-  if (*it == 1)
-      SDL_FillRect(screen, &pos, SDL_MapRGB(screen->format, 51, 204, 51));
-  else if (*it == 2)
+  if (it[i] == 1)
+    SDL_FillRect(screen, &pos, SDL_MapRGB(screen->format, 51, 204, 51));
+  else if (it[i] == 2)
     SDL_FillRect(screen, &pos, SDL_MapRGB(screen->format, 251, 0, 0));
 }
 
-bool		N_SDL::DrawMap(MAP const &map) const
+bool		N_SDL::DrawMap(Map const &map)
 {
-  std::string::const_iterator	pars = map.getMap().begin();
+  std::string	pars = map.getMap();
+  int		i;
   int		x;
   int		y;
 
   y = 0;
-  while (y < maxY)
+  i = 0;
+  while (y < map.getMaxY())
     {
       x = 0;
-      while (x < maxX)
+      while (x < map.getMaxX())
 	{
-	  init_pos(x, y);
-	  fill_point_rect(x, y, pars);
+	  if (pars[i] != 0)
+	    {
+	      init_pos(x, y);
+	      fill_point_rect(pars, i);
+	    }
 	  x++;
-	  it++;
+	  i++;
 	}
       y++;
     }
+  SDL_Flip(screen);
+  return (true);
 }
 
-bool		N_SDL::DrawQuadra(MAP const &map) const
+bool		N_SDL::DrawQuadra(Map const &map)
 {
   int		i;
 
   i = 0;
   while (i < map.getMaxX())
     {
-      vlineColor(screen, map.getMaxX() / MAX_WIN * i, 0, MAX_WIN, 0x696969);
+      vlineColor(screen, (double)(WIN_WIDTH / map.getMaxX() * i), 0, WIN_HEIGHT, 0x696969);
       i++;
     }
   i = 0;
   while (i < map.getMaxY())
     {
-      hlineColor(screen, 0, MAX_WIN, MAX_WIN / map.getMaxY() * i, 0x696969);
+      hlineColor(screen, 0, WIN_WIDTH, (double)(WIN_HEIGHT / map.getMaxY() * i), 0x696969);
       i++;
     }
-  pos.x = 0;
-  pos.y = 0;
   SDL_Flip(screen);
+  return (true);
 }
 
 bool		N_SDL::DrawHUD()
 {
-
+  return (true);
 }
 
 char		N_SDL::HandleEvent()
 {
-
+  return (true);
 }

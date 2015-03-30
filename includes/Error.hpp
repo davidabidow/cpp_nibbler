@@ -5,43 +5,47 @@
 // Login   <tran_0@epitech.net>
 // 
 // Started on  Thu Mar 26 16:34:32 2015 David Tran
-// Last update Sat Mar 28 18:21:12 2015 David Tran
+// Last update Sun Mar 29 22:33:46 2015 David Tran
 //
 
 #ifndef ERROR_HPP_
 # define ERROR_HPP_
 
 # include <exception>
+# include <stdexcept>
 # include "Map.hpp"
 
 class	Nibbler_Error : public std::exception
 {
 public:
   Nibbler_Error(std::string const &);
-  ~Nibbler_Error();
-  std::string const	&what(){return (message);}
+  ~Nibbler_Error() throw() {}
+  const char	*what() const throw()
+  { return (_message.c_str()); }
 private:
-  std::string const message;
+  std::string _message;
 };
 
 class	Nibbler_Error_Lib : public std::runtime_error
 {
 public:
   Nibbler_Error_Lib(std::string const &);
-  ~Nibbler_Error_Lib();
-  std::string const	&what(){return (message);}
+  ~Nibbler_Error_Lib() throw() {}
+  const char	*what() const throw()
+  { return (_message.c_str()); }
 private:
-  std::string const message;
+  std::string const _message;
 };
 
 class	Nibbler_Error_Pars : public std::invalid_argument
 {
 public:
   Nibbler_Error_Pars(std::string const &);
-  ~Nibbler_Error_Pars();
-  std::string const	&what(){return (message);}
+  ~Nibbler_Error_Pars() throw() {}
+  const char	*what() const throw()
+  { return (_message.c_str()); }
 private:
-  std::string const message;
+  std::string const _message;
 };
 
 #endif

@@ -5,15 +5,17 @@
 // Login   <tran_0@epitech.net>
 // 
 // Started on  Wed Mar 25 14:27:26 2015 David Tran
-// Last update Sat Mar 28 19:22:27 2015 David Tran
+// Last update Mon Mar 30 18:45:55 2015 David Tran
 //
 
 #ifndef MAP_HPP_
 # define MAP_HPP_
 
-#include <cstdlib>
-#include <iostream>
-#include <ctime>
+# include <sstream>
+# include <cstdlib>
+# include <iostream>
+# include <ctime>
+# include <unistd.h>
 # include "Snake.hpp"
 
 class	Map
@@ -32,7 +34,10 @@ public:
   void			setTime(size_t);
   size_t		getTime() const;
   void			fill_string();
+  void			make_loop();
   Snake			*getSnake() const;
+  void			setMaxX(int a) {maxX = a;};
+  void			setMaxY(int a) {maxY = a;};
 
 private:
   std::string	map;
@@ -43,5 +48,7 @@ private:
   int		maxX;
   int		maxY;
 };
+
+# include "Nibbler_SDL.hpp"
 
 #endif

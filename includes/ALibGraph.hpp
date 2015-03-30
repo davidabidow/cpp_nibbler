@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Wed Mar 25 14:15:03 2015 David Tran
-// Last update Sat Mar 28 19:22:12 2015 David Tran
+// Last update Mon Mar 30 16:07:18 2015 David Tran
 //
 
 #ifndef ALIBGRAPH_HPP_
@@ -23,13 +23,15 @@ public:
   virtual	~ALibGraph() {}
   ALibGraph(int x, int y) : maxX(x), maxY(y) {}
   virtual bool		Init() = 0;
-  virtual bool		DrawMap(Map const &map) = 0;
+  virtual bool		DrawMap(Map const &) = 0;
   virtual void		Destroy() = 0;
-  virtual bool		DrawQuadra(Map const &map) = 0;
+  virtual bool		DrawQuadra(Map const &) = 0;
   virtual bool		DrawHUD() = 0;
   virtual char		HandleEvent() = 0;
   int			getMaxX() const {return (maxX);}
   int			getMaxY() const {return (maxY);}
+  void			setMaxX(int a) {maxX = a;};
+  void			setMaxY(int a) {maxY = a;};
 private:
   int			maxX;
   int			maxY;

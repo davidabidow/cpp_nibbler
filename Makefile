@@ -5,14 +5,18 @@
 ## Login   <tran_0@epitech.net>
 ## 
 ## Started on  Mon Mar  9 14:56:07 2015 David Tran
-## Last update Mon Mar  9 14:56:57 2015 David Tran
+## Last update Mon Mar 30 16:57:29 2015 David Tran
 ##
 
 DEBUG		= 	yes
 
 NAME		=	nibbler
 
-SRC		=	src/main.cpp		\
+SRC		=	src/main.cpp			\
+			src/class/Map.cpp		\
+			src/class/Error.cpp		\
+			src/class/Snake.cpp		\
+			src/Nibbler_SDL/SDL_init.cpp	\
 
 OBJ		=	$(SRC:.cpp=.o)
 
@@ -24,16 +28,16 @@ INCLUDES	=	includes/
 
 FOLDER_SRC	=	src/
 
-CPPFLAGS		=	-W -Wall -Wextra -I $(INCLUDES)
+CPPFLAGS	=	-W -Wall -Wextra -I $(INCLUDES)
 
 ifeq ($(DEBUG),yes)
-	CFLAGS 	+= -g3
+	CPPFLAGS 	+= -g3
 else
-	CFLAGS	+= -O3
+	CPPFLAGS	+= -O3
 endif
 
 $(NAME):	$(OBJ)
-		$(CC) -o $(NAME) $(OBJ)
+		$(CC) -o $(NAME) $(OBJ) -lSDL -lSDLmain -lSDL_gfx -lSDL_image
 
 all:		$(NAME)
 
