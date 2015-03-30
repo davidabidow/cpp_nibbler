@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 // 
 // Started on  Wed Mar 25 14:27:26 2015 David Tran
-// Last update Mon Mar 30 18:45:55 2015 David Tran
+// Last update Mon Mar 30 22:11:42 2015 Jean-Baptiste Grégoire
 //
 
 #ifndef MAP_HPP_
@@ -17,6 +17,7 @@
 # include <ctime>
 # include <unistd.h>
 # include "Snake.hpp"
+# include "OpenGlib.hpp"
 
 class	Map
 {

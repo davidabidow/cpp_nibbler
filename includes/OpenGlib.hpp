@@ -5,18 +5,14 @@
 // Login   <gregoi_j@epitech.net>
 //
 // Started on  Wed Mar  25 18:16:29 2015 Jean-Baptiste Grégoire
-// Last update Fri Mar 27 19:40:53 2015 Jean-Baptiste Grégoire
+// Last update Mon Mar 30 22:15:38 2015 Jean-Baptiste Grégoire
 //
 
 #ifndef OPENGLIB_HPP
 # define OPENGLIB_HPP
 
-# ifdef __APPLE__
-#  include <GLUT/glut.h>
-# else
-#  include <GL/glut.h>
-# endif
-
+# include <GL/gl.h>
+# include <GL/glu.h>
 # include <SFML/Window.hpp>
 # include <SFML/OpenGL.hpp>
 # include "ALibGraph.hpp"
@@ -35,8 +31,8 @@ void    displayMap(void);
 class OpenGlib : public ALibGraph
 {
 public:
-  OpenGlib();
-  bool		Init(int x, int y, int *argc, char **argv);
+  OpenGlib(int x, int y);
+  bool		Init();
   bool		DrawMap(Map const &map);
   void		Destroy();
   bool		DrawQuadra();

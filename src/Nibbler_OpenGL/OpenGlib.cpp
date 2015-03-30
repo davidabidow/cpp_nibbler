@@ -5,20 +5,18 @@
 // Login   <gregoi_j@epitech.net>
 //
 // Started on  Wed Mar  25 18:29:42 2015 Jean-Baptiste Grégoire
-// Last update Mon Mar 30 14:49:18 2015 Jean-Baptiste Grégoire
+// Last update Mon Mar 30 22:09:04 2015 Jean-Baptiste Grégoire
 //
 
 #include "OpenGlib.hpp"
 
-OpenGlib::OpenGlib() : ALibGraph(0, 0), screen()
+OpenGlib::OpenGlib(int x, int y) : ALibGraph(x, y)
 {
 
 }
 
-bool		OpenGlib::Init(int x, int y, int *argc, char **argv)
+bool		OpenGlib::Init()
 {
-  maxX = x;
-  maxY = y;
   window.create(sf::VideoMode(WIN_WIDTH, WIN_HEIGHT), "Nibbler -OpenGL-");
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
