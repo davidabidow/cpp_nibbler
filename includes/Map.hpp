@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 // 
 // Started on  Wed Mar 25 14:27:26 2015 David Tran
-// Last update Mon Mar 30 23:03:19 2015 David Tran
+// Last update Tue Mar 31 22:44:40 2015 David Tran
 //
 
 #ifndef MAP_HPP_
@@ -16,6 +16,7 @@
 # include <iostream>
 # include <ctime>
 # include <unistd.h>
+# include <vector>
 # include "Snake.hpp"
 
 class	ALibGraph;
@@ -26,7 +27,7 @@ public:
   Map(int x, int y);
   ~Map();
   bool			genObj();
-  bool			CheckinSnake(std::pair<int, int> t_check, std::vector<std::pair<int, int> > snake);
+  bool			CheckinSnake(std::pair<double, double> *t_check, std::vector<std::pair<double, double> *> snake);
   void			setPts(int const objID);
   int			getMaxX() const;
   int			getMaxY() const;

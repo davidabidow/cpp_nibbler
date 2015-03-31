@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Wed Mar 25 15:29:59 2015 David Tran
-// Last update Mon Mar 30 23:15:27 2015 David Tran
+// Last update Tue Mar 31 23:05:27 2015 David Tran
 //
 
 #include "Map.hpp"
@@ -23,13 +23,13 @@ Map::Map(int x, int y) : maxX(x), maxY(y)
 Map::~Map()
 {}
 
-bool	Map::CheckinSnake(std::pair<int, int> t_check, std::vector<std::pair<int, int> > snake)
+bool	Map::CheckinSnake(std::pair<double, double> *t_check, std::vector<std::pair<double, double> *> snake)
 {
-  std::vector<std::pair<int, int> >::const_iterator it = snake.begin();
+  std::vector<std::pair<double, double> *>::const_iterator it = snake.begin();
 
   while (it != snake.end())
     {
-      if ((*it).first == t_check.first && (*it).second == t_check.second)
+      if ((*it)->first == t_check->first && (*it)->second == t_check->second)
 	return (false);
       it++;
     }
@@ -39,17 +39,17 @@ bool	Map::CheckinSnake(std::pair<int, int> t_check, std::vector<std::pair<int, i
 bool	Map::genObj()
 {
   int			i;
-  std::pair<int, int>	to_check;
+  std::pair<double, double>	*to_check = new std::pair<double, double>;
 
   std::srand(std::time(0));
   i = std::rand() % (maxX * maxY);
-  to_check.first = i % maxX;
-  to_check.second = i / maxY;
+  to_check->first = i % maxX;
+  to_check->second = i / maxY;
   while (CheckinSnake(to_check, snake->getVector()) == false)
     {
       i = std::rand() % (maxX * maxY);
-      to_check.first = i % maxX;
-      to_check.second = i / maxY;
+      to_check->first = i % maxX;
+      to_check->second = i / maxY;
     }
   p_apple = i;
   apple = true;
@@ -103,27 +103,31 @@ Snake	*Map::getSnake() const
 
 void	Map::fill_string()
 {
-  std::vector<std::pair<int, int> >	snak = snake->getVector();
-  std::vector<std::pair<int, int> >::iterator	it = snak.begin();
+  std::vector<std::pair<double, double> *>	snak = snake->getVector();
+  std::vector<std::pair<double, double> *>::iterator	it = snak.begin();
 
   std::string newone(maxX * maxY, 0);
   map = newone;
   map[p_apple] = 2;
   while (it != snak.end())
     {
-      map[(*it).second * maxY + (*it).first] = 1;
+      std::cout << "write toto" << std::endl;
+      std::cout << (*it)->second * maxY + (*it)->first << std::endl;
+      std::cout << (*it)->first  << ";" << (*it)->second << std::endl;
+      map[(*it)->second * maxY + (*it)->first] = 1;
       it++;
     }
+  std::cout << "out" << std::endl;
 }
 
 void	Map::eat_apple()
 {
-  std::vector<std::pair<int, int> >	snak = snake->getVector();
-  std::vector<std::pair<int, int> >::iterator	it = snak.begin();
+  std::vector<std::pair<double, double> *>	snak = snake->getVector();
+  std::vector<std::pair<double, double> *>::iterator	it = snak.begin();
 
   while (it != snak.end())
     {
-      if (p_apple == ((*it).second * maxY + (*it).first))
+      if (p_apple == ((*it)->second * maxY + (*it)->first))
 	{
 	  apple = false;
 	  snake->addQueue();
@@ -140,6 +144,7 @@ void	Map::loop_game(ALibGraph *lib)
   lib->Init();
   while (42)
     {
+      fill_string();
       if (apple == false)
 	genObj();
       if ((press = lib->HandleEvent()) == -1)
@@ -149,11 +154,11 @@ void	Map::loop_game(ALibGraph *lib)
       else if (press == 2)
 	snake->turnRight();
       snake->moveAhead();
-      fill_string();
       lib->DrawMap(*this);
+      //     lib->DrawQuadra(*this);
       eat_apple();
       if (snake->isAlive(maxX, maxY) == false)
 	return ;
-      sleep(0.8);
+      usleep(100000);
     }
 }

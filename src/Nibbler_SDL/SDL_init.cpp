@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 // 
 // Started on  Tue Mar 24 21:56:30 2015 David Tran
-// Last update Mon Mar 30 23:05:17 2015 David Tran
+// Last update Tue Mar 31 23:04:21 2015 David Tran
 //
 
 #include "Nibbler_SDL.hpp"
@@ -112,12 +112,15 @@ char		N_SDL::HandleEvent()
   button = 0;
   while (SDL_PollEvent(&even))
     {
-      if (even.key.keysym.sym == SDLK_ESCAPE || even.type == SDL_QUIT)
-	button = -1;
-      else if (even.key.keysym.sym == SDLK_LEFT)
-	button = 1;
-      else if (even.key.keysym.sym == SDLK_RIGHT)
-	button = 2;
+      if (even.type == SDL_KEYDOWN)
+	{
+	  if (even.key.keysym.sym == SDLK_ESCAPE)
+	    button = -1;
+	  else if (even.key.keysym.sym == SDLK_LEFT)
+	    button = 1;
+	  else if (even.key.keysym.sym == SDLK_RIGHT)
+	    button = 2;
+	}
     }
   return (button);
 }

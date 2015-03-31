@@ -5,17 +5,17 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Fri Mar 27 00:10:35 2015 David Tran
-// Last update Mon Mar 30 23:21:51 2015 David Tran
+// Last update Tue Mar 31 23:09:13 2015 David Tran
 //
 
 #include "Snake.hpp"
 
 Snake::Snake(int maxX, int maxY) : direction(WEST), nbPoints(0)
 {
-  int			x;
-  int			y;
-  int			i;
-  std::pair<int, int>	coor;
+  int						x;
+  int						y;
+  int						i;
+  std::vector<std::pair<double, double> *>	snak;
 
   //  x = (WIN_WIDTH / maxX) * (maxX / 2 - 2);
   //  y = (WIN_HEIGHT / maxY) * (maxY / 2);
@@ -24,17 +24,20 @@ Snake::Snake(int maxX, int maxY) : direction(WEST), nbPoints(0)
     {
       //      coor.first = x + (WIN_WIDTH / maxX * i);
       //      coor.second = y;
-      coor.first = maxX / 2 - 2 + i;
-      coor.second = maxY / 2;
-      snake.push_back(coor);
+      std::pair<double, double>	*coor = new std::pair<double, double>;
+      coor->first = maxX / 2 - 2 + i;
+      coor->second = maxY / 2;
+      std::cout << "init snake" << std::endl;
+      std::cout << coor->first  << ";" << coor->second << std::endl;
+      snak.push_back(coor);
       i++;
     }
+  snake = snak;
 }
 
 void	Snake::turnLeft()
 {
   direction = (Way)((direction + 1) % 4);
-  std::cout << direction << std::endl;
 }
 
 void	Snake::turnRight()
@@ -44,46 +47,46 @@ void	Snake::turnRight()
 
 void	Snake::moveAhead()
 {
-  std::vector<std::pair<int, int> >::iterator	it = snake.begin();
-  std::pair<int, int>				coor;
-  std::pair<int, int>				last;
+  std::vector<std::pair<double, double> *>::iterator	it = snake.begin();
+  std::pair<double, double>				*coor = new std::pair<double, double>;
+  std::pair<double, double>				*last = new std::pair<double, double>;
 
-  last.first = (*it).first;
-  last.second = (*it).second;
+  coor->first = (*it)->first;
+  coor->second = (*it)->second;
   it++;
   while (it != snake.end())
     {
-      coor.first = (*it).first;
-      coor.second = (*it).second;
-      (*it).first = last.first;
-      (*it).second = last.second;
-      last.first = (*it).first;
-      last.second = (*it).second;
+      last->first = (*it)->first;
+      last->second = (*it)->second;
+      (*it)->first = coor->first;
+      (*it)->second = coor->second;
+      coor->first = last->first;
+      coor->second = last->second;
       it++;
     }
   it = snake.begin();
   if (direction == NORTH)
-    (*it).second -= 1;
+    (*it)->second -= 1;
   else if (direction == WEST)
-    (*it).first -= 1;
+    (*it)->first -= 1;
   else if (direction == SOUTH)
-    (*it).second += 1;
+    (*it)->second += 1;
   else
-    (*it).first += 1;
+    (*it)->first += 1;
 }
 
 bool	Snake::isAlive(int maxX, int maxY)
 {
-  std::vector<std::pair<int, int> >::iterator	it = snake.begin();
-  std::pair<int, int>				first;
+  std::vector<std::pair<double, double> *>::iterator	it = snake.begin();
+  std::pair<double, double>				*first;
 
-  if ((*it).first < 0 || (*it).first > maxX || (*it).second < 0 || (*it).second > maxY)
+  if ((*it)->first < 0 || (*it)->first > maxX || (*it)->second < 0 || (*it)->second > maxY)
     return (false);
   first = *it;
   it++;
   while (it < snake.end())
     {
-      if (first.first == (*it).first && first.second == (*it).second)
+      if (first->first == (*it)->first && first->second == (*it)->second)
 	return (false);
       it++;
     }
@@ -97,9 +100,9 @@ Way	Snake::getDirection() const
 
 void	Snake::addQueue()
 {
-  std::pair<int, int>	add;
+  std::pair<double, double>	*add = new std::pair<double, double>;
 
-  /*add = *(snake.end() - 1);
+  /*  add = *(snake.end() - 1);
     if (direction == NORTH)
     add.second += 1;
   else if (direction == WEST)
@@ -108,8 +111,8 @@ void	Snake::addQueue()
     add.second -= 1;
   else
   add.first -= 1;*/
-  add.first = 0;
-  add.second = 0;
+  add->first = 0;
+  add->second = 0;
   snake.push_back(add);
 }
 
