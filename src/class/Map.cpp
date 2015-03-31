@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Wed Mar 25 15:29:59 2015 David Tran
-// Last update Tue Mar 31 23:05:27 2015 David Tran
+// Last update Tue Mar 31 23:13:37 2015 David Tran
 //
 
 #include "Map.hpp"
@@ -148,7 +148,10 @@ void	Map::loop_game(ALibGraph *lib)
       if (apple == false)
 	genObj();
       if ((press = lib->HandleEvent()) == -1)
-	return ;
+	{
+	  lib->Destroy();
+	  return ;
+	}
       else if (press == 1)
 	snake->turnLeft();
       else if (press == 2)
