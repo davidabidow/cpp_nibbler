@@ -5,7 +5,7 @@
 // Login   <gregoi_j@epitech.net>
 //
 // Started on  Wed Mar  25 18:16:29 2015 Jean-Baptiste Grégoire
-// Last update Mon Mar 30 22:15:38 2015 Jean-Baptiste Grégoire
+// Last update Tue Mar 31 02:12:27 2015 Jean-Baptiste Grégoire
 //
 
 #ifndef OPENGLIB_HPP
@@ -24,21 +24,21 @@
 # define WIN_POS_X	100
 # define WIN_POS_Y	100
 
-void    manageKeys(unsigned char key, int x, int y);
-void    manageSpecialKeys(int key, int x, int y);
-void    displayMap(void);
+void	drawGround(Map const &map) const;
+void	drawCube(int x, int y, int z, int size);
+void	drawSnake(Map const &map) const;
 
 class OpenGlib : public ALibGraph
 {
 public:
-  OpenGlib(int x, int y);
+		OpenGlib(int x, int y);
   bool		Init();
   bool		DrawMap(Map const &map);
   void		Destroy();
   bool		DrawQuadra();
   bool		DrawHUD();
   char		HandleEvent();
-  ~OpenGlib();
+		~OpenGlib();
 
 private:
   sf::Window	window;

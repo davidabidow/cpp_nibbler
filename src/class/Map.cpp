@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Wed Mar 25 15:29:59 2015 David Tran
-// Last update Mon Mar 30 19:12:13 2015 David Tran
+// Last update Tue Mar 31 01:40:17 2015 Jean-Baptiste Grégoire
 //
 
 #include "Map.hpp"
@@ -41,8 +41,6 @@ bool	Map::genObj()
   int			i;
   std::pair<int, int>	to_check;
 
-  if (apple == false)
-    return (false);
   std::srand(std::time(0));
   i = std::rand() % (maxX * maxY);
   to_check.first = i % maxX;
@@ -53,7 +51,8 @@ bool	Map::genObj()
       to_check.first = i % maxX;
       to_check.second = i / maxY;
     }
-  map[i] = 2;
+  p_apple = i;
+  apple = true;
   return (true);
 }
 
@@ -107,9 +106,57 @@ void	Map::fill_string()
   std::vector<std::pair<int, int> >	snak = snake->getVector();
   std::vector<std::pair<int, int> >::iterator	it = snak.begin();
 
+  std::string newone(maxX * maxY, 0);
+  map = newone;
+  map[p_apple] = 2;
   while (it != snak.end())
     {
       map[(*it).second * maxY + (*it).first] = 1;
       it++;
+    }
+}
+
+void	Map::eat_apple()
+{
+  std::vector<std::pair<int, int> >	snak = snake->getVector();
+  std::vector<std::pair<int, int> >::iterator	it = snak.begin();
+
+  while (it != snak.end())
+    {
+      if (p_apple == ((*it).second * maxY + (*it).first))
+	{
+	  apple = false;
+	  snake->addQueue();
+	  return ;
+	}
+      it++;
+    }
+}
+
+void	Map::loop_game(ALibGraph *lib)
+{
+  char	press;
+
+  lib->Init();
+  while (42)
+    {
+      if (apple == false)
+	genObj();
+      if ((press = lib->HandleEvent()) == -1)
+	{
+	  lib->Destroy();
+	  return ;
+	}
+      else if (press == 1)
+	snake->turnLeft();
+      else if (press == 2)
+	snake->turnRight();
+      snake->moveAhead();
+      fill_string();
+      lib->DrawMap(*this);
+      eat_apple();
+      if (snake->isAlive(maxX, maxY) == false)
+	return ;
+      usleep(80000);
     }
 }

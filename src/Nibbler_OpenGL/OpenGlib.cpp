@@ -5,7 +5,7 @@
 // Login   <gregoi_j@epitech.net>
 //
 // Started on  Wed Mar  25 18:29:42 2015 Jean-Baptiste Grégoire
-// Last update Mon Mar 30 22:09:04 2015 Jean-Baptiste Grégoire
+// Last update Tue Mar 31 02:29:11 2015 Jean-Baptiste Grégoire
 //
 
 #include "OpenGlib.hpp"
@@ -20,7 +20,7 @@ bool		OpenGlib::Init()
   window.create(sf::VideoMode(WIN_WIDTH, WIN_HEIGHT), "Nibbler -OpenGL-");
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-  gluPerspective(WIN_FOVY, static_cast<double>(x / y), NEAR, FAR);
+  gluPerspective(WIN_FOVY, static_cast<double>(maxX / maxY), NEAR, FAR);
   glEnable(GLUT_DEPTH_TEST);
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
@@ -35,14 +35,10 @@ bool		OpenGlib::DrawMap(Map const &map)
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
-  glBegin(GL_QUADS);
-  glColor3ub(70, 125, 20);
-  glVertex3d(-1 * (map.getMaxX() / 2), 0, -1 * (map.getMaxY() / 2));
-  glVertex3d(map.getMaxX() / 2, 0, -1 * (map.getMaxY() / 2));
-  glVertex3d(map.getMaxX() / 2, 0, map.getMaxY() / 2);
-  glVertex3d(-1 * (map.getMaxX() / 2), 0, map.getMaxY() / 2);
-  glEnd();
+  drawGround(map);
+  drawSnake(map);
   glFlush();
+  window.display();
   return (true);
 }
 
@@ -59,6 +55,31 @@ bool		OpenGlib::DrawQuadra()
 bool		OpenGlib::DrawHUD()
 {
   return (true);
+}
+
+char		OpenGlibL::HandleEvent()
+{
+  char		input;
+  sf::Event	event;
+
+  input = 0;
+  while (window.pollEvent(event))
+    {
+      if (event.type == sf::Event::Closed)
+	  input = -1;
+      if (event.type ==  sf::Event::KeyReleased)
+	{
+	  if (event.key.code == sf::Keyboard::Escape)
+	    input = -1;
+	  else if (event.key.code == sf::Keyboard::Left)
+	    input = 1;
+	  else if (event.key.code == sf::Keyboard::Right)
+	    input = 2;
+	  else
+	    input = 0;
+	}
+    }
+  return (input);
 }
 
 OpenGlib::~OpenGlib()
