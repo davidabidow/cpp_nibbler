@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 // 
 // Started on  Wed Mar 25 14:27:26 2015 David Tran
-// Last update Tue Mar 31 23:13:18 2015 David Tran
+// Last update Wed Apr  1 16:34:39 2015 David Tran
 //
 
 #ifndef MAP_HPP_
@@ -20,7 +20,7 @@
 # include "Snake.hpp"
 // # include "OpenGlib.hpp"
 
-class	ALibGraph;
+class	ILibGraph;
 
 class	Map
 {
@@ -42,7 +42,7 @@ public:
   Snake			*getSnake() const;
   void			setMaxX(int a) {maxX = a;};
   void			setMaxY(int a) {maxY = a;};
-  void			loop_game(ALibGraph *);
+  void			loop_game(ILibGraph *);
   void			eat_apple();
 
 private:
@@ -50,7 +50,7 @@ private:
   int		pts;
   bool		apple;
   int		p_apple;
-  size_t	time;
+  double	time;
   Snake		*snake;
   int		maxX;
   int		maxY;

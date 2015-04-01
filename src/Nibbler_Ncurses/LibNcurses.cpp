@@ -5,17 +5,17 @@
 // Login   <prenat_h@epitech.eu>
 //
 // Started on  Wed Apr  1 14:24:29 2015 Hugo Prenat
-// Last update Wed Apr  1 15:01:03 2015 Hugo Prenat
+// Last update Wed Apr  1 16:25:44 2015 David Tran
 //
 
 #include "LibNcurses.hpp"
 
-LibNcurses::LibNcurses(int x, int y) : ALibGraph(x, y)
+LibNcurses::LibNcurses()
 {
 
 }
 
-bool		LibNcurses::Init()
+bool		LibNcurses::Init(int x, int y)
 {
   initscr();
   start_color();

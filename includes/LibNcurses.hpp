@@ -5,7 +5,7 @@
 // Login   <prenat_h@epitech.eu>
 //
 // Started on  Wed Apr  1 14:18:50 2015 Hugo Prenat
-// Last update Wed Apr  1 14:52:10 2015 Hugo Prenat
+// Last update Wed Apr  1 16:22:30 2015 David Tran
 //
 
 #ifndef LIBNCURSES_HPP_
@@ -15,14 +15,14 @@
 
 # include "Map.hpp"
 
-class		LibNcurses : public ALibGraph
+class		LibNcurses : public ILibGraph
 {
 public:
-  LibNcurses(int, int);
+  LibNcurses();
   ~LibNcurses();
 
 public:
-  bool		Init();
+  bool		Init(int, int);
   bool		DrawMap(Map const &);
   void		Destroy();
   bool		DrawQuadra(Map const &);
