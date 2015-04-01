@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Wed Mar 25 14:15:03 2015 David Tran
-// Last update Mon Mar 30 16:07:18 2015 David Tran
+// Last update Tue Mar 31 22:34:42 2015 Jean-Baptiste Grégoire
 //
 
 #ifndef ALIBGRAPH_HPP_
@@ -32,7 +32,7 @@ public:
   int			getMaxY() const {return (maxY);}
   void			setMaxX(int a) {maxX = a;};
   void			setMaxY(int a) {maxY = a;};
-private:
+protected:
   int			maxX;
   int			maxY;
 };

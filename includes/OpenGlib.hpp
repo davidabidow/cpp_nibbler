@@ -5,7 +5,7 @@
 // Login   <gregoi_j@epitech.net>
 //
 // Started on  Wed Mar  25 18:16:29 2015 Jean-Baptiste Grégoire
-// Last update Tue Mar 31 02:12:27 2015 Jean-Baptiste Grégoire
+// Last update Tue Mar 31 22:52:07 2015 Jean-Baptiste Grégoire
 //
 
 #ifndef OPENGLIB_HPP
@@ -15,7 +15,7 @@
 # include <GL/glu.h>
 # include <SFML/Window.hpp>
 # include <SFML/OpenGL.hpp>
-# include "ALibGraph.hpp"
+# include "Map.hpp"
 
 # define ESC_KEY	27
 # define WIN_FOVY	70
@@ -24,9 +24,9 @@
 # define WIN_POS_X	100
 # define WIN_POS_Y	100
 
-void	drawGround(Map const &map) const;
+void	drawGround(Map const &map);
 void	drawCube(int x, int y, int z, int size);
-void	drawSnake(Map const &map) const;
+void	drawSnake(Map const &map);
 
 class OpenGlib : public ALibGraph
 {
@@ -35,7 +35,7 @@ public:
   bool		Init();
   bool		DrawMap(Map const &map);
   void		Destroy();
-  bool		DrawQuadra();
+  bool		DrawQuadra(Map const &map);
   bool		DrawHUD();
   char		HandleEvent();
 		~OpenGlib();

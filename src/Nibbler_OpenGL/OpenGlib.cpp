@@ -5,7 +5,7 @@
 // Login   <gregoi_j@epitech.net>
 //
 // Started on  Wed Mar  25 18:29:42 2015 Jean-Baptiste Grégoire
-// Last update Tue Mar 31 02:29:11 2015 Jean-Baptiste Grégoire
+// Last update Wed Apr  1 11:40:11 2015 Jean-Baptiste Grégoire
 //
 
 #include "OpenGlib.hpp"
@@ -17,14 +17,14 @@ OpenGlib::OpenGlib(int x, int y) : ALibGraph(x, y)
 
 bool		OpenGlib::Init()
 {
-  window.create(sf::VideoMode(WIN_WIDTH, WIN_HEIGHT), "Nibbler -OpenGL-");
+  window.create(sf::VideoMode(WIN_WIDTH, WIN_HEIGHT), "Nibbler -OpenGL-", sf::Style::Default, sf::ContextSettings(32));
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
   gluPerspective(WIN_FOVY, static_cast<double>(maxX / maxY), NEAR, FAR);
-  glEnable(GLUT_DEPTH_TEST);
+  glEnable(GL_DEPTH_TEST);
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
-  gluLookAt(50, 200, 200,
+  gluLookAt(0, 80, -50,
 	    0, 0, 0,
 	    0, 0, 1);
   return (true);
@@ -33,8 +33,8 @@ bool		OpenGlib::Init()
 bool		OpenGlib::DrawMap(Map const &map)
 {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  glMatrixMode(GL_MODELVIEW);
-  glLoadIdentity();
+  // glMatrixMode(GL_MODELVIEW);
+  // glLoadIdentity();
   drawGround(map);
   drawSnake(map);
   glFlush();
@@ -47,7 +47,7 @@ void		OpenGlib::Destroy()
   window.close();
 }
 
-bool		OpenGlib::DrawQuadra()
+bool		OpenGlib::DrawQuadra(Map const &map)
 {
   return (true);
 }
@@ -57,7 +57,7 @@ bool		OpenGlib::DrawHUD()
   return (true);
 }
 
-char		OpenGlibL::HandleEvent()
+char		OpenGlib::HandleEvent()
 {
   char		input;
   sf::Event	event;

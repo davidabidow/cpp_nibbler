@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Wed Mar 25 15:29:59 2015 David Tran
-// Last update Tue Mar 31 01:40:17 2015 Jean-Baptiste Grégoire
+// Last update Wed Apr  1 00:08:14 2015 Jean-Baptiste Grégoire
 //
 
 #include "Map.hpp"
