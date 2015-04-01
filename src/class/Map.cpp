@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Wed Mar 25 15:29:59 2015 David Tran
-// Last update Wed Apr  1 14:54:06 2015 Hugo Prenat
+// Last update Wed Apr  1 16:38:15 2015 David Tran
 //
 
 #include "Map.hpp"
@@ -137,11 +137,10 @@ void	Map::eat_apple()
     }
 }
 
-void	Map::loop_game(ALibGraph *lib)
+void	Map::loop_game(ILibGraph *lib)
 {
   char	press;
 
-  lib->Init();
   while (42)
     {
       fill_string();
@@ -156,12 +155,13 @@ void	Map::loop_game(ALibGraph *lib)
 	snake->turnLeft();
       else if (press == 2)
 	snake->turnRight();
+      if (snake->isAlive(maxX, maxY) == false)
+	return ;
       snake->moveAhead();
       lib->DrawMap(*this);
       //     lib->DrawQuadra(*this);
       eat_apple();
-      if (snake->isAlive(maxX, maxY) == false)
-	return ;
       usleep(100000);
+      time += 0.1;
     }
 }

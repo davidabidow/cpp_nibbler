@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Mon Mar  9 14:49:22 2015 David Tran
-// Last update Wed Apr  1 15:02:27 2015 Hugo Prenat
+// Last update Wed Apr  1 16:35:44 2015 David Tran
 //
 
 #include "Map.hpp"
@@ -42,7 +42,7 @@ int		main(int ac, char **av)
     return (-1);
   // if (std::string(av[3]) == "lib_nibbler_opengl.so")
   //   {
-  //     ALibGraph		*lib = new OpenGlib(map->getMaxX(), map->getMaxY());
+  //     ILibGraph		*lib = new OpenGlib(map->getMaxX(), map->getMaxY());
 
   //     lib->Init();
   //     map->fill_string();
@@ -53,18 +53,18 @@ int		main(int ac, char **av)
   //   }
   if (strcmp(av[3],"lib_nibbler_sdl.so") == 0)
     {
-      ALibGraph		*lib = new N_SDL(map->getMaxX(), map->getMaxY());
+      ILibGraph		*lib = new N_SDL;
 
-      lib->Init();
+      lib->Init(map->getMaxX(), map->getMaxY());
       map->fill_string();
       lib->DrawMap(*map);
       map->loop_game(lib);
     }
   if (strcmp(av[3],"lib_nibbler_ncurses.so") == 0)
     {
-      ALibGraph		*lib = new LibNcurses(map->getMaxX(), map->getMaxY());
+      ILibGraph		*lib = new LibNcurses;
 
-      lib->Init();
+      lib->Init(map->getMaxX(), map->getMaxY());
       map->fill_string();
       lib->DrawMap(*map);
       map->loop_game(lib);

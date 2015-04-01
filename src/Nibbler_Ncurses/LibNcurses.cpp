@@ -5,16 +5,16 @@
 // Login   <prenat_h@epitech.eu>
 //
 // Started on  Wed Apr  1 14:24:29 2015 Hugo Prenat
-// Last update Wed Apr  1 16:55:29 2015 Hugo Prenat
+// Last update Wed Apr  1 16:57:46 2015 Hugo Prenat
 //
 
 #include "LibNcurses.hpp"
 
-LibNcurses::LibNcurses(int x, int y) : ALibGraph(x, y)
+LibNcurses::LibNcurses()
 {
 }
 
-bool	LibNcurses::Init()
+bool	LibNcurses::Init(int x, int y)
 {
   int	sizeY, sizeX;
 
@@ -34,7 +34,7 @@ bool	LibNcurses::Init()
   return (true);
 }
 
-bool		LibNcurses::DrawMap(Map const &map)
+bool	LibNcurses::DrawMap(Map const &map)
 {
   for (int i = 0; i <= map.getMaxX() + 1; i++)
     {
@@ -64,7 +64,7 @@ bool		LibNcurses::DrawMap(Map const &map)
   return (true);
 }
 
-void		LibNcurses::Destroy()
+void	LibNcurses::Destroy()
 {
   refresh();
   nodelay(stdscr, false);
@@ -72,20 +72,20 @@ void		LibNcurses::Destroy()
   endwin();
 }
 
-bool		LibNcurses::DrawQuadra(Map const &map)
+bool	LibNcurses::DrawQuadra(Map const &map)
 {
   return (true);
 }
 
-bool		LibNcurses::DrawHUD()
+bool	LibNcurses::DrawHUD()
 {
   return (true);
 }
 
-char		LibNcurses::HandleEvent()
+char	LibNcurses::HandleEvent()
 {
-  int		tmp;
-  char		button;
+  int	tmp;
+  char	button;
 
   tmp = getch();
   button = 0;
