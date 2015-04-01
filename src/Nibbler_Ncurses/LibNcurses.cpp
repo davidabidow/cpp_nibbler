@@ -5,19 +5,27 @@
 // Login   <prenat_h@epitech.eu>
 //
 // Started on  Wed Apr  1 14:24:29 2015 Hugo Prenat
-// Last update Wed Apr  1 15:24:32 2015 Hugo Prenat
+// Last update Wed Apr  1 16:55:29 2015 Hugo Prenat
 //
 
 #include "LibNcurses.hpp"
 
 LibNcurses::LibNcurses(int x, int y) : ALibGraph(x, y)
 {
-
 }
 
-bool		LibNcurses::Init()
+bool	LibNcurses::Init()
 {
+  int	sizeY, sizeX;
+
   initscr();
+  getmaxyx(stdscr, sizeY, sizeX);
+  if (sizeX < (getMaxX() + 1) || sizeY < (getMaxY() + 1))
+    {
+      std::cerr << "Error: Please enter a size that is not greater thant"
+		<< " the term" << std::endl;
+      return (false);
+    }
   nodelay(stdscr, true);
   keypad(stdscr, true);
   noecho();
@@ -28,43 +36,29 @@ bool		LibNcurses::Init()
 
 bool		LibNcurses::DrawMap(Map const &map)
 {
-  for (int i = 0; i < map.getMaxX(); i++)
+  for (int i = 0; i <= map.getMaxX() + 1; i++)
     {
-      move(i, map.getMaxX() - 1);
+      move(i, map.getMaxX() + 1);
+      addch('x');
+      move(map.getMaxX() + 1, i);
       addch('x');
     }
-  for (int i = 0; i < map.getMaxX(); i++)
-    {
-      move(map.getMaxX() - 1, i);
-      addch('x');
-    }
-  for (int i = 0; i < map.getMaxY(); i++)
+  for (int i = 0; i < map.getMaxY() + 1; i++)
     {
       move(0, i);
       addch('x');
-    }
-  for (int i = 0; i < map.getMaxY() - 1; i++)
-    {
       move(i, 0);
       addch('x');
     }
-  for (int i = 0; i < map.getMaxY() * map.getMaxX(); i++)
+  for (int i = 0; i < getMaxY() * getMaxX(); i++)
     {
+      move(i / getMaxY() + 1, i % getMaxX() + 1);
       if (map.getMap()[i] == 1)
-	{
-	  move(i / map.getMaxY(), i % map.getMaxX());
-	  addch('o');
-	}
+	addch('o');
       else if (map.getMap()[i] == 2 && map.getApple() == true)
-	{
-	  move(i / map.getMaxY(), i % map.getMaxX());
-	  addch('P');
-	}
+	addch('P');
       else
-	{
-	  move(i / map.getMaxY(), i % map.getMaxX());
-	  addch(' ');
-	}
+	addch(' ');
     }
   refresh();
   return (true);
@@ -75,7 +69,6 @@ void		LibNcurses::Destroy()
   refresh();
   nodelay(stdscr, false);
   keypad(stdscr, false);
-  getch();
   endwin();
 }
 
@@ -96,7 +89,7 @@ char		LibNcurses::HandleEvent()
 
   tmp = getch();
   button = 0;
-  if (tmp == SDLK_ESCAPE)
+  if (tmp == 27)
     button = -1;
   else if (tmp == KEY_LEFT)
     button = 1;
