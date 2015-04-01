@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Mon Mar  9 14:49:22 2015 David Tran
-// Last update Wed Apr  1 17:22:20 2015 Jean-Baptiste Grégoire
+// Last update Wed Apr  1 17:33:45 2015 Jean-Baptiste Grégoire
 //
 
 #include "Map.hpp"
@@ -41,21 +41,11 @@ int		main(int ac, char **av)
     }
   if (check_args(av, &map) == -1)
     return (-1);
-  if (std::string(av[3]) == "lib_nibbler_opengl.so")
+  if (strcmp(av[3],"lib_nibbler_opengl.so") == 0)
     {
-      ALibGraph		*lib = new OpenGlib(map->getMaxX(), map->getMaxY());
+      ILibGraph		*lib = new OpenGlib;
 
-      std::cout << "un" << std::endl;
-      map->fill_string();
-      std::cout << "deux" << std::endl;
-      map->loop_game(lib);
-      std::cout << "fin" << std::endl;
-    }
-  if (strcmp(av[3],"lib_nibbler_sdl.so") == 0)
-    {
-      ILibGraph		*lib = new OpenGlib(map->getMaxX(), map->getMaxY());
-
-      lib->Init();
+      lib->Init(map->getMaxX(), map->getMaxY());
       map->fill_string();
       lib->DrawMap(*map);
       map->loop_game(lib);

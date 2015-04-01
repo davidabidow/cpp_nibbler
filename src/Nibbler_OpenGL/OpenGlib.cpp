@@ -5,7 +5,7 @@
 // Login   <gregoi_j@epitech.net>
 //
 // Started on  Wed Mar  25 18:29:42 2015 Jean-Baptiste Grégoire
-// Last update Wed Apr  1 17:21:25 2015 Jean-Baptiste Grégoire
+// Last update Wed Apr  1 22:46:27 2015 Jean-Baptiste Grégoire
 //
 
 #include "OpenGlib.hpp"
@@ -15,8 +15,10 @@ OpenGlib::OpenGlib()
 
 }
 
-bool		OpenGlib::Init()
+bool		OpenGlib::Init(int x, int y)
 {
+  maxX = x;
+  maxY = y;
   window.create(sf::VideoMode(WIN_WIDTH, WIN_HEIGHT), "Nibbler -OpenGL-", sf::Style::Default, sf::ContextSettings(32));
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
@@ -24,7 +26,7 @@ bool		OpenGlib::Init()
   glEnable(GL_DEPTH_TEST);
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
-  gluLookAt(0, 80, -50,
+  gluLookAt(3, 4, 2,
 	    0, 0, 0,
 	    0, 0, 1);
   return (true);
@@ -33,10 +35,9 @@ bool		OpenGlib::Init()
 bool		OpenGlib::DrawMap(Map const &map)
 {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  // glMatrixMode(GL_MODELVIEW);
-  // glLoadIdentity();
-  drawGround(map);
-  drawSnake(map);
+  // drawGround(map);
+  // drawSnake(map);
+  drawCube(0, 0, 0, 1);
   glFlush();
   window.display();
   return (true);
