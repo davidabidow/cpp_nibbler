@@ -5,7 +5,7 @@
 // Login   <prenat_h@epitech.eu>
 //
 // Started on  Wed Apr  1 14:24:29 2015 Hugo Prenat
-// Last update Wed Apr  1 16:57:46 2015 Hugo Prenat
+// Last update Wed Apr  1 17:01:20 2015 Hugo Prenat
 //
 
 #include "LibNcurses.hpp"
@@ -18,9 +18,11 @@ bool	LibNcurses::Init(int x, int y)
 {
   int	sizeY, sizeX;
 
+  maxY = y;
+  maxX = x;
   initscr();
   getmaxyx(stdscr, sizeY, sizeX);
-  if (sizeX < (getMaxX() + 1) || sizeY < (getMaxY() + 1))
+  if (sizeX < (x + 1) || sizeY < (y + 1))
     {
       std::cerr << "Error: Please enter a size that is not greater thant"
 		<< " the term" << std::endl;
@@ -36,23 +38,23 @@ bool	LibNcurses::Init(int x, int y)
 
 bool	LibNcurses::DrawMap(Map const &map)
 {
-  for (int i = 0; i <= map.getMaxX() + 1; i++)
+  for (int i = 0; i <= maxX + 1; i++)
     {
-      move(i, map.getMaxX() + 1);
+      move(i, maxX + 1);
       addch('x');
-      move(map.getMaxX() + 1, i);
+      move(maxX + 1, i);
       addch('x');
     }
-  for (int i = 0; i < map.getMaxY() + 1; i++)
+  for (int i = 0; i < maxY + 1; i++)
     {
       move(0, i);
       addch('x');
       move(i, 0);
       addch('x');
     }
-  for (int i = 0; i < getMaxY() * getMaxX(); i++)
+  for (int i = 0; i < maxY * maxX; i++)
     {
-      move(i / getMaxY() + 1, i % getMaxX() + 1);
+      move(i / maxY + 1, i % maxX + 1);
       if (map.getMap()[i] == 1)
 	addch('o');
       else if (map.getMap()[i] == 2 && map.getApple() == true)
