@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Wed Mar 25 15:29:59 2015 David Tran
-// Last update Tue Mar 31 23:13:37 2015 David Tran
+// Last update Wed Apr  1 14:54:06 2015 Hugo Prenat
 //
 
 #include "Map.hpp"
@@ -111,13 +111,13 @@ void	Map::fill_string()
   map[p_apple] = 2;
   while (it != snak.end())
     {
-      std::cout << "write toto" << std::endl;
-      std::cout << (*it)->second * maxY + (*it)->first << std::endl;
-      std::cout << (*it)->first  << ";" << (*it)->second << std::endl;
+      // std::cout << "write toto" << std::endl;
+      // std::cout << (*it)->second * maxY + (*it)->first << std::endl;
+      // std::cout << (*it)->first  << ";" << (*it)->second << std::endl;
       map[(*it)->second * maxY + (*it)->first] = 1;
       it++;
     }
-  std::cout << "out" << std::endl;
+  //  std::cout << "out" << std::endl;
 }
 
 void	Map::eat_apple()

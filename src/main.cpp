@@ -1,14 +1,15 @@
 //
 // main.cpp for nibbler in /home/tran_0/rendu/cpp_nibbler/src
-// 
+//
 // Made by David Tran
 // Login   <tran_0@epitech.net>
-// 
+//
 // Started on  Mon Mar  9 14:49:22 2015 David Tran
-// Last update Tue Mar 31 01:39:56 2015 Jean-Baptiste Grégoire
+// Last update Wed Apr  1 15:02:27 2015 Hugo Prenat
 //
 
 #include "Map.hpp"
+#include "LibNcurses.hpp"
 
 int			check_args(char **av, Map **map)
 {
@@ -58,6 +59,16 @@ int		main(int ac, char **av)
       map->fill_string();
       lib->DrawMap(*map);
       map->loop_game(lib);
+    }
+  if (strcmp(av[3],"lib_nibbler_ncurses.so") == 0)
+    {
+      ALibGraph		*lib = new LibNcurses(map->getMaxX(), map->getMaxY());
+
+      lib->Init();
+      map->fill_string();
+      lib->DrawMap(*map);
+      map->loop_game(lib);
+      lib->Destroy();
     }
   return (0);
 }
