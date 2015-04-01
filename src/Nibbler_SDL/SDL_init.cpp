@@ -5,22 +5,26 @@
 // Login   <tran_0@epitech.net>
 // 
 // Started on  Tue Mar 24 21:56:30 2015 David Tran
-// Last update Mon Mar 30 23:05:17 2015 David Tran
+// Last update Wed Apr  1 16:25:09 2015 David Tran
 //
 
 #include "Nibbler_SDL.hpp"
 
-N_SDL::N_SDL(int x, int y) : ALibGraph(x, y)
-{}
+N_SDL::N_SDL()
+{
+  maxX = maxY = 0;
+}
 
 N_SDL::~N_SDL()
 {}
 
-bool		N_SDL::Init()
+bool		N_SDL::Init(int x, int y)
 {
+  maxX = x * 10;
+  maxY = y * 10;
   if (SDL_Init(SDL_INIT_VIDEO) == -1)
     return (false);
-  if (!(screen = SDL_SetVideoMode(WIN_WIDTH, WIN_HEIGHT, 32, SDL_HWSURFACE)))
+  if (!(screen = SDL_SetVideoMode(maxX, maxY, 32, SDL_HWSURFACE)))
     {
       SDL_Quit();
       return (false);
@@ -38,10 +42,14 @@ void		N_SDL::init_pos(int x, int y)
 {
   SDL_Rect	tmp;
 
-  tmp.x = WIN_WIDTH / getMaxX() * x;
+  /*  tmp.x = WIN_WIDTH / getMaxX() * x;
   tmp.y = WIN_HEIGHT / getMaxY() * y;
   tmp.w = WIN_WIDTH / getMaxX();
-  tmp.h = WIN_HEIGHT / getMaxY();
+  tmp.h = WIN_HEIGHT / getMaxY();*/
+  tmp.x = 10 * x;
+  tmp.y = 10 * y;
+  tmp.w = 10;
+  tmp.h = 10;
   pos = tmp;
 }
 
@@ -87,13 +95,13 @@ bool		N_SDL::DrawQuadra(Map const &map)
   i = 0;
   while (i < map.getMaxX())
     {
-      vlineColor(screen, (double)(WIN_WIDTH / map.getMaxX() * i), 0, WIN_HEIGHT, 0x696969);
+      vlineColor(screen, (double)(maxX / 10 * i), 0, maxY, 0x696969);
       i++;
     }
   i = 0;
   while (i < map.getMaxY())
     {
-      hlineColor(screen, 0, WIN_WIDTH, (double)(WIN_HEIGHT / map.getMaxY() * i), 0x696969);
+      hlineColor(screen, 0, maxX, (double)(maxY / 10 * i), 0x696969);
       i++;
     }
   SDL_Flip(screen);
@@ -112,12 +120,17 @@ char		N_SDL::HandleEvent()
   button = 0;
   while (SDL_PollEvent(&even))
     {
-      if (even.key.keysym.sym == SDLK_ESCAPE || even.type == SDL_QUIT)
+      if (even.type == SDL_QUIT)
 	button = -1;
-      else if (even.key.keysym.sym == SDLK_LEFT)
-	button = 1;
-      else if (even.key.keysym.sym == SDLK_RIGHT)
-	button = 2;
+      if (even.type == SDL_KEYDOWN)
+	{
+	  if (even.key.keysym.sym == SDLK_ESCAPE)
+	    button = -1;
+	  else if (even.key.keysym.sym == SDLK_LEFT)
+	    button = 1;
+	  else if (even.key.keysym.sym == SDLK_RIGHT)
+	    button = 2;
+	}
     }
   return (button);
 }

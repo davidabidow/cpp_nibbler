@@ -5,12 +5,12 @@
 // Login   <gregoi_j@epitech.net>
 //
 // Started on  Wed Mar  25 18:29:42 2015 Jean-Baptiste Grégoire
-// Last update Wed Apr  1 11:40:11 2015 Jean-Baptiste Grégoire
+// Last update Wed Apr  1 17:21:25 2015 Jean-Baptiste Grégoire
 //
 
 #include "OpenGlib.hpp"
 
-OpenGlib::OpenGlib(int x, int y) : ALibGraph(x, y)
+OpenGlib::OpenGlib()
 {
 
 }

@@ -5,7 +5,7 @@
 // Login   <gregoi_j@epitech.net>
 //
 // Started on  Wed Mar  25 18:16:29 2015 Jean-Baptiste Grégoire
-// Last update Tue Mar 31 22:52:07 2015 Jean-Baptiste Grégoire
+// Last update Wed Apr  1 17:19:21 2015 Jean-Baptiste Grégoire
 //
 
 #ifndef OPENGLIB_HPP
@@ -16,6 +16,7 @@
 # include <SFML/Window.hpp>
 # include <SFML/OpenGL.hpp>
 # include "Map.hpp"
+# include "ILibGraph.hpp"
 
 # define ESC_KEY	27
 # define WIN_FOVY	70
@@ -28,11 +29,11 @@ void	drawGround(Map const &map);
 void	drawCube(int x, int y, int z, int size);
 void	drawSnake(Map const &map);
 
-class OpenGlib : public ALibGraph
+class OpenGlib : public ILibGraph
 {
 public:
-		OpenGlib(int x, int y);
-  bool		Init();
+  OpenGlib();
+  bool		Init(int, int);
   bool		DrawMap(Map const &map);
   void		Destroy();
   bool		DrawQuadra(Map const &map);

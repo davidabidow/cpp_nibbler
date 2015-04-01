@@ -5,7 +5,7 @@
 ## Login   <tran_0@epitech.net>
 ##
 ## Started on  Mon Mar  9 14:56:07 2015 David Tran
-## Last update Tue Mar 31 22:44:29 2015 Jean-Baptiste Grégoire
+## Last update Wed Apr  1 17:18:51 2015 Jean-Baptiste Grégoire
 ##
 
 DEBUG		= 	yes
@@ -18,7 +18,8 @@ SRC		=	src/main.cpp			\
 			src/class/Snake.cpp		\
 			src/Nibbler_SDL/SDL_init.cpp	\
 			src/Nibbler_OpenGL/OpenGlib.cpp	\
-			src/Nibbler_OpenGL/OpenGlib_utils.cpp
+			src/Nibbler_OpenGL/OpenGlib_utils.cpp	\
+			src/Nibbler_Ncurses/LibNcurses.cpp	\
 
 OBJ		=	$(SRC:.cpp=.o)
 
@@ -30,6 +31,8 @@ INCLUDES	=	includes/
 
 FOLDER_SRC	=	src/
 
+LIBS		=	-lncurses
+
 CPPFLAGS	=	-W -Wall -Wextra -I $(INCLUDES)
 
 ifeq ($(DEBUG),yes)
@@ -39,7 +42,7 @@ else
 endif
 
 $(NAME):	$(OBJ)
-		$(CC) -o $(NAME) $(OBJ) -lSDL -lSDLmain -lSDL_gfx -lSDL_image -lsfml-graphics -lsfml-window -lsfml-system -lGL -lGLU
+		$(CC) -o $(NAME) $(OBJ) -lSDL -lSDLmain -lSDL_gfx -lSDL_image -lsfml-graphics -lsfml-window -lsfml-system -lGL -lGLU $(LIBS)
 
 all:		$(NAME)
 
