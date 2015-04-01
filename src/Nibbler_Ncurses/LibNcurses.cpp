@@ -5,7 +5,7 @@
 // Login   <prenat_h@epitech.eu>
 //
 // Started on  Wed Apr  1 14:24:29 2015 Hugo Prenat
-// Last update Wed Apr  1 15:01:03 2015 Hugo Prenat
+// Last update Wed Apr  1 15:24:32 2015 Hugo Prenat
 //
 
 #include "LibNcurses.hpp"
@@ -18,7 +18,6 @@ LibNcurses::LibNcurses(int x, int y) : ALibGraph(x, y)
 bool		LibNcurses::Init()
 {
   initscr();
-  start_color();
   nodelay(stdscr, true);
   keypad(stdscr, true);
   noecho();
@@ -61,6 +60,11 @@ bool		LibNcurses::DrawMap(Map const &map)
 	  move(i / map.getMaxY(), i % map.getMaxX());
 	  addch('P');
 	}
+      else
+	{
+	  move(i / map.getMaxY(), i % map.getMaxX());
+	  addch(' ');
+	}
     }
   refresh();
   return (true);
@@ -87,7 +91,18 @@ bool		LibNcurses::DrawHUD()
 
 char		LibNcurses::HandleEvent()
 {
-  return (0);
+  int		tmp;
+  char		button;
+
+  tmp = getch();
+  button = 0;
+  if (tmp == SDLK_ESCAPE)
+    button = -1;
+  else if (tmp == KEY_LEFT)
+    button = 1;
+  else if (tmp == KEY_RIGHT)
+    button = 2;
+  return (button);
 }
 
 LibNcurses::~LibNcurses()
