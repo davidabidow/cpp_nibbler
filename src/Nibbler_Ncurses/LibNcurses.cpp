@@ -5,7 +5,7 @@
 // Login   <prenat_h@epitech.eu>
 //
 // Started on  Wed Apr  1 14:24:29 2015 Hugo Prenat
-// Last update Thu Apr  2 15:05:39 2015 David Tran
+// Last update Thu Apr  2 15:11:03 2015 David Tran
 //
 
 #include "LibNcurses.hpp"
@@ -20,12 +20,22 @@ extern "C"
 
 LibNcurses::LibNcurses()
 {
-
 }
 
-bool		LibNcurses::Init(int x, int y)
+bool	LibNcurses::Init(int x, int y)
 {
+  int	sizeY, sizeX;
+
+  maxY = y;
+  maxX = x;
   initscr();
+  getmaxyx(stdscr, sizeY, sizeX);
+  if (sizeX < (x + 1) || sizeY < (y + 1))
+    {
+      std::cerr << "Error: Please enter a size that is not greater thant"
+		<< " the term" << std::endl;
+      return (false);
+    }
   nodelay(stdscr, true);
   keypad(stdscr, true);
   noecho();
@@ -34,77 +44,62 @@ bool		LibNcurses::Init(int x, int y)
   return (true);
 }
 
-bool		LibNcurses::DrawMap(Map const &map)
+bool	LibNcurses::DrawMap(Map const &map)
 {
-  for (int i = 0; i < map.getMaxX(); i++)
+  for (int i = 0; i <= maxX + 1; i++)
     {
-      move(i, map.getMaxX() - 1);
+      move(i, maxX + 1);
+      addch('x');
+      move(maxX + 1, i);
       addch('x');
     }
-  for (int i = 0; i < map.getMaxX(); i++)
-    {
-      move(map.getMaxX() - 1, i);
-      addch('x');
-    }
-  for (int i = 0; i < map.getMaxY(); i++)
+  for (int i = 0; i < maxY + 1; i++)
     {
       move(0, i);
       addch('x');
-    }
-  for (int i = 0; i < map.getMaxY() - 1; i++)
-    {
       move(i, 0);
       addch('x');
     }
-  for (int i = 0; i < map.getMaxY() * map.getMaxX(); i++)
+  for (int i = 0; i < maxY * maxX; i++)
     {
+      move(i / maxY + 1, i % maxX + 1);
       if (map.getMap()[i] == 1)
-	{
-	  move(i / map.getMaxY(), i % map.getMaxX());
-	  addch('o');
-	}
+	addch('o');
       else if (map.getMap()[i] == 2 && map.getApple() == true)
-	{
-	  move(i / map.getMaxY(), i % map.getMaxX());
-	  addch('P');
-	}
+	addch('P');
       else
-	{
-	  move(i / map.getMaxY(), i % map.getMaxX());
-	  addch(' ');
-	}
+	addch(' ');
     }
   refresh();
   return (true);
 }
 
-void		LibNcurses::Destroy()
+void	LibNcurses::Destroy()
 {
   refresh();
   nodelay(stdscr, false);
   keypad(stdscr, false);
-  getch();
   endwin();
 }
 
-bool		LibNcurses::DrawQuadra(Map const &map)
+bool	LibNcurses::DrawQuadra(Map const &map)
 {
   return (true);
 }
 
-bool		LibNcurses::DrawHUD()
+bool	LibNcurses::DrawHUD()
 {
   return (true);
 }
 
-char		LibNcurses::HandleEvent()
+char	LibNcurses::HandleEvent()
 {
-  int		tmp;
-  char		button;
+  int	tmp;
+  char	button;
 
   tmp = getch();
   button = 0;
-  if (tmp == SDLK_ESCAPE)
+  if (tmp == 27)
     button = -1;
   else if (tmp == KEY_LEFT)
     button = 1;

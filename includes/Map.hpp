@@ -1,11 +1,11 @@
 //
 // Map.hpp for Nibbler in /home/tran_0/rendu/cpp_nibbler
-// 
+//
 // Made by David Tran
 // Login   <tran_0@epitech.net>
-// 
+//
 // Started on  Wed Mar 25 14:27:26 2015 David Tran
-// Last update Thu Apr  2 15:02:14 2015 David Tran
+// Last update Thu Apr  2 15:10:55 2015 David Tran
 //
 
 #ifndef MAP_HPP_
@@ -19,7 +19,6 @@
 # include <vector>
 # include <dlfcn.h>
 # include "Snake.hpp"
-// # include "OpenGlib.hpp"
 
 class	ILibGraph;
 

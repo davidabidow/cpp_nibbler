@@ -5,7 +5,7 @@
 // Login   <prenat_h@epitech.eu>
 //
 // Started on  Wed Apr  1 14:18:50 2015 Hugo Prenat
-// Last update Wed Apr  1 16:22:30 2015 David Tran
+// Last update Wed Apr  1 16:59:30 2015 Hugo Prenat
 //
 
 #ifndef LIBNCURSES_HPP_
@@ -28,6 +28,10 @@ public:
   bool		DrawQuadra(Map const &);
   bool		DrawHUD();
   char		HandleEvent();
+
+private:
+  int		maxX;
+  int		maxY;
 };
 
 #endif /* !LIBNCURSES_HPP_ */
