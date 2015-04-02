@@ -5,10 +5,18 @@
 // Login   <tran_0@epitech.net>
 // 
 // Started on  Tue Mar 24 21:56:30 2015 David Tran
-// Last update Wed Apr  1 16:25:09 2015 David Tran
+// Last update Thu Apr  2 15:05:17 2015 David Tran
 //
 
 #include "Nibbler_SDL.hpp"
+
+extern "C"
+{
+  ILibGraph	*instanciate_lib()
+  {
+    return (new N_SDL());
+  }
+}
 
 N_SDL::N_SDL()
 {

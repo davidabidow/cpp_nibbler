@@ -5,7 +5,7 @@
 ## Login   <tran_0@epitech.net>
 ##
 ## Started on  Mon Mar  9 14:56:07 2015 David Tran
-## Last update Wed Apr  1 17:18:51 2015 Jean-Baptiste Grégoire
+## Last update Thu Apr  2 15:48:44 2015 David Tran
 ##
 
 DEBUG		= 	yes
@@ -16,10 +16,6 @@ SRC		=	src/main.cpp			\
 			src/class/Map.cpp		\
 			src/class/Error.cpp		\
 			src/class/Snake.cpp		\
-			src/Nibbler_SDL/SDL_init.cpp	\
-			src/Nibbler_OpenGL/OpenGlib.cpp	\
-			src/Nibbler_OpenGL/OpenGlib_utils.cpp	\
-			src/Nibbler_Ncurses/LibNcurses.cpp	\
 
 OBJ		=	$(SRC:.cpp=.o)
 
@@ -31,9 +27,7 @@ INCLUDES	=	includes/
 
 FOLDER_SRC	=	src/
 
-LIBS		=	-lncurses
-
-CPPFLAGS	=	-W -Wall -Wextra -I $(INCLUDES)
+CPPFLAGS	=	-W -Wall -Wextra -I $(INCLUDES) -ldl
 
 ifeq ($(DEBUG),yes)
 	CPPFLAGS 	+= -g3
@@ -42,15 +36,24 @@ else
 endif
 
 $(NAME):	$(OBJ)
-		$(CC) -o $(NAME) $(OBJ) -lSDL -lSDLmain -lSDL_gfx -lSDL_image -lsfml-graphics -lsfml-window -lsfml-system -lGL -lGLU $(LIBS)
+		$(CC) -o $(NAME) $(OBJ) -ldl
+		@(cd src/Nibbler_SDL && $(MAKE))
+#		@(cd src/Nibbler_OpenGL && $(MAKE))
+		@(cd src/Nibbler_Ncurses && $(MAKE))
 
 all:		$(NAME)
 
 clean:
 		$(RM) $(OBJ)
+		@(cd src/Nibbler_SDL && $(MAKE) clean)
+#		@(cd src/Nibbler_OpenGL && $(MAKE) clean)
+		@(cd src/Nibbler_Ncurses && $(MAKE) clean)
 
 fclean:		clean
 		$(RM) $(NAME)
+		@(cd src/Nibbler_SDL && $(MAKE) fclean)
+#		@(cd src/Nibbler_OpenGL && $(MAKE) fclean)
+		@(cd src/Nibbler_Ncurses && $(MAKE) fclean)
 
 re:		fclean all
 

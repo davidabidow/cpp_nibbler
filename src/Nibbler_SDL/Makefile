@@ -5,14 +5,14 @@
 ## Login   <prenat_h@epitech.eu>
 ## 
 ## Started on  Wed Apr  1 14:08:16 2015 Hugo Prenat
-## Last update Thu Apr  2 16:48:44 2015 David Tran
+## Last update Thu Apr  2 16:10:30 2015 David Tran
 ##
 
-SRC		=	LibNcurses.cpp
+SRC		=	SDL_init.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
 
-NAME		=	lib_nibbler_ncurses.so
+NAME		=	lib_nibbler_sdl.so
 
 RM		=	rm -f
 
@@ -20,11 +20,11 @@ DEBUG		=	no
 
 INCLUDE 	=	../../includes/
 
-CXX		=	g++
+GXX		=	g++
+
+CPPFLAGS	=	-W -Wall -Wextra -I $(INCLUDE) -fPIC -lSDL -lSDLmain -lSDL_gfx -lSDL_image
 
 LIB		=	-lncurses
-
-CPPFLAGS	=	-W -Wall -Wextra -I $(INCLUDE) -fPIC -shared $(LIB)
 
 ifeq ($(DEBUG),yes)
 	CFLAGS 	+= -g3
@@ -33,7 +33,7 @@ else
 endif
 
 $(NAME):	$(OBJ)
-		g++ -shared -o $(NAME) $(OBJ) $(LIB)
+		g++ -shared -o $(NAME) $(OBJ)
 		@(cp $(NAME) ../..)
 
 all:		$(NAME)

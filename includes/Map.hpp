@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Wed Mar 25 14:27:26 2015 David Tran
-// Last update Thu Apr  2 15:10:55 2015 David Tran
+// Last update Thu Apr  2 15:48:08 2015 David Tran
 //
 
 #ifndef MAP_HPP_
@@ -16,6 +16,7 @@
 # include <iostream>
 # include <ctime>
 # include <unistd.h>
+# include <string.h>
 # include <vector>
 # include <dlfcn.h>
 # include "Snake.hpp"
@@ -56,6 +57,6 @@ private:
   int		maxY;
 };
 
-# include "Nibbler_SDL.hpp"
+# include "ILibGraph.hpp"
 
 #endif
