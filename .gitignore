@@ -1,4 +1,9 @@
 *.o
+
 *~
+
 \#*
+
 nibbler
+
+lib_nibbler*

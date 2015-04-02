@@ -5,7 +5,7 @@
 ## Login   <tran_0@epitech.net>
 ##
 ## Started on  Mon Mar  9 14:56:07 2015 David Tran
-## Last update Thu Apr  2 18:09:32 2015 David Tran
+## Last update Thu Apr  2 21:35:30 2015 Hugo Prenat
 ##
 
 DEBUG		= 	yes
@@ -33,7 +33,7 @@ INCLUDES	=	includes/
 
 FOLDER_SRC	=	src/
 
-CPPFLAGS	=	-W -Wall -Wextra -I $(INCLUDES) -ldl -lSDL -lSDLmain -lSDL_gfx -lSDL_image
+CPPFLAGS	=	-W -Wall -Wextra -I $(INCLUDES) -ldl
 
 ifeq ($(DEBUG),yes)
 

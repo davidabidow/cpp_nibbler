@@ -5,7 +5,7 @@
 ## Login   <prenat_h@epitech.eu>
 ## 
 ## Started on  Wed Apr  1 14:08:16 2015 Hugo Prenat
-## Last update Thu Apr  2 18:20:29 2015 David Tran
+## Last update Thu Apr  2 18:28:52 2015 Hugo Prenat
 ##
 
 SRC		=	SDL_init.cpp
@@ -16,7 +16,7 @@ NAME		=	lib_nibbler_sdl.so
 
 RM		=	rm -f
 
-DEBUG		=	no
+DEBUG		=	yes
 
 INCLUDE 	=	../includes/
 
