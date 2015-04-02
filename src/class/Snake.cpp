@@ -5,15 +5,15 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Fri Mar 27 00:10:35 2015 David Tran
-// Last update Wed Apr  1 16:37:27 2015 David Tran
+// Last update Thu Apr  2 22:40:17 2015 Hugo Prenat
 //
 
 #include "Snake.hpp"
 
 Snake::Snake(int maxX, int maxY) : direction(WEST), nbPoints(0)
 {
-  int						x;
-  int						y;
+  // int						x;
+  // int						y;
   int						i;
   std::vector<std::pair<double, double> *>	snak;
 

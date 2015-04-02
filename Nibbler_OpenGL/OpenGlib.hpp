@@ -5,7 +5,7 @@
 // Login   <gregoi_j@epitech.net>
 //
 // Started on  Wed Mar  25 18:16:29 2015 Jean-Baptiste Grégoire
-// Last update Thu Apr  2 22:39:13 2015 Jean-Baptiste Grégoire
+// Last update Fri Apr  3 00:26:11 2015 Hugo Prenat
 //
 
 #ifndef OPENGLIB_HPP
@@ -15,6 +15,7 @@
 # include <GL/glu.h>
 # include <SFML/Window.hpp>
 # include <SFML/OpenGL.hpp>
+
 # include "Map.hpp"
 # include "ILibGraph.hpp"
 

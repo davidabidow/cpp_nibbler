@@ -5,7 +5,7 @@
 ## Login   <prenat_h@epitech.eu>
 ##
 ## Started on  Wed Apr  1 14:08:16 2015 Hugo Prenat
-## Last update Thu Apr  2 22:53:08 2015 Jean-Baptiste Grégoire
+## Last update Fri Apr  3 00:30:52 2015 Hugo Prenat
 ##
 
 SRC		=	OpenGlib.cpp		\
@@ -19,11 +19,17 @@ RM		=	rm -f
 
 DEBUG		=	no
 
-INCLUDE 	=	../includes/
+INCLUDES 	=	-I ./SFML-2.2/include/ -I ../includes/
 
-CPPFLAGS	=	-W -Wall -Wextra -I $(INCLUDE) -fPIC
+CPPFLAGS	=	-W -Wall -Wextra $(INCLUDES) -fPIC
 
-LIB		=	-lsfml-graphics -lsfml-window -lsfml-system -lGL -lGLU
+LDFLAGS		=	-lGL -lGLU
+
+LDFLAGS		+=	./SFML-2.2/lib/libsfml-graphics.so.2.2.0
+
+LDFLAGS		+=	./SFML-2.2/lib/libsfml-window.so.2.2.0
+
+LDFLAGS		+=	./SFML-2.2/lib/libsfml-system.so.2.2.0
 
 ifeq ($(DEBUG),yes)
 	CFLAGS 	+= -g3
@@ -32,7 +38,7 @@ else
 endif
 
 $(NAME):	$(OBJ)
-		g++ -shared -o $(NAME) $(OBJ) $(LIB)
+		g++ -shared -o $(NAME) $(OBJ) $(LDFLAGS)
 		@(cp $(NAME) ..)
 
 all:		$(NAME)
