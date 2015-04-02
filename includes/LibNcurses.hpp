@@ -5,7 +5,7 @@
 // Login   <prenat_h@epitech.eu>
 //
 // Started on  Wed Apr  1 14:18:50 2015 Hugo Prenat
-// Last update Wed Apr  1 16:59:30 2015 Hugo Prenat
+// Last update Thu Apr  2 15:27:37 2015 Hugo Prenat
 //
 
 #ifndef LIBNCURSES_HPP_
@@ -14,6 +14,8 @@
 # include <curses.h>
 
 # include "Map.hpp"
+
+# define WALL_CHAR			'*'
 
 class		LibNcurses : public ILibGraph
 {

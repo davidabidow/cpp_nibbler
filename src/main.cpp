@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Mon Mar  9 14:49:22 2015 David Tran
-// Last update Wed Apr  1 17:33:45 2015 Jean-Baptiste Grégoire
+// Last update Thu Apr  2 14:36:29 2015 Hugo Prenat
 //
 
 #include "Map.hpp"
@@ -63,11 +63,13 @@ int		main(int ac, char **av)
     {
       ILibGraph		*lib = new LibNcurses;
 
-      lib->Init(map->getMaxX(), map->getMaxY());
-      map->fill_string();
-      lib->DrawMap(*map);
-      map->loop_game(lib);
-      lib->Destroy();
+      if (lib->Init(map->getMaxX(), map->getMaxY()))
+	{
+	  map->fill_string();
+	  lib->DrawMap(*map);
+	  map->loop_game(lib);
+	  lib->Destroy();
+	}
     }
   return (0);
 }
