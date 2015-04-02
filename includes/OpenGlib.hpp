@@ -5,7 +5,7 @@
 // Login   <gregoi_j@epitech.net>
 //
 // Started on  Wed Mar  25 18:16:29 2015 Jean-Baptiste Grégoire
-// Last update Wed Apr  1 17:28:19 2015 Jean-Baptiste Grégoire
+// Last update Thu Apr  2 02:49:49 2015 Jean-Baptiste Grégoire
 //
 
 #ifndef OPENGLIB_HPP
@@ -26,7 +26,7 @@
 # define WIN_POS_Y	100
 
 void	drawGround(Map const &map);
-void	drawCube(int x, int y, int z, int size);
+void	drawCube(double x, double y, double z, double size);
 void	drawSnake(Map const &map);
 
 class OpenGlib : public ILibGraph
