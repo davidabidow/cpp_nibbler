@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 // 
 // Started on  Tue Mar 24 21:39:31 2015 David Tran
-// Last update Wed Apr  1 16:25:57 2015 David Tran
+// Last update Thu Apr  2 18:09:55 2015 David Tran
 //
 
 #ifndef NIBBLER_SDL_HPP
@@ -24,7 +24,7 @@ class	N_SDL : public ILibGraph
 {
 public:
   N_SDL();
-  ~N_SDL();
+  virtual ~N_SDL();
   bool		Init(int x, int y);
   bool		DrawMap(Map const &);
   void		Destroy();

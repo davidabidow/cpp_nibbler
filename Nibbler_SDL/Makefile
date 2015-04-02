@@ -5,7 +5,7 @@
 ## Login   <prenat_h@epitech.eu>
 ## 
 ## Started on  Wed Apr  1 14:08:16 2015 Hugo Prenat
-## Last update Thu Apr  2 17:46:30 2015 Hugo Prenat
+## Last update Thu Apr  2 18:20:29 2015 David Tran
 ##
 
 SRC		=	SDL_init.cpp
@@ -22,9 +22,7 @@ INCLUDE 	=	../includes/
 
 GXX		=	g++
 
-CPPFLAGS	=	-W -Wall -Wextra -I $(INCLUDE) -fPIC -lSDL -lSDLmain -lSDL_gfx -lSDL_image
-
-LIB		=	-lncurses
+CXXFLAGS	=	-W -Wall -Wextra -I $(INCLUDE) -fPIC -lSDL -lSDLmain -lSDL_gfx -lSDL_image
 
 ifeq ($(DEBUG),yes)
 	CFLAGS 	+= -g3
@@ -33,7 +31,7 @@ else
 endif
 
 $(NAME):	$(OBJ)
-		g++ -shared -o $(NAME) $(OBJ)
+		g++ -shared -o $(NAME) $(OBJ) -lSDL -lSDLmain -lSDL_gfx -lSDL_image
 		@(cp $(NAME) ..)
 
 all:		$(NAME)

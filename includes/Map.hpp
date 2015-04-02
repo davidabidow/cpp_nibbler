@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Wed Mar 25 14:27:26 2015 David Tran
-// Last update Thu Apr  2 15:48:08 2015 David Tran
+// Last update Thu Apr  2 18:10:06 2015 David Tran
 //
 
 #ifndef MAP_HPP_
@@ -19,6 +19,9 @@
 # include <string.h>
 # include <vector>
 # include <dlfcn.h>
+# include <SDL/SDL.h>
+# include <SDL/SDL_image.h>
+# include <SDL/SDL_gfxPrimitives.h>
 # include "Snake.hpp"
 
 class	ILibGraph;

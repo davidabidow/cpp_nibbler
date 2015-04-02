@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Mon Mar  9 14:49:22 2015 David Tran
-// Last update Thu Apr  2 17:41:19 2015 Hugo Prenat
+// Last update Thu Apr  2 18:23:11 2015 David Tran
 //
 
 #include "Map.hpp"
@@ -45,10 +45,7 @@ int		main(int ac, char **av)
     return (EXIT_FAILURE);
   if (!(external_creator = reinterpret_cast<ILibGraph *(*)()>(dlsym(dlHandler, "instanciate_lib"))))
     return (EXIT_FAILURE);
-  std::cout << "tititototo" << std::endl;
   ILibGraph		*lib = external_creator();
-
-  lib->DrawHUD();
   if (lib->Init(map->getMaxX(), map->getMaxY()))
     {
       map->fill_string();
