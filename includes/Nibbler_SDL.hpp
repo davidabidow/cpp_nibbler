@@ -1,11 +1,11 @@
 //
 // Nibbler_SDL.hpp for Nibbler_SDL in /home/tran_0/rendu/cpp_nibbler
-// 
+//
 // Made by David Tran
 // Login   <tran_0@epitech.net>
-// 
+//
 // Started on  Tue Mar 24 21:39:31 2015 David Tran
-// Last update Thu Apr  2 20:28:50 2015 David Tran
+// Last update Thu Apr  2 22:28:09 2015 Jean-Baptiste Grégoire
 //
 
 #ifndef NIBBLER_SDL_HPP
@@ -28,7 +28,7 @@ public:
   bool		Init(int x, int y);
   bool		DrawMap(std::string const &, bool const);
   void		Destroy();
-  bool		DrawQuadra(Map const &);
+  bool		DrawQuadra(std::string const &);
   bool		DrawHUD();
   char		HandleEvent();
   void		fill_point_rect(std::string const &, int, bool const);

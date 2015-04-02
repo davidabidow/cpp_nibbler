@@ -5,7 +5,7 @@
 // Login   <prenat_h@epitech.eu>
 //
 // Started on  Wed Apr  1 14:18:50 2015 Hugo Prenat
-// Last update Thu Apr  2 20:24:50 2015 David Tran
+// Last update Thu Apr  2 22:29:15 2015 Jean-Baptiste Grégoire
 //
 
 #ifndef LIBNCURSES_HPP_
@@ -27,7 +27,7 @@ public:
   bool		Init(int, int);
   bool		DrawMap(std::string const &, bool const);
   void		Destroy();
-  bool		DrawQuadra(Map const &);
+  bool		DrawQuadra(std::string const &);
   bool		DrawHUD();
   char		HandleEvent();
 

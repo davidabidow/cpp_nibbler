@@ -5,7 +5,7 @@
 // Login   <gregoi_j@epitech.net>
 //
 // Started on  Wed Mar  25 18:16:29 2015 Jean-Baptiste Grégoire
-// Last update Thu Apr  2 22:08:26 2015 Jean-Baptiste Grégoire
+// Last update Thu Apr  2 22:39:13 2015 Jean-Baptiste Grégoire
 //
 
 #ifndef OPENGLIB_HPP
@@ -25,19 +25,19 @@
 # define WIN_POS_X	100
 # define WIN_POS_Y	100
 
-void	drawGround(Map const &map);
+void	drawGround(int maxX, int maxY);
 void	drawWall(int x, int y);
 void	drawCube(double x, double y, double z, double size);
-void	drawSnake(Map const &map);
+void	drawSnake(std::string const &map, int maxX, int maxY, bool const apple);
 
 class OpenGlib : public ILibGraph
 {
 public:
   OpenGlib();
   bool		Init(int, int);
-  bool		DrawMap(std::string const &, bool const);
+  bool		DrawMap(std::string const &map, bool const apple);
   void		Destroy();
-  bool		DrawQuadra(Map const &map);
+  bool		DrawQuadra(std::string const &map);
   bool		DrawHUD();
   char		HandleEvent();
 		~OpenGlib();

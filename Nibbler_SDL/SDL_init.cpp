@@ -1,11 +1,11 @@
 //
 // SDL_init.cpp for Nibbler in /home/tran_0/rendu/cpp_nibbler
-// 
+//
 // Made by David Tran
 // Login   <tran_0@epitech.net>
-// 
+//
 // Started on  Tue Mar 24 21:56:30 2015 David Tran
-// Last update Thu Apr  2 20:26:55 2015 David Tran
+// Last update Thu Apr  2 22:28:45 2015 Jean-Baptiste Grégoire
 //
 
 # include "Nibbler_SDL.hpp"
@@ -95,18 +95,18 @@ bool		N_SDL::DrawMap(std::string const &pars, bool const apple)
   return (true);
 }
 
-bool		N_SDL::DrawQuadra(Map const &map)
+bool		N_SDL::DrawQuadra(std::string const &map)
 {
   int		i;
 
   i = 0;
-  while (i < map.getMaxX())
+  while (i < maxX)
     {
       vlineColor(screen, (double)(maxX / 10 * i), 0, maxY, 0x696969);
       i++;
     }
   i = 0;
-  while (i < map.getMaxY())
+  while (i < maxY)
     {
       hlineColor(screen, 0, maxX, (double)(maxY / 10 * i), 0x696969);
       i++;

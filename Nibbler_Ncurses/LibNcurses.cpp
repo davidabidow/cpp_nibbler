@@ -5,7 +5,7 @@
 // Login   <prenat_h@epitech.eu>
 //
 // Started on  Wed Apr  1 14:24:29 2015 Hugo Prenat
-// Last update Thu Apr  2 20:35:21 2015 David Tran
+// Last update Thu Apr  2 22:29:51 2015 Jean-Baptiste Grégoire
 //
 
 #include "LibNcurses.hpp"
@@ -98,7 +98,7 @@ void	LibNcurses::Destroy()
   endwin();
 }
 
-bool	LibNcurses::DrawQuadra(Map const &map)
+bool	LibNcurses::DrawQuadra(std::string const &map)
 {
   return (true);
 }

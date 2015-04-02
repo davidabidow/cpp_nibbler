@@ -5,7 +5,7 @@
 ## Login   <tran_0@epitech.net>
 ##
 ## Started on  Mon Mar  9 14:56:07 2015 David Tran
-## Last update Thu Apr  2 21:35:30 2015 Hugo Prenat
+## Last update Thu Apr  2 22:32:29 2015 Jean-Baptiste Grégoire
 ##
 
 DEBUG		= 	yes
@@ -49,7 +49,7 @@ $(NAME):	$(OBJ)
 		$(CC) -o $(NAME) $(OBJ) -ldl
 		make -C $(SDL)
 		make -C $(NCURSES)
-#		make -C $(OPENGL)
+		make -C $(OPENGL)
 
 all:		$(NAME)
 
@@ -57,13 +57,13 @@ clean:
 		$(RM) $(OBJ)
 		make -C $(SDL) clean
 		make -C $(NCURSES) clean
-#		make -C $(OPENGL) clean
+		make -C $(OPENGL) clean
 
 fclean:		clean
 		$(RM) $(NAME)
 		make -C $(SDL) fclean
 		make -C $(NCURSES) fclean
-#		make -C $(OPENGL) fclean
+		make -C $(OPENGL) fclean
 
 re:		fclean all
 

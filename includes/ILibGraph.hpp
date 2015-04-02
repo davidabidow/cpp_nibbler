@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Wed Mar 25 14:15:03 2015 David Tran
-// Last update Thu Apr  2 20:24:31 2015 David Tran
+// Last update Thu Apr  2 22:12:06 2015 Jean-Baptiste Grégoire
 //
 
 #ifndef ILIBGRAPH_HPP_
@@ -25,7 +25,7 @@ public:
   virtual bool		Init(int, int) = 0;
   virtual bool		DrawMap(std::string const &, bool const) = 0;
   virtual void		Destroy() = 0;
-  virtual bool		DrawQuadra(Map const &) = 0;
+  virtual bool		DrawQuadra(std::string const &) = 0;
   virtual bool		DrawHUD() = 0;
   virtual char		HandleEvent() = 0;
 };

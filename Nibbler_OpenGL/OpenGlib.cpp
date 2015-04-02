@@ -5,7 +5,7 @@
 // Login   <gregoi_j@epitech.net>
 //
 // Started on  Wed Mar  25 18:29:42 2015 Jean-Baptiste Grégoire
-// Last update Thu Apr  2 22:08:18 2015 Jean-Baptiste Grégoire
+// Last update Thu Apr  2 22:57:59 2015 Jean-Baptiste Grégoire
 //
 
 #include "OpenGlib.hpp"
@@ -16,6 +16,11 @@ extern "C"
   {
     return (new OpenGlib());
   }
+}
+
+OpenGlib::OpenGlib()
+{
+  maxX = maxY = 0;
 }
 
 bool		OpenGlib::Init(int x, int y)
@@ -38,12 +43,12 @@ bool		OpenGlib::Init(int x, int y)
   return (true);
 }
 
-bool		OpenGlib::DrawMap(Map const &map)
+bool		OpenGlib::DrawMap(std::string const &map, bool const apple)
 {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  drawWall(map.getMaxX(), map.getMaxY());
-  drawGround(map);
-  drawSnake(map);
+  drawWall(maxX, maxY);
+  drawGround(maxX, maxY);
+  drawSnake(map, maxX, maxY, apple);
   glFlush();
   window.display();
   return (true);
@@ -54,7 +59,7 @@ void		OpenGlib::Destroy()
   window.close();
 }
 
-bool		OpenGlib::DrawQuadra(Map const &map)
+bool		OpenGlib::DrawQuadra(std::string const &map)
 {
   return (true);
 }

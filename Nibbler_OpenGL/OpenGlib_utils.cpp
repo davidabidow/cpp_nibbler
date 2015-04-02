@@ -6,19 +6,19 @@
 // Login   <gregoi_j@epitech.net>
 //
 // Started on  Tue Mar 31 01:52:17 2015 Jean-Baptiste Grégoire
-// Last update Thu Apr  2 22:05:11 2015 Jean-Baptiste Grégoire
+// Last update Thu Apr  2 22:40:52 2015 Jean-Baptiste Grégoire
 //
 
 #include "OpenGlib.hpp"
 
-void		drawGround(Map const &map)
+void		drawGround(int maxX, int maxY)
 {
   glBegin(GL_QUADS);
   glColor3ub(70, 125, 20);
   glVertex3d(-0.5, 0, -0.5);
-  glVertex3d(-0.5, 0, map.getMaxY());
-  glVertex3d(map.getMaxX(), 0, map.getMaxY());
-  glVertex3d(map.getMaxX(), 0, -0.5);
+  glVertex3d(-0.5, 0, maxY);
+  glVertex3d(maxX, 0, maxY);
+  glVertex3d(maxX, 0, -0.5);
   glEnd();
 }
 
@@ -127,10 +127,8 @@ void		drawCube(double x, double y, double z, double size)
   glColor3f(current_color[0], current_color[1], current_color[2]);
 }
 
-void		drawSnake(Map const &map)
+void		drawSnake(std::string const &map, int length, int width, bool const apple)
 {
-  std::string	mapstr = map.getMap();
-  int		length = map.getMaxX(), width = map.getMaxY();
   int		i;
 
   for (int y = 0; y < length; ++y)
@@ -138,12 +136,12 @@ void		drawSnake(Map const &map)
       for (int x = 0; x < width; ++x)
 	{
 	  i = y * width + x;
-	  if (mapstr[i] == 1)
+	  if (map[i] == 1)
 	    {
 	      glColor3ub(51, 204, 51);
 	      drawCube(x, 0.51, y, 0.5);
 	    }
-	  else if (mapstr[i] == 2 && map.getApple() == true)
+	  else if (map[i] == 2 && apple == true)
 	    {
 	      glColor3ub(251, 0,  0);
 	      drawCube(x, 0.52, y, 0.5);
