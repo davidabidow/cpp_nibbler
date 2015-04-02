@@ -5,7 +5,7 @@
 // Login   <prenat_h@epitech.eu>
 //
 // Started on  Wed Apr  1 14:24:29 2015 Hugo Prenat
-// Last update Thu Apr  2 17:41:11 2015 Hugo Prenat
+// Last update Thu Apr  2 20:35:21 2015 David Tran
 //
 
 #include "LibNcurses.hpp"
@@ -74,14 +74,14 @@ bool	LibNcurses::Init(int x, int y)
   return (true);
 }
 
-bool	LibNcurses::DrawMap(Map const &map)
+bool	LibNcurses::DrawMap(std::string const &map, bool const apple)
 {
   for (int i = 0; i < maxY * maxX; i++)
     {
       move(i / maxY + 1, i % maxX + 1);
-      if (map.getMap()[i] == 1)
+      if (map[i] == 1)
 	addch('o');
-      else if (map.getMap()[i] == 2 && map.getApple() == true)
+      else if (map[i] == 2 && apple == true)
 	addch('P');
       else
 	addch(' ');

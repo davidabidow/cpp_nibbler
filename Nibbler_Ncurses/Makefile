@@ -5,7 +5,7 @@
 ## Login   <prenat_h@epitech.eu>
 ## 
 ## Started on  Wed Apr  1 14:08:16 2015 Hugo Prenat
-## Last update Thu Apr  2 17:45:51 2015 Hugo Prenat
+## Last update Thu Apr  2 20:50:15 2015 David Tran
 ##
 
 SRC		=	LibNcurses.cpp
@@ -24,12 +24,12 @@ CXX		=	g++
 
 LIB		=	-lncurses
 
-CPPFLAGS	=	-W -Wall -Wextra -I $(INCLUDE) $(LIB) -fPIC
+CXXFLAGS	=	-W -Wall -Wextra -I $(INCLUDE) $(LIB) -fPIC
 
 ifeq ($(DEBUG),yes)
-	CFLAGS 	+= -g3
+	CXXFLAGS 	+= -g3
 else
-	CFLAGS	+= -O3
+	CXXFLAGS	+= -O3
 endif
 
 $(NAME):	$(OBJ)
