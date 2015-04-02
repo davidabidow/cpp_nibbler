@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 // 
 // Started on  Wed Mar 25 14:27:26 2015 David Tran
-// Last update Wed Apr  1 16:34:39 2015 David Tran
+// Last update Thu Apr  2 15:02:14 2015 David Tran
 //
 
 #ifndef MAP_HPP_
@@ -17,6 +17,7 @@
 # include <ctime>
 # include <unistd.h>
 # include <vector>
+# include <dlfcn.h>
 # include "Snake.hpp"
 // # include "OpenGlib.hpp"
 
