@@ -6,7 +6,7 @@
 // Login   <gregoi_j@epitech.net>
 //
 // Started on  Tue Mar 31 01:52:17 2015 Jean-Baptiste Grégoire
-// Last update Thu Apr  2 02:52:54 2015 Jean-Baptiste Grégoire
+// Last update Thu Apr  2 22:05:11 2015 Jean-Baptiste Grégoire
 //
 
 #include "OpenGlib.hpp"
@@ -15,15 +15,33 @@ void		drawGround(Map const &map)
 {
   glBegin(GL_QUADS);
   glColor3ub(70, 125, 20);
-  glVertex3d(0, 0, 0);
-  glVertex3d(0, 0, map.getMaxY());
+  glVertex3d(-0.5, 0, -0.5);
+  glVertex3d(-0.5, 0, map.getMaxY());
   glVertex3d(map.getMaxX(), 0, map.getMaxY());
-  glVertex3d(map.getMaxX(), 0, 0);
+  glVertex3d(map.getMaxX(), 0, -0.5);
   glEnd();
+}
+
+void		drawWall(int x, int y)
+{
+  glColor3ub(0x66, 0x3E, 0x10);
+  for (float i = 0; i <= x + 2.5; i += 0.5)
+    {
+      drawCube(i - 1.5, 0.5, -1.5, 1);
+      drawCube(i - 1.5, 0.5, y + 1, 1);
+    }
+  for (float i = 0; i <= y + 2.5; i += 0.5)
+    {
+      drawCube(-1.5, 0.5, i - 1.5, 1);
+      drawCube(x + 1, 0.5, i - 1.5, 1);
+    }
 }
 
 void		drawCube(double x, double y, double z, double size)
 {
+  GLfloat	current_color[4];
+
+  glGetFloatv(GL_CURRENT_COLOR, current_color);
   glBegin(GL_QUADS);
   // première face
   glVertex3d(x + size, y + size, z + size);
@@ -61,6 +79,52 @@ void		drawCube(double x, double y, double z, double size)
   glVertex3d(x - size, y + size, z + size);
   glVertex3d(x - size, y - size, z + size);
   glEnd();
+
+  glColor3ub(0, 0, 0);
+  glLineWidth(2);
+  glBegin(GL_LINE_LOOP);
+  glVertex3d(x + size, y + size, z + size);
+  glVertex3d(x + size, y + size, z - size);
+  glVertex3d(x - size, y + size, z - size);
+  glVertex3d(x - size, y + size, z + size);
+  glEnd();
+
+  glBegin(GL_LINE_LOOP);
+  glVertex3d(x + size, y - size, z + size);
+  glVertex3d(x + size, y - size, z - size);
+  glVertex3d(x + size, y + size, z - size);
+  glVertex3d(x + size, y + size, z + size);
+  glEnd();
+
+  glBegin(GL_LINE_LOOP);
+  glVertex3d(x - size, y - size, z + size);
+  glVertex3d(x - size, y - size, z - size);
+  glVertex3d(x + size, y - size, z - size);
+  glVertex3d(x + size, y - size, z + size);
+  glEnd();
+
+  glBegin(GL_LINE_LOOP);
+  glVertex3d(x - size, y + size, z + size);
+  glVertex3d(x - size, y + size, z - size);
+  glVertex3d(x - size, y - size, z - size);
+  glVertex3d(x - size, y - size, z + size);
+  glEnd();
+
+  glBegin(GL_LINE_LOOP);
+  glVertex3d(x + size, y + size, z - size);
+  glVertex3d(x + size, y - size, z - size);
+  glVertex3d(x - size, y - size, z - size);
+  glVertex3d(x - size, y + size, z - size);
+  glEnd();
+
+  glBegin(GL_LINE_LOOP);
+  glVertex3d(x + size, y - size, z + size);
+  glVertex3d(x + size, y + size, z + size);
+  glVertex3d(x - size, y + size, z + size);
+  glVertex3d(x - size, y - size, z + size);
+  glEnd();
+  glLineWidth(1);
+  glColor3f(current_color[0], current_color[1], current_color[2]);
 }
 
 void		drawSnake(Map const &map)
@@ -77,12 +141,12 @@ void		drawSnake(Map const &map)
 	  if (mapstr[i] == 1)
 	    {
 	      glColor3ub(51, 204, 51);
-	      drawCube(x, 1, y, 1);
+	      drawCube(x, 0.51, y, 0.5);
 	    }
 	  else if (mapstr[i] == 2 && map.getApple() == true)
 	    {
-	      glColor3ub(251, 0, 0);
-	      drawCube(x, 1, y, 1);
+	      glColor3ub(251, 0,  0);
+	      drawCube(x, 0.52, y, 0.5);
 	    }
 	}
     }

@@ -5,7 +5,7 @@
 // Login   <gregoi_j@epitech.net>
 //
 // Started on  Wed Mar  25 18:16:29 2015 Jean-Baptiste Grégoire
-// Last update Thu Apr  2 02:49:49 2015 Jean-Baptiste Grégoire
+// Last update Thu Apr  2 15:18:31 2015 Jean-Baptiste Grégoire
 //
 
 #ifndef OPENGLIB_HPP
@@ -26,6 +26,7 @@
 # define WIN_POS_Y	100
 
 void	drawGround(Map const &map);
+void	drawWall(int x, int y);
 void	drawCube(double x, double y, double z, double size);
 void	drawSnake(Map const &map);
 

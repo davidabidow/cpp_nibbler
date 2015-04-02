@@ -5,7 +5,7 @@
 // Login   <gregoi_j@epitech.net>
 //
 // Started on  Wed Mar  25 18:29:42 2015 Jean-Baptiste Grégoire
-// Last update Thu Apr  2 02:48:05 2015 Jean-Baptiste Grégoire
+// Last update Thu Apr  2 19:25:44 2015 Jean-Baptiste Grégoire
 //
 
 #include "OpenGlib.hpp"
@@ -17,17 +17,20 @@ OpenGlib::OpenGlib()
 
 bool		OpenGlib::Init(int x, int y)
 {
+  double	midx = static_cast<double>(x / 2.0);
+  double	midy = static_cast<double>(y / 2.0);
+
   maxX = x;
   maxY = y;
   window.create(sf::VideoMode(WIN_WIDTH, WIN_HEIGHT), "Nibbler -OpenGL-", sf::Style::Default, sf::ContextSettings(32));
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-  gluPerspective(WIN_FOVY, static_cast<double>(maxX / maxY), NEAR, FAR);
+  gluPerspective(WIN_FOVY, static_cast<double>(WIN_WIDTH / WIN_HEIGHT), NEAR, FAR);
   glEnable(GL_DEPTH_TEST);
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
-  gluLookAt(25, 40, 90,
-	    25, 25, 25,
+  gluLookAt(midx, 30, 70,
+	    midx, 0.5, midy + 20,
 	    0, 1, 0);
   return (true);
 }
@@ -35,6 +38,7 @@ bool		OpenGlib::Init(int x, int y)
 bool		OpenGlib::DrawMap(Map const &map)
 {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  drawWall(map.getMaxX(), map.getMaxY());
   drawGround(map);
   drawSnake(map);
   glFlush();
@@ -67,7 +71,7 @@ char		OpenGlib::HandleEvent()
     {
       if (event.type == sf::Event::Closed)
 	  input = -1;
-      if (event.type ==  sf::Event::KeyReleased)
+      if (event.type ==  sf::Event::KeyPressed)
 	{
 	  if (event.key.code == sf::Keyboard::Escape)
 	    input = -1;
