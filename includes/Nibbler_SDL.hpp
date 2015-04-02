@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 // 
 // Started on  Tue Mar 24 21:39:31 2015 David Tran
-// Last update Wed Apr  1 16:25:57 2015 David Tran
+// Last update Thu Apr  2 20:28:50 2015 David Tran
 //
 
 #ifndef NIBBLER_SDL_HPP
@@ -24,14 +24,14 @@ class	N_SDL : public ILibGraph
 {
 public:
   N_SDL();
-  ~N_SDL();
+  virtual ~N_SDL();
   bool		Init(int x, int y);
-  bool		DrawMap(Map const &);
+  bool		DrawMap(std::string const &, bool const);
   void		Destroy();
   bool		DrawQuadra(Map const &);
   bool		DrawHUD();
   char		HandleEvent();
-  void		fill_point_rect(std::string, int, Map const &);
+  void		fill_point_rect(std::string const &, int, bool const);
   void		init_pos(int, int);
 private:
   SDL_Rect	pos;

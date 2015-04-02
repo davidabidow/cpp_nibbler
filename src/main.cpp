@@ -5,12 +5,10 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Mon Mar  9 14:49:22 2015 David Tran
-// Last update Wed Apr  1 17:33:45 2015 Jean-Baptiste Grégoire
+// Last update Thu Apr  2 20:43:20 2015 David Tran
 //
 
 #include "Map.hpp"
-#include "LibNcurses.hpp"
-#include "OpenGlib.hpp"
 
 int			check_args(char **av, Map **map)
 {
@@ -33,6 +31,8 @@ int			check_args(char **av, Map **map)
 int		main(int ac, char **av)
 {
   Map		*map;
+  void		*dlHandler;
+  ILibGraph	*(*external_creator)();
 
   if (ac != 4)
     {
@@ -41,33 +41,19 @@ int		main(int ac, char **av)
     }
   if (check_args(av, &map) == -1)
     return (-1);
-  if (strcmp(av[3],"lib_nibbler_opengl.so") == 0)
+  if (!(dlHandler = dlopen(av[3], RTLD_LAZY)))
+    return (EXIT_FAILURE);
+  std::cout << "toto" << std::endl;
+  if (!(external_creator = reinterpret_cast<ILibGraph *(*)()>(dlsym(dlHandler, "instanciate_lib"))))
+    return (EXIT_FAILURE);
+  ILibGraph		*lib = external_creator();
+  if (lib->Init(map->getMaxX(), map->getMaxY()))
     {
-      ILibGraph		*lib = new OpenGlib;
-
-      lib->Init(map->getMaxX(), map->getMaxY());
       map->fill_string();
-      lib->DrawMap(*map);
-      map->loop_game(lib);
-    }
-  if (strcmp(av[3],"lib_nibbler_sdl.so") == 0)
-    {
-      ILibGraph		*lib = new N_SDL;
-
-      lib->Init(map->getMaxX(), map->getMaxY());
-      map->fill_string();
-      lib->DrawMap(*map);
-      map->loop_game(lib);
-    }
-  if (strcmp(av[3],"lib_nibbler_ncurses.so") == 0)
-    {
-      ILibGraph		*lib = new LibNcurses;
-
-      lib->Init(map->getMaxX(), map->getMaxY());
-      map->fill_string();
-      lib->DrawMap(*map);
+      lib->DrawMap(map->getMap(), map->getApple());
       map->loop_game(lib);
       lib->Destroy();
     }
+  dlclose(dlHandler);
   return (0);
 }

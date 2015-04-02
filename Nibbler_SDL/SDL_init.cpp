@@ -5,10 +5,18 @@
 // Login   <tran_0@epitech.net>
 // 
 // Started on  Tue Mar 24 21:56:30 2015 David Tran
-// Last update Wed Apr  1 16:25:09 2015 David Tran
+// Last update Thu Apr  2 20:26:55 2015 David Tran
 //
 
-#include "Nibbler_SDL.hpp"
+# include "Nibbler_SDL.hpp"
+
+extern "C"
+{
+  ILibGraph	*instanciate_lib()
+  {
+    return (new N_SDL());
+  }
+}
 
 N_SDL::N_SDL()
 {
@@ -53,32 +61,31 @@ void		N_SDL::init_pos(int x, int y)
   pos = tmp;
 }
 
-void		N_SDL::fill_point_rect(std::string it, int i, Map const &map)
+void		N_SDL::fill_point_rect(std::string const &it, int i, bool const apple)
 {
   if (it[i] == 1)
     SDL_FillRect(screen, &pos, SDL_MapRGB(screen->format, 51, 204, 51));
-  else if (it[i] == 2 && map.getApple() == true)
+  else if (it[i] == 2 && apple == true)
     SDL_FillRect(screen, &pos, SDL_MapRGB(screen->format, 251, 0, 0));
   else
     SDL_FillRect(screen, &pos, SDL_MapRGB(screen->format, 0, 0, 0));
 }
 
-bool		N_SDL::DrawMap(Map const &map)
+bool		N_SDL::DrawMap(std::string const &pars, bool const apple)
 {
-  std::string	pars = map.getMap();
   int		i;
   int		x;
   int		y;
 
   y = 0;
   i = 0;
-  while (y < map.getMaxY())
+  while (y < maxY / 10)
     {
       x = 0;
-      while (x < map.getMaxX())
+      while (x < maxX / 10)
 	{
 	  init_pos(x, y);
-	  fill_point_rect(pars, i, map);
+	  fill_point_rect(pars, i, apple);
 	  x++;
 	  i++;
 	}

@@ -5,14 +5,17 @@
 // Login   <gregoi_j@epitech.net>
 //
 // Started on  Wed Mar  25 18:29:42 2015 Jean-Baptiste Grégoire
-// Last update Thu Apr  2 19:25:44 2015 Jean-Baptiste Grégoire
+// Last update Thu Apr  2 22:08:18 2015 Jean-Baptiste Grégoire
 //
 
 #include "OpenGlib.hpp"
 
-OpenGlib::OpenGlib()
+extern "C"
 {
-
+  ILibGraph	*instanciate_lib()
+  {
+    return (new OpenGlib());
+  }
 }
 
 bool		OpenGlib::Init(int x, int y)

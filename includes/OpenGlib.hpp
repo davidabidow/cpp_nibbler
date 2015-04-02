@@ -5,7 +5,7 @@
 // Login   <gregoi_j@epitech.net>
 //
 // Started on  Wed Mar  25 18:16:29 2015 Jean-Baptiste Grégoire
-// Last update Thu Apr  2 15:18:31 2015 Jean-Baptiste Grégoire
+// Last update Thu Apr  2 22:08:26 2015 Jean-Baptiste Grégoire
 //
 
 #ifndef OPENGLIB_HPP
@@ -35,7 +35,7 @@ class OpenGlib : public ILibGraph
 public:
   OpenGlib();
   bool		Init(int, int);
-  bool		DrawMap(Map const &map);
+  bool		DrawMap(std::string const &, bool const);
   void		Destroy();
   bool		DrawQuadra(Map const &map);
   bool		DrawHUD();

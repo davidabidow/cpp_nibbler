@@ -5,43 +5,45 @@
 ## Login   <prenat_h@epitech.eu>
 ## 
 ## Started on  Wed Apr  1 14:08:16 2015 Hugo Prenat
-## Last update Wed Apr  1 14:48:19 2015 Hugo Prenat
+## Last update Thu Apr  2 20:50:15 2015 David Tran
 ##
 
-SRC		=	
+SRC		=	LibNcurses.cpp
 
-OBJ		=	$(SRC:.c=.o)
+OBJ		=	$(SRC:.cpp=.o)
 
 NAME		=	lib_nibbler_ncurses.so
-
-CC		=	gcc
 
 RM		=	rm -f
 
 DEBUG		=	no
 
-INCLUDE 	=	include/
+INCLUDE 	=	../includes/
 
-CFLAGS		=	-W -Wall -Wextra -I $(INCLUDE)
+CXX		=	g++
 
 LIB		=	-lncurses
 
+CXXFLAGS	=	-W -Wall -Wextra -I $(INCLUDE) $(LIB) -fPIC
+
 ifeq ($(DEBUG),yes)
-	CFLAGS 	+= -g3
+	CXXFLAGS 	+= -g3
 else
-	CFLAGS	+= -O3
+	CXXFLAGS	+= -O3
 endif
 
 $(NAME):	$(OBJ)
-	$(CC) -o $(NAME) $(OBJ) $(LIB)
+		g++ -shared -o $(NAME) $(OBJ) $(LIB)
+		@(cp $(NAME) ../)
 
 all:		$(NAME)
 
 clean:
-	$(RM) $(OBJ)
+		$(RM) $(OBJ)
 
 fclean: 	clean
-	$(RM) $(NAME)
+		$(RM) $(NAME)
+		$(RM) ../$(NAME)
 
 re: 		fclean all
 
