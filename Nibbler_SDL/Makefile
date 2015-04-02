@@ -1,11 +1,11 @@
 ##
-## Makefile for cpp_nibbler in /home/patoche/rendu/CPP/cpp_nibbler/src/Nibbler_Ncurses
+## Makefile for nibbler  in /home/tran_0/rendu/cpp_nibbler
 ## 
-## Made by Hugo Prenat
-## Login   <prenat_h@epitech.eu>
+## Made by David Tran
+## Login   <tran_0@epitech.net>
 ## 
-## Started on  Wed Apr  1 14:08:16 2015 Hugo Prenat
-## Last update Thu Apr  2 18:20:29 2015 David Tran
+## Started on  Thu Apr  2 20:49:40 2015 David Tran
+## Last update Thu Apr  2 20:50:19 2015 David Tran
 ##
 
 SRC		=	SDL_init.cpp
@@ -25,9 +25,9 @@ GXX		=	g++
 CXXFLAGS	=	-W -Wall -Wextra -I $(INCLUDE) -fPIC -lSDL -lSDLmain -lSDL_gfx -lSDL_image
 
 ifeq ($(DEBUG),yes)
-	CFLAGS 	+= -g3
+	CXXFLAGS 	+= -g3
 else
-	CFLAGS	+= -O3
+	CXXFLAGS	+= -O3
 endif
 
 $(NAME):	$(OBJ)

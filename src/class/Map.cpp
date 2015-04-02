@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Wed Mar 25 15:29:59 2015 David Tran
-// Last update Thu Apr  2 15:53:05 2015 David Tran
+// Last update Thu Apr  2 20:45:59 2015 David Tran
 //
 
 #include "Map.hpp"
@@ -158,7 +158,7 @@ void	Map::loop_game(ILibGraph *lib)
       if (snake->isAlive(maxX, maxY) == false)
 	return ;
       snake->moveAhead();
-      lib->DrawMap(*this);
+      lib->DrawMap(map, apple);
       //     lib->DrawQuadra(*this);
       eat_apple();
       usleep(100000);

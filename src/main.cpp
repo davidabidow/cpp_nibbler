@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Mon Mar  9 14:49:22 2015 David Tran
-// Last update Thu Apr  2 18:23:11 2015 David Tran
+// Last update Thu Apr  2 20:43:20 2015 David Tran
 //
 
 #include "Map.hpp"
@@ -43,13 +43,14 @@ int		main(int ac, char **av)
     return (-1);
   if (!(dlHandler = dlopen(av[3], RTLD_LAZY)))
     return (EXIT_FAILURE);
+  std::cout << "toto" << std::endl;
   if (!(external_creator = reinterpret_cast<ILibGraph *(*)()>(dlsym(dlHandler, "instanciate_lib"))))
     return (EXIT_FAILURE);
   ILibGraph		*lib = external_creator();
   if (lib->Init(map->getMaxX(), map->getMaxY()))
     {
       map->fill_string();
-      lib->DrawMap(*map);
+      lib->DrawMap(map->getMap(), map->getApple());
       map->loop_game(lib);
       lib->Destroy();
     }
