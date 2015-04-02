@@ -5,24 +5,24 @@
 ## Login   <prenat_h@epitech.eu>
 ## 
 ## Started on  Wed Apr  1 14:08:16 2015 Hugo Prenat
-## Last update Wed Apr  1 14:48:19 2015 Hugo Prenat
+## Last update Thu Apr  2 17:46:30 2015 Hugo Prenat
 ##
 
-SRC		=	
+SRC		=	SDL_init.cpp
 
-OBJ		=	$(SRC:.c=.o)
+OBJ		=	$(SRC:.cpp=.o)
 
-NAME		=	lib_nibbler_ncurses.so
-
-CC		=	gcc
+NAME		=	lib_nibbler_sdl.so
 
 RM		=	rm -f
 
 DEBUG		=	no
 
-INCLUDE 	=	include/
+INCLUDE 	=	../includes/
 
-CFLAGS		=	-W -Wall -Wextra -I $(INCLUDE)
+GXX		=	g++
+
+CPPFLAGS	=	-W -Wall -Wextra -I $(INCLUDE) -fPIC -lSDL -lSDLmain -lSDL_gfx -lSDL_image
 
 LIB		=	-lncurses
 
@@ -33,15 +33,17 @@ else
 endif
 
 $(NAME):	$(OBJ)
-	$(CC) -o $(NAME) $(OBJ) $(LIB)
+		g++ -shared -o $(NAME) $(OBJ)
+		@(cp $(NAME) ..)
 
 all:		$(NAME)
 
 clean:
-	$(RM) $(OBJ)
+		$(RM) $(OBJ)
 
 fclean: 	clean
-	$(RM) $(NAME)
+		$(RM) $(NAME)
+		$(RM) ../$(NAME)
 
 re: 		fclean all
 

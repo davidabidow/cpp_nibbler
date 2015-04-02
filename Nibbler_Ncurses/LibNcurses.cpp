@@ -5,7 +5,7 @@
 // Login   <prenat_h@epitech.eu>
 //
 // Started on  Wed Apr  1 14:24:29 2015 Hugo Prenat
-// Last update Thu Apr  2 16:19:37 2015 Hugo Prenat
+// Last update Thu Apr  2 17:41:11 2015 Hugo Prenat
 //
 
 #include "LibNcurses.hpp"
@@ -127,4 +127,12 @@ char	LibNcurses::HandleEvent()
 LibNcurses::~LibNcurses()
 {
 
+}
+
+extern "C"
+{
+  ILibGraph	*instanciate_lib()
+  {
+    return (new LibNcurses());
+  }
 }
