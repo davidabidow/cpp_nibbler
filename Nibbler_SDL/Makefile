@@ -5,10 +5,11 @@
 ## Login   <tran_0@epitech.net>
 ## 
 ## Started on  Thu Apr  2 20:49:40 2015 David Tran
-## Last update Fri Apr  3 16:48:19 2015 David Tran
+## Last update Fri Apr  3 23:18:22 2015 David Tran
 ##
 
-SRC		=	SDL_init.cpp
+SRC		=	SDL_init.cpp		\
+			../src/class/Error.cpp	\
 
 OBJ		=	$(SRC:.cpp=.o)
 
@@ -16,7 +17,7 @@ NAME		=	lib_nibbler_sdl.so
 
 RM		=	rm -f
 
-DEBUG		=	yes
+DEBUG		=	no
 
 INCLUDE 	=	../includes/
 

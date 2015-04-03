@@ -5,10 +5,11 @@
 ## Login   <prenat_h@epitech.eu>
 ## 
 ## Started on  Wed Apr  1 14:08:16 2015 Hugo Prenat
-## Last update Thu Apr  2 20:50:15 2015 David Tran
+## Last update Fri Apr  3 23:11:48 2015 David Tran
 ##
 
-SRC		=	LibNcurses.cpp
+SRC		=	LibNcurses.cpp		\
+			../src/class/Error.cpp	\
 
 OBJ		=	$(SRC:.cpp=.o)
 

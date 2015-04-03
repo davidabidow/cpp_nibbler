@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Wed Mar 25 15:29:59 2015 David Tran
-// Last update Fri Apr  3 22:56:03 2015 David Tran
+// Last update Fri Apr  3 23:39:51 2015 David Tran
 //
 
 #include "Map.hpp"
@@ -88,6 +88,8 @@ void	Map::fill_string()
   map = newone;
   if (apple == true)
     map[p_apple] = 2;
+  map[(*it)->second * maxX + (*it)->first] = 3;
+  it++;
   while (it != snak.end())
     {
       // std::cout << "write toto" << std::endl;

@@ -5,11 +5,12 @@
 ## Login   <prenat_h@epitech.eu>
 ##
 ## Started on  Wed Apr  1 14:08:16 2015 Hugo Prenat
-## Last update Fri Apr  3 00:30:52 2015 Hugo Prenat
+## Last update Fri Apr  3 23:11:08 2015 David Tran
 ##
 
 SRC		=	OpenGlib.cpp		\
-			OpenGlib_utils.cpp
+			OpenGlib_utils.cpp	\
+			../src/class/Error.cpp	\
 
 OBJ		=	$(SRC:.cpp=.o)
 
