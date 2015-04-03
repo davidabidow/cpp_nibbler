@@ -5,7 +5,7 @@
 // Login   <gregoi_j@epitech.net>
 //
 // Started on  Wed Mar  25 18:29:42 2015 Jean-Baptiste Grégoire
-// Last update Thu Apr  2 22:57:59 2015 Jean-Baptiste Grégoire
+// Last update Fri Apr  3 22:15:20 2015 Jean-Baptiste Grégoire
 //
 
 #include "OpenGlib.hpp"
@@ -25,8 +25,8 @@ OpenGlib::OpenGlib()
 
 bool		OpenGlib::Init(int x, int y)
 {
-  double	midx = static_cast<double>(x / 2.0);
-  double	midy = static_cast<double>(y / 2.0);
+  float		midx = static_cast<float>(x / 2.0);
+  float		midy = static_cast<float>(y / 2.0);
 
   maxX = x;
   maxY = y;
