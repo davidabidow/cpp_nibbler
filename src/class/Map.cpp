@@ -5,17 +5,15 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Wed Mar 25 15:29:59 2015 David Tran
-// Last update Thu Apr  2 20:45:59 2015 David Tran
+// Last update Fri Apr  3 21:35:41 2015 David Tran
 //
 
 #include "Map.hpp"
 
-Map::Map(int x, int y) : maxX(x), maxY(y)
+Map::Map(int const x, int const y) : maxX(x), maxY(y)
 {
   std::string	newmap(x * y, 0);
   apple = false;
-  pts = 0;
-  time = 0;
   snake = new Snake(x, y);
   map = newmap;
 }
@@ -23,7 +21,7 @@ Map::Map(int x, int y) : maxX(x), maxY(y)
 Map::~Map()
 {}
 
-bool	Map::CheckinSnake(std::pair<double, double> *t_check, std::vector<std::pair<double, double> *> snake)
+bool	Map::CheckinSnake(std::pair<double, double> const *t_check, std::vector<std::pair<double, double> *> const snake)
 {
   std::vector<std::pair<double, double> *>::const_iterator it = snake.begin();
 
@@ -56,11 +54,6 @@ bool	Map::genObj()
   return (true);
 }
 
-void	Map::setPts(int const objID)
-{
-  pts = objID;
-}
-
 int	Map::getMaxX() const
 {
   return (maxX);
@@ -76,24 +69,9 @@ std::string const	&Map::getMap() const
   return (map);
 }
 
-int	Map::getPts() const
-{
-  return (pts);
-}
-
 bool	Map::getApple() const
 {
   return (apple);
-}
-
-void	Map::setTime(size_t const time)
-{
-  this->time = time;
-}
-
-size_t	Map::getTime() const
-{
-  return (time);
 }
 
 Snake	*Map::getSnake() const
@@ -108,7 +86,8 @@ void	Map::fill_string()
 
   std::string newone(maxX * maxY, 0);
   map = newone;
-  map[p_apple] = 2;
+  if (apple == true)
+    map[p_apple] = 2;
   while (it != snak.end())
     {
       // std::cout << "write toto" << std::endl;
@@ -129,6 +108,7 @@ void	Map::eat_apple()
     {
       if (p_apple == ((*it)->second * maxY + (*it)->first))
 	{
+	  score.setScore(score.getScore() + 1 + score.getCountit());
 	  apple = false;
 	  snake->addQueue();
 	  return ;
@@ -159,9 +139,10 @@ void	Map::loop_game(ILibGraph *lib)
 	return ;
       snake->moveAhead();
       lib->DrawMap(map, apple);
+      lib->DrawHUD(score.getScore(), score.getTime());
       //     lib->DrawQuadra(*this);
       eat_apple();
       usleep(100000);
-      time += 0.1;
+      score.setTime(score.getTime() + 0.1);
     }
 }

@@ -5,7 +5,7 @@
 ## Login   <tran_0@epitech.net>
 ## 
 ## Started on  Thu Apr  2 20:49:40 2015 David Tran
-## Last update Thu Apr  2 21:38:16 2015 Hugo Prenat
+## Last update Fri Apr  3 16:48:19 2015 David Tran
 ##
 
 SRC		=	SDL_init.cpp
@@ -24,7 +24,7 @@ GXX		=	g++
 
 CXXFLAGS	=	-W -Wall -Wextra -I $(INCLUDE) -fPIC
 
-LIB		=	-lSDL -lSDLmain -lSDL_gfx -lSDL_image
+LIB		=	-lSDL -lSDLmain -lSDL_gfx -lSDL_image -lSDL_ttf
 
 ifeq ($(DEBUG),yes)
 

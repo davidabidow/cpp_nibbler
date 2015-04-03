@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Mon Mar  9 14:49:22 2015 David Tran
-// Last update Thu Apr  2 20:43:20 2015 David Tran
+// Last update Fri Apr  3 21:37:00 2015 David Tran
 //
 
 #include "Map.hpp"
@@ -49,8 +49,6 @@ int		main(int ac, char **av)
   ILibGraph		*lib = external_creator();
   if (lib->Init(map->getMaxX(), map->getMaxY()))
     {
-      map->fill_string();
-      lib->DrawMap(map->getMap(), map->getApple());
       map->loop_game(lib);
       lib->Destroy();
     }

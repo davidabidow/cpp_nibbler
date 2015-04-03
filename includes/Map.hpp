@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Wed Mar 25 14:27:26 2015 David Tran
-// Last update Thu Apr  2 18:10:06 2015 David Tran
+// Last update Fri Apr  3 21:25:22 2015 David Tran
 //
 
 #ifndef MAP_HPP_
@@ -23,39 +23,35 @@
 # include <SDL/SDL_image.h>
 # include <SDL/SDL_gfxPrimitives.h>
 # include "Snake.hpp"
+# include "Score.hpp"
 
 class	ILibGraph;
 
 class	Map
 {
 public:
-  Map(int x, int y);
+  Map(int const x, int const y);
   ~Map();
   bool			genObj();
-  bool			CheckinSnake(std::pair<double, double> *t_check, std::vector<std::pair<double, double> *> snake);
-  void			setPts(int const objID);
+  bool			CheckinSnake(std::pair<double, double> const *t_check, std::vector<std::pair<double, double> *> const snake);
   int			getMaxX() const;
   int			getMaxY() const;
   std::string const	&getMap() const;
-  int			getPts() const;
   bool			getApple() const;
-  void			setTime(size_t);
-  size_t		getTime() const;
   void			fill_string();
   void			make_loop();
   Snake			*getSnake() const;
-  void			setMaxX(int a) {maxX = a;};
-  void			setMaxY(int a) {maxY = a;};
+  void			setMaxX(int const a) {maxX = a;};
+  void			setMaxY(int const a) {maxY = a;};
   void			loop_game(ILibGraph *);
   void			eat_apple();
 
 private:
   std::string	map;
-  int		pts;
   bool		apple;
   int		p_apple;
-  double	time;
   Snake		*snake;
+  Score		score;
   int		maxX;
   int		maxY;
 };

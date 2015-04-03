@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Tue Mar 24 21:56:30 2015 David Tran
-// Last update Thu Apr  2 22:28:45 2015 Jean-Baptiste Grégoire
+// Last update Fri Apr  3 21:09:50 2015 David Tran
 //
 
 # include "Nibbler_SDL.hpp"
@@ -32,12 +32,18 @@ bool		N_SDL::Init(int x, int y)
   maxY = y * 10;
   if (SDL_Init(SDL_INIT_VIDEO) == -1)
     return (false);
-  if (!(screen = SDL_SetVideoMode(maxX, maxY, 32, SDL_HWSURFACE)))
+  if (!(screen = SDL_SetVideoMode(maxX, maxY + 100, 32, SDL_HWSURFACE)))
     {
       SDL_Quit();
       return (false);
     }
   SDL_WM_SetCaption("cpp_Nibbler", NULL);
+  TTF_Init();
+  color.r = 255;
+  color.g = 255;
+  color.b = 255;
+  if (!(police = TTF_OpenFont("./gomarice_the_past.ttf", 40)))
+    return (false);
   return (true);
 }
 
@@ -68,7 +74,7 @@ void		N_SDL::fill_point_rect(std::string const &it, int i, bool const apple)
   else if (it[i] == 2 && apple == true)
     SDL_FillRect(screen, &pos, SDL_MapRGB(screen->format, 251, 0, 0));
   else
-    SDL_FillRect(screen, &pos, SDL_MapRGB(screen->format, 0, 0, 0));
+    SDL_FillRect(screen, &pos, SDL_MapRGB(screen->format, 69, 69, 69));
 }
 
 bool		N_SDL::DrawMap(std::string const &pars, bool const apple)
@@ -111,12 +117,33 @@ bool		N_SDL::DrawQuadra(std::string const &map)
       hlineColor(screen, 0, maxX, (double)(maxY / 10 * i), 0x696969);
       i++;
     }
-  SDL_Flip(screen);
+  //  SDL_Flip(screen);
   return (true);
 }
 
-bool		N_SDL::DrawHUD()
+bool			N_SDL::DrawHUD(int score, double time)
 {
+  std::ostringstream	os;
+
+  pos.x = 0;
+  pos.y = maxY;
+  pos.w = maxX;
+  pos.h = 100;
+  SDL_FillRect(screen, &pos, SDL_MapRGB(screen->format, 69, 69, 69));
+  os << "score : ";
+  os << score;
+  os << "  time : ";
+  os << time;
+  std::string		contain(os.str());
+  pos.x = 0;
+  pos.y = maxY + 10;
+  color.r = 255;
+  color.g = 255;
+  color.b = 255;
+  text = TTF_RenderText_Blended(police, contain.c_str(), color);
+  SDL_BlitSurface(text, NULL, screen, &pos);
+  hlineColor(screen, 0, maxX, maxY, 0xCCFF00);
+  SDL_Flip(screen);
   return (true);
 }
 
