@@ -5,7 +5,7 @@
 // Login   <prenat_h@epitech.eu>
 //
 // Started on  Wed Apr  1 14:18:50 2015 Hugo Prenat
-// Last update Thu Apr  2 22:29:15 2015 Jean-Baptiste Grégoire
+// Last update Fri Apr  3 23:51:08 2015 Hugo Prenat
 //
 
 #ifndef LIBNCURSES_HPP_
@@ -16,6 +16,10 @@
 # include "Map.hpp"
 
 # define WALL_CHAR			'*'
+# define PLAN_CHAR			' '
+# define HEAD_CHAR			'0'
+# define CORP_CHAR			'o'
+# define APPL_CHAR			'P'
 
 class		LibNcurses : public ILibGraph
 {
@@ -28,7 +32,7 @@ public:
   bool		DrawMap(std::string const &, bool const);
   void		Destroy();
   bool		DrawQuadra(std::string const &);
-  bool		DrawHUD();
+  bool		DrawHUD(int, double);
   char		HandleEvent();
 
 private:
