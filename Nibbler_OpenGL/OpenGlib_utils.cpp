@@ -6,7 +6,7 @@
 // Login   <gregoi_j@epitech.net>
 //
 // Started on  Tue Mar 31 01:52:17 2015 Jean-Baptiste Grégoire
-// Last update Thu Apr  2 22:40:52 2015 Jean-Baptiste Grégoire
+// Last update Fri Apr  3 00:26:07 2015 Jean-Baptiste Grégoire
 //
 
 #include "OpenGlib.hpp"
@@ -81,7 +81,7 @@ void		drawCube(double x, double y, double z, double size)
   glEnd();
 
   glColor3ub(0, 0, 0);
-  glLineWidth(2);
+  glLineWidth(1.5);
   glBegin(GL_LINE_LOOP);
   glVertex3d(x + size, y + size, z + size);
   glVertex3d(x + size, y + size, z - size);
