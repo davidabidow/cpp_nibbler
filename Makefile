@@ -5,7 +5,7 @@
 ## Login   <tran_0@epitech.net>
 ##
 ## Started on  Mon Mar  9 14:56:07 2015 David Tran
-## Last update Fri Apr  3 21:21:38 2015 David Tran
+## Last update Fri Apr  3 21:38:42 2015 David Tran
 ##
 
 DEBUG		= 	yes
@@ -49,8 +49,8 @@ endif
 $(NAME):	$(OBJ)
 		$(CC) -o $(NAME) $(OBJ) -ldl
 		make -C $(SDL)
-		make -C $(NCURSES)
-		make -C $(OPENGL)
+#		make -C $(NCURSES)
+#		make -C $(OPENGL)
 
 all:		$(NAME)
 

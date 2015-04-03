@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Tue Mar 24 21:56:30 2015 David Tran
-// Last update Fri Apr  3 21:09:50 2015 David Tran
+// Last update Fri Apr  3 22:10:27 2015 David Tran
 //
 
 # include "Nibbler_SDL.hpp"
@@ -97,7 +97,7 @@ bool		N_SDL::DrawMap(std::string const &pars, bool const apple)
 	}
       y++;
     }
-  SDL_Flip(screen);
+  //  SDL_Flip(screen);
   return (true);
 }
 

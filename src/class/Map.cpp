@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Wed Mar 25 15:29:59 2015 David Tran
-// Last update Fri Apr  3 21:35:41 2015 David Tran
+// Last update Fri Apr  3 22:56:03 2015 David Tran
 //
 
 #include "Map.hpp"
@@ -36,7 +36,7 @@ bool	Map::CheckinSnake(std::pair<double, double> const *t_check, std::vector<std
 
 bool	Map::genObj()
 {
-  int			i;
+  int				i;
   std::pair<double, double>	*to_check = new std::pair<double, double>;
 
   std::srand(std::time(0));
@@ -93,7 +93,7 @@ void	Map::fill_string()
       // std::cout << "write toto" << std::endl;
       // std::cout << (*it)->second * maxY + (*it)->first << std::endl;
       // std::cout << (*it)->first  << ";" << (*it)->second << std::endl;
-      map[(*it)->second * maxY + (*it)->first] = 1;
+      map[(*it)->second * maxX + (*it)->first] = 1;
       it++;
     }
   //  std::cout << "out" << std::endl;
@@ -106,7 +106,7 @@ void	Map::eat_apple()
 
   while (it != snak.end())
     {
-      if (p_apple == ((*it)->second * maxY + (*it)->first))
+      if (p_apple == ((*it)->second * maxX + (*it)->first))
 	{
 	  score.setScore(score.getScore() + 1 + score.getCountit());
 	  apple = false;
