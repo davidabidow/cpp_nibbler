@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Mon Mar  9 14:49:22 2015 David Tran
-// Last update Fri Apr  3 21:37:00 2015 David Tran
+// Last update Fri Apr  3 23:56:31 2015 Hugo Prenat
 //
 
 #include "Map.hpp"
@@ -33,6 +33,7 @@ int		main(int ac, char **av)
   Map		*map;
   void		*dlHandler;
   ILibGraph	*(*external_creator)();
+  ILibGraph	*lib;
 
   if (ac != 4)
     {
@@ -43,10 +44,9 @@ int		main(int ac, char **av)
     return (-1);
   if (!(dlHandler = dlopen(av[3], RTLD_LAZY)))
     return (EXIT_FAILURE);
-  std::cout << "toto" << std::endl;
   if (!(external_creator = reinterpret_cast<ILibGraph *(*)()>(dlsym(dlHandler, "instanciate_lib"))))
     return (EXIT_FAILURE);
-  ILibGraph		*lib = external_creator();
+  lib = external_creator();
   if (lib->Init(map->getMaxX(), map->getMaxY()))
     {
       map->loop_game(lib);
