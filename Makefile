@@ -5,7 +5,7 @@
 ## Login   <tran_0@epitech.net>
 ##
 ## Started on  Mon Mar  9 14:56:07 2015 David Tran
-## Last update Fri Apr  3 23:42:28 2015 Jean-Baptiste Grégoire
+## Last update Fri Apr  3 23:43:07 2015 Jean-Baptiste Grégoire
 ##
 
 DEBUG		= 	yes
@@ -48,9 +48,12 @@ endif
 
 $(NAME):	$(OBJ)
 		$(CC) -o $(NAME) $(OBJ) -ldl
+		rm -f src/class/Error.o
 		make -C $(SDL)
-		make -C $(NCURSES)
-		make -C $(OPENGL)
+		rm -f src/class/Error.o
+#		make -C $(NCURSES)
+		rm -f src/class/Error.o
+#		make -C $(OPENGL)
 
 all:		$(NAME)
 

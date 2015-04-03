@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Tue Mar 24 21:56:30 2015 David Tran
-// Last update Fri Apr  3 21:09:50 2015 David Tran
+// Last update Fri Apr  3 23:41:35 2015 David Tran
 //
 
 # include "Nibbler_SDL.hpp"
@@ -73,6 +73,8 @@ void		N_SDL::fill_point_rect(std::string const &it, int i, bool const apple)
     SDL_FillRect(screen, &pos, SDL_MapRGB(screen->format, 51, 204, 51));
   else if (it[i] == 2 && apple == true)
     SDL_FillRect(screen, &pos, SDL_MapRGB(screen->format, 251, 0, 0));
+  else if (it[i] == 3)
+    SDL_FillRect(screen, &pos, SDL_MapRGB(screen->format, 0, 0, 204));
   else
     SDL_FillRect(screen, &pos, SDL_MapRGB(screen->format, 69, 69, 69));
 }
@@ -97,7 +99,7 @@ bool		N_SDL::DrawMap(std::string const &pars, bool const apple)
 	}
       y++;
     }
-  SDL_Flip(screen);
+  //  SDL_Flip(screen);
   return (true);
 }
 

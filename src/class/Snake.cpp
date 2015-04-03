@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Fri Mar 27 00:10:35 2015 David Tran
-// Last update Thu Apr  2 22:40:17 2015 Hugo Prenat
+// Last update Fri Apr  3 22:34:41 2015 David Tran
 //
 
 #include "Snake.hpp"
@@ -27,8 +27,6 @@ Snake::Snake(int maxX, int maxY) : direction(WEST), nbPoints(0)
       std::pair<double, double>	*coor = new std::pair<double, double>;
       coor->first = maxX / 2 - 2 + i;
       coor->second = maxY / 2;
-      std::cout << "init snake" << std::endl;
-      std::cout << coor->first  << ";" << coor->second << std::endl;
       snak.push_back(coor);
       i++;
     }
@@ -80,7 +78,7 @@ bool	Snake::isAlive(int maxX, int maxY)
   std::vector<std::pair<double, double> *>::iterator	it = snake.begin();
   std::pair<double, double>				*first;
 
-  if ((*it)->first < 0 || (*it)->first > maxX || (*it)->second < 0 || (*it)->second > maxY)
+  if ((*it)->first < 0 || (*it)->first > maxX || (*it)->second < 0 || (*it)->second >= maxY)
     return (false);
   first = *it;
   it++;
