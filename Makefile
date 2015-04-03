@@ -5,7 +5,7 @@
 ## Login   <tran_0@epitech.net>
 ##
 ## Started on  Mon Mar  9 14:56:07 2015 David Tran
-## Last update Thu Apr  2 22:32:29 2015 Jean-Baptiste Grégoire
+## Last update Fri Apr  3 21:21:38 2015 David Tran
 ##
 
 DEBUG		= 	yes
@@ -22,6 +22,7 @@ SRC		=	src/main.cpp			\
 			src/class/Map.cpp		\
 			src/class/Error.cpp		\
 			src/class/Snake.cpp		\
+			src/class/Score.cpp		\
 
 OBJ		=	$(SRC:.cpp=.o)
 
