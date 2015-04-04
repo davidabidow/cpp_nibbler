@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Wed Mar 25 15:29:59 2015 David Tran
-// Last update Sat Apr  4 16:27:07 2015 David Tran
+// Last update Sat Apr  4 19:13:15 2015 David Tran
 //
 
 #include "Map.hpp"
@@ -140,7 +140,7 @@ void	Map::loop_game(ILibGraph *lib)
       if (pau == false)
 	{
 	  eat_apple();
-	  usleep(100000);
+	  usleep(100000 - score.getCountit() * 500);
 	  score.setTime(score.getTime() + 0.1);
 	}
     }
