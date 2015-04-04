@@ -5,7 +5,7 @@
 // Login   <gregoi_j@epitech.net>
 //
 // Started on  Wed Mar  25 18:29:42 2015 Jean-Baptiste Grégoire
-// Last update Fri Apr  3 23:40:55 2015 Jean-Baptiste Grégoire
+// Last update Sat Apr  4 23:16:21 2015 Jean-Baptiste Grégoire
 //
 
 #include "OpenGlib.hpp"
@@ -23,35 +23,37 @@ OpenGlib::OpenGlib()
   maxX = maxY = 0;
 }
 
-bool		OpenGlib::Init(int x, int y)
+void		OpenGlib::Init(int x, int y)
 {
   float		midx = static_cast<float>(x / 2.0);
   float		midy = static_cast<float>(y / 2.0);
 
+  if (x > 200 || y > 200 || x < 20 || y < 20)
+    throw Nibbler_Error_Lib("Init: Please set a size between 20 and 200");
   maxX = x;
   maxY = y;
-  window.create(sf::VideoMode(WIN_WIDTH, WIN_HEIGHT), "Nibbler -OpenGL-", sf::Style::Default, sf::ContextSettings(32));
+  window.create(sf::VideoMode(WIN_WIDTH, WIN_HEIGHT), "Nibbler -OpenGL-",
+		sf::Style::Default, sf::ContextSettings(32));
+  if (window.isOpen() == false)
+    throw Nibbler_Error_Lib("SFML: Unable to create window");
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
   gluPerspective(WIN_FOVY, static_cast<double>(WIN_WIDTH / WIN_HEIGHT), NEAR, FAR);
   glEnable(GL_DEPTH_TEST);
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
-  gluLookAt(midx, 30, 70,
-	    midx, 0.5, midy + 20,
+  gluLookAt(midx, 30, y * 1.4,
+	    midx, 0.5, midy + midy * 0.2,
 	    0, 1, 0);
-  return (true);
 }
 
-bool		OpenGlib::DrawMap(std::string const &map, bool const apple)
+void		OpenGlib::DrawMap(std::string const &map, bool const apple,
+				  bool const pau)
 {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  drawWall(maxX, maxY);
-  drawGround(maxX, maxY);
-  drawSnake(map, maxX, maxY, apple);
-  // glFlush();
-  // window.display();
-  return (true);
+  drawWall(maxX, maxY, pau);
+  drawGround(maxX, maxY, pau);
+  drawSnake(map, maxX, maxY, apple, pau);
 }
 
 void		OpenGlib::Destroy()
@@ -59,12 +61,7 @@ void		OpenGlib::Destroy()
   window.close();
 }
 
-bool		OpenGlib::DrawQuadra(std::string const &map)
-{
-  return (true);
-}
-
-bool		OpenGlib::DrawHUD(int score, double time)
+void		OpenGlib::DrawHUD(int score, double time)
 {
   std::stringstream	ss;
   sf::Font		font;
@@ -72,7 +69,7 @@ bool		OpenGlib::DrawHUD(int score, double time)
 
   window.pushGLStates();
   if (!font.loadFromFile("gomarice_the_past.ttf"))
-    return (false);
+    return ;
   text.setFont(font);
   text.setCharacterSize(18);
   text.setStyle(sf::Text::Bold);
@@ -89,7 +86,6 @@ bool		OpenGlib::DrawHUD(int score, double time)
   window.display();
   window.popGLStates();
   glFlush();
-  return (true);
 }
 
 char		OpenGlib::HandleEvent()
@@ -110,6 +106,8 @@ char		OpenGlib::HandleEvent()
 	    input = 1;
 	  else if (event.key.code == sf::Keyboard::Right)
 	    input = 2;
+	  else if (event.key.code == sf::Keyboard::P)
+	    input = 3;
 	  else
 	    input = 0;
 	}

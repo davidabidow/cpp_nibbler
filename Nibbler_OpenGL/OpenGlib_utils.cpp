@@ -1,4 +1,3 @@
-
 //
 // OpenGlib_utils.cpp for nibbler in /home/jibb/rendu/cpp_nibbler
 //
@@ -6,15 +5,18 @@
 // Login   <gregoi_j@epitech.net>
 //
 // Started on  Tue Mar 31 01:52:17 2015 Jean-Baptiste Grégoire
-// Last update Fri Apr  3 00:26:07 2015 Jean-Baptiste Grégoire
+// Last update Sat Apr  4 23:04:16 2015 Jean-Baptiste Grégoire
 //
 
 #include "OpenGlib.hpp"
 
-void		drawGround(int maxX, int maxY)
+void		drawGround(int maxX, int maxY, bool const pau)
 {
   glBegin(GL_QUADS);
-  glColor3ub(70, 125, 20);
+  if (pau)
+    glColor3ub(42, 42, 42);
+  else
+    glColor3ub(70, 125, 20);
   glVertex3d(-0.5, 0, -0.5);
   glVertex3d(-0.5, 0, maxY);
   glVertex3d(maxX, 0, maxY);
@@ -22,9 +24,12 @@ void		drawGround(int maxX, int maxY)
   glEnd();
 }
 
-void		drawWall(int x, int y)
+void		drawWall(int x, int y, bool const pau)
 {
-  glColor3ub(0x66, 0x3E, 0x10);
+  if (pau)
+    glColor3ub(200, 200, 200);
+  else
+    glColor3ub(0x66, 0x3E, 0x10);
   for (float i = 0; i <= x + 2.5; i += 0.5)
     {
       drawCube(i - 1.5, 0.5, -1.5, 1);
@@ -127,7 +132,8 @@ void		drawCube(double x, double y, double z, double size)
   glColor3f(current_color[0], current_color[1], current_color[2]);
 }
 
-void		drawSnake(std::string const &map, int length, int width, bool const apple)
+void		drawSnake(std::string const &map, int length, int width,
+			  bool const apple, bool const pau)
 {
   int		i;
 
@@ -138,12 +144,18 @@ void		drawSnake(std::string const &map, int length, int width, bool const apple)
 	  i = y * width + x;
 	  if (map[i] == 1)
 	    {
-	      glColor3ub(51, 204, 51);
+	      if (pau)
+		glColor3ub(80, 80, 80);
+	      else
+		glColor3ub(51, 204, 51);
 	      drawCube(x, 0.51, y, 0.5);
 	    }
 	  else if (map[i] == 2 && apple == true)
 	    {
-	      glColor3ub(251, 0,  0);
+	      if (pau)
+		glColor3ub(126, 126, 126);
+	      else
+		glColor3ub(251, 0,  0);
 	      drawCube(x, 0.52, y, 0.5);
 	    }
 	}
