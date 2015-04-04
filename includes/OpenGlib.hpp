@@ -5,7 +5,7 @@
 // Login   <gregoi_j@epitech.net>
 //
 // Started on  Wed Mar  25 18:16:29 2015 Jean-Baptiste Grégoire
-// Last update Sat Apr  4 23:23:28 2015 Jean-Baptiste Grégoire
+// Last update Sun Apr  5 00:09:21 2015 Jean-Baptiste Grégoire
 //
 
 #ifndef OPENGLIB_HPP
@@ -42,7 +42,9 @@ public:
   void		Destroy();
   void		DrawHUD(int score, double time);
   char		HandleEvent();
-		~OpenGlib();
+  void		zoomIn();
+  void		zoomOut();
+  ~OpenGlib();
 
 private:
   sf::RenderWindow	window;
@@ -51,6 +53,8 @@ private:
   int		maxX;
   int		maxY;
   bool		noHUD;
+  double	altitude;
+  double	distance;
 };
 
 #endif // OPENGLIB_HPP

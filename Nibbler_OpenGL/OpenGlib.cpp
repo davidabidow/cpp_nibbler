@@ -5,7 +5,7 @@
 // Login   <gregoi_j@epitech.net>
 //
 // Started on  Wed Mar  25 18:29:42 2015 Jean-Baptiste Grégoire
-// Last update Sat Apr  4 23:25:22 2015 Jean-Baptiste Grégoire
+// Last update Sun Apr  5 00:25:58 2015 Jean-Baptiste Grégoire
 //
 
 #include "OpenGlib.hpp"
@@ -28,8 +28,8 @@ void		OpenGlib::Init(int x, int y)
   float		midx = static_cast<float>(x / 2.0);
   float		midy = static_cast<float>(y / 2.0);
 
-  if (x > 200 || y > 200 || x < 20 || y < 20)
-    throw Nibbler_Error_Lib("Init: Please set a size between 20 and 200");
+  if (x > 100 || y > 100 || x < 20 || y < 20)
+    throw Nibbler_Error_Lib("Init: Please set a size between 20 and 100");
   maxX = x;
   maxY = y;
   window.create(sf::VideoMode(WIN_WIDTH, WIN_HEIGHT), "Nibbler -OpenGL-",
@@ -42,7 +42,9 @@ void		OpenGlib::Init(int x, int y)
   glEnable(GL_DEPTH_TEST);
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
-  gluLookAt(midx, 30, y * 1.4,
+  altitude = y;
+  distance = y * 1.4;
+  gluLookAt(midx, altitude, distance,
 	    midx, 0.5, midy + midy * 0.2,
 	    0, 1, 0);
   if (!font.loadFromFile("gomarice_the_past.ttf"))
@@ -95,6 +97,40 @@ void		OpenGlib::DrawHUD(int score, double time)
   glFlush();
 }
 
+void		OpenGlib::zoomIn()
+{
+  double	midx = static_cast<double>(maxX / 2.0);
+  double	midy = static_cast<double>(maxY / 2.0);
+
+  if (altitude > 20)
+    {
+      altitude -= 1;
+      distance -= 1;
+    }
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+  gluLookAt(midx, altitude, distance,
+	   midx, 0.5, midy + midy * 0.2,
+	   0, 1, 0);
+}
+
+void		OpenGlib::zoomOut()
+{
+  double	midx = static_cast<double>(maxX / 2.0);
+  double	midy = static_cast<double>(maxY / 2.0);
+
+  if (altitude < 150)
+    {
+      altitude += 1;
+      distance += 1;
+    }
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+  gluLookAt(midx, altitude, distance,
+	   midx, 0.5, midy + midy * 0.2,
+	   0, 1, 0);
+}
+
 char		OpenGlib::HandleEvent()
 {
   char		input;
@@ -115,6 +151,10 @@ char		OpenGlib::HandleEvent()
 	    input = 2;
 	  else if (event.key.code == sf::Keyboard::P)
 	    input = 3;
+	  else if (event.key.code == sf::Keyboard::Up)
+	    zoomIn();
+	  else if (event.key.code == sf::Keyboard::Down)
+	    zoomOut();
 	  else
 	    input = 0;
 	}

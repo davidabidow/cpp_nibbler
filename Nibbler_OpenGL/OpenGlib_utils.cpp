@@ -5,7 +5,7 @@
 // Login   <gregoi_j@epitech.net>
 //
 // Started on  Tue Mar 31 01:52:17 2015 Jean-Baptiste Grégoire
-// Last update Sat Apr  4 23:04:16 2015 Jean-Baptiste Grégoire
+// Last update Sat Apr  4 23:39:41 2015 Jean-Baptiste Grégoire
 //
 
 #include "OpenGlib.hpp"
@@ -156,6 +156,14 @@ void		drawSnake(std::string const &map, int length, int width,
 		glColor3ub(126, 126, 126);
 	      else
 		glColor3ub(251, 0,  0);
+	      drawCube(x, 0.52, y, 0.5);
+	    }
+	  else if (map[i] == 3)
+	    {
+	      if (pau)
+		glColor3ub(100, 100, 100);
+	      else
+		glColor3ub(0, 0, 204);
 	      drawCube(x, 0.52, y, 0.5);
 	    }
 	}
