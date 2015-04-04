@@ -5,7 +5,7 @@
 // Login   <gregoi_j@epitech.net>
 //
 // Started on  Wed Mar  25 18:29:42 2015 Jean-Baptiste Grégoire
-// Last update Sat Apr  4 23:16:21 2015 Jean-Baptiste Grégoire
+// Last update Sat Apr  4 23:25:22 2015 Jean-Baptiste Grégoire
 //
 
 #include "OpenGlib.hpp"
@@ -45,6 +45,16 @@ void		OpenGlib::Init(int x, int y)
   gluLookAt(midx, 30, y * 1.4,
 	    midx, 0.5, midy + midy * 0.2,
 	    0, 1, 0);
+  if (!font.loadFromFile("gomarice_the_past.ttf"))
+    noHUD = true;
+  else
+    {
+      noHUD = false;
+      text.setFont(font);
+      text.setCharacterSize(18);
+      text.setStyle(sf::Text::Bold);
+      text.setColor(sf::Color::White);
+    }
 }
 
 void		OpenGlib::DrawMap(std::string const &map, bool const apple,
@@ -54,6 +64,11 @@ void		OpenGlib::DrawMap(std::string const &map, bool const apple,
   drawWall(maxX, maxY, pau);
   drawGround(maxX, maxY, pau);
   drawSnake(map, maxX, maxY, apple, pau);
+  if (noHUD)
+    {
+      glFlush();
+      window.display();
+    }
 }
 
 void		OpenGlib::Destroy()
@@ -64,16 +79,8 @@ void		OpenGlib::Destroy()
 void		OpenGlib::DrawHUD(int score, double time)
 {
   std::stringstream	ss;
-  sf::Font		font;
-  sf::Text		text;
 
   window.pushGLStates();
-  if (!font.loadFromFile("gomarice_the_past.ttf"))
-    return ;
-  text.setFont(font);
-  text.setCharacterSize(18);
-  text.setStyle(sf::Text::Bold);
-  text.setColor(sf::Color::White);
   ss << "score: " << score;
   text.setPosition(15, 15);
   text.setString(ss.str());

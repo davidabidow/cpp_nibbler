@@ -5,7 +5,7 @@
 // Login   <gregoi_j@epitech.net>
 //
 // Started on  Wed Mar  25 18:16:29 2015 Jean-Baptiste Grégoire
-// Last update Sat Apr  4 22:56:37 2015 Jean-Baptiste Grégoire
+// Last update Sat Apr  4 23:23:28 2015 Jean-Baptiste Grégoire
 //
 
 #ifndef OPENGLIB_HPP
@@ -46,8 +46,11 @@ public:
 
 private:
   sf::RenderWindow	window;
+  sf::Font		font;
+  sf::Text		text;
   int		maxX;
   int		maxY;
+  bool		noHUD;
 };
 
 #endif // OPENGLIB_HPP
