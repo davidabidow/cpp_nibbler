@@ -5,7 +5,7 @@
 // Login   <gregoi_j@epitech.net>
 //
 // Started on  Wed Mar  25 18:29:42 2015 Jean-Baptiste Grégoire
-// Last update Fri Apr  3 22:15:20 2015 Jean-Baptiste Grégoire
+// Last update Fri Apr  3 23:40:55 2015 Jean-Baptiste Grégoire
 //
 
 #include "OpenGlib.hpp"
@@ -49,8 +49,8 @@ bool		OpenGlib::DrawMap(std::string const &map, bool const apple)
   drawWall(maxX, maxY);
   drawGround(maxX, maxY);
   drawSnake(map, maxX, maxY, apple);
-  glFlush();
-  window.display();
+  // glFlush();
+  // window.display();
   return (true);
 }
 
@@ -64,8 +64,31 @@ bool		OpenGlib::DrawQuadra(std::string const &map)
   return (true);
 }
 
-bool		OpenGlib::DrawHUD()
+bool		OpenGlib::DrawHUD(int score, double time)
 {
+  std::stringstream	ss;
+  sf::Font		font;
+  sf::Text		text;
+
+  window.pushGLStates();
+  if (!font.loadFromFile("gomarice_the_past.ttf"))
+    return (false);
+  text.setFont(font);
+  text.setCharacterSize(18);
+  text.setStyle(sf::Text::Bold);
+  text.setColor(sf::Color::White);
+  ss << "score: " << score;
+  text.setPosition(15, 15);
+  text.setString(ss.str());
+  window.draw(text);
+  ss.str(std::string());
+  ss << "time: " << time;
+  text.setPosition(WIN_WIDTH - 120, 15);
+  text.setString(ss.str());
+  window.draw(text);
+  window.display();
+  window.popGLStates();
+  glFlush();
   return (true);
 }
 

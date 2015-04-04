@@ -5,7 +5,7 @@
 // Login   <prenat_h@epitech.eu>
 //
 // Started on  Wed Apr  1 14:24:29 2015 Hugo Prenat
-// Last update Thu Apr  2 22:29:51 2015 Jean-Baptiste Grégoire
+// Last update Fri Apr  3 23:51:14 2015 Hugo Prenat
 //
 
 #include "LibNcurses.hpp"
@@ -14,36 +14,33 @@ void	init_screen(int x, int y)
 {
   for (int i = 0; i <= x + 1; i++)
     {
-      move(i, x + 1);
-      addch(WALL_CHAR);
-      move(x + 1, i);
-      addch(WALL_CHAR);
+      mvaddch(i, x + 1, WALL_CHAR);
+      mvaddch(x + 1, i, WALL_CHAR);
     }
   for (int i = 0; i < y + 1; i++)
     {
-      move(0, i);
-      addch(WALL_CHAR);
-      move(i, 0);
-      addch(WALL_CHAR);
+      mvaddch(0, i, WALL_CHAR);
+      mvaddch(i, 0, WALL_CHAR);
     }
   for (int i = 0; i <= 6; i++)
     {
-      move(i, x + 10);
-      addch(ACS_DIAMOND);
-      move(i, x + 30);
-      addch(ACS_DIAMOND);
+      mvaddch(i, x + 10, ACS_DIAMOND);
+      mvaddch(i, x + 30, ACS_DIAMOND);
+      mvaddch(i + 8, x + 10, ACS_DIAMOND);
+      mvaddch(i + 8, x + 30, ACS_DIAMOND);
     }
   for (int i = 0; i < 20; i++)
     {
-      move(0, i + x + 10);
-      addch(ACS_DIAMOND);
-      move(2, i + x + 10);
-      addch(ACS_DIAMOND);
-      move(6, i + x + 10);
-      addch(ACS_DIAMOND);
+      mvaddch(0, i + x + 10, ACS_DIAMOND);
+      mvaddch(2, i + x + 10, ACS_DIAMOND);
+      mvaddch(6, i + x + 10, ACS_DIAMOND);
+      mvaddch(8, i + x + 10, ACS_DIAMOND);
+      mvaddch(10, i + x + 10, ACS_DIAMOND);
+      mvaddch(14, i + x + 10, ACS_DIAMOND);
     }
-  move(1, x + 18);
-  printw("Score");
+  mvprintw(1, x + 18, "Score");
+  mvprintw(4, x + 12, "00000000000000000");
+  mvprintw(9, x + 18, "Timer");
 }
 
 LibNcurses::LibNcurses()
@@ -58,13 +55,16 @@ bool	LibNcurses::Init(int x, int y)
   maxX = x;
   initscr();
   getmaxyx(stdscr, sizeY, sizeX);
-  if (sizeX < (x + 1) || sizeY < (y + 1))
+  if (y < 15)
+    maxY = 14;
+  if (sizeX < (maxX + 31) || sizeY < (maxY + 1))
     {
       endwin();
       std::cerr << "Error: Please enter a size that is not greater than"
 		<< " the terminal size" << std::endl;
       return (false);
     }
+  maxY = y;
   nodelay(stdscr, true);
   keypad(stdscr, true);
   noecho();
@@ -80,11 +80,13 @@ bool	LibNcurses::DrawMap(std::string const &map, bool const apple)
     {
       move(i / maxY + 1, i % maxX + 1);
       if (map[i] == 1)
-	addch('o');
+	addch(CORP_CHAR);
+      else if (map[i] == 3)
+	addch(HEAD_CHAR);
       else if (map[i] == 2 && apple == true)
-	addch('P');
+	addch(APPL_CHAR);
       else
-	addch(' ');
+	addch(PLAN_CHAR);
     }
   refresh();
   return (true);
@@ -103,8 +105,10 @@ bool	LibNcurses::DrawQuadra(std::string const &map)
   return (true);
 }
 
-bool	LibNcurses::DrawHUD()
+bool	LibNcurses::DrawHUD(int score, double time)
 {
+  mvprintw(4, maxX + 12, "% 17d", score);
+  mvprintw(12, maxX + 18, "% 5g", time);
   return (true);
 }
 

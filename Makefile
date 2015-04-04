@@ -5,7 +5,7 @@
 ## Login   <tran_0@epitech.net>
 ##
 ## Started on  Mon Mar  9 14:56:07 2015 David Tran
-## Last update Fri Apr  3 23:22:21 2015 David Tran
+## Last update Fri Apr  3 23:45:24 2015 Hugo Prenat
 ##
 
 DEBUG		= 	yes
@@ -51,9 +51,9 @@ $(NAME):	$(OBJ)
 		rm -f src/class/Error.o
 		make -C $(SDL)
 		rm -f src/class/Error.o
-#		make -C $(NCURSES)
+		make -C $(NCURSES)
 		rm -f src/class/Error.o
-#		make -C $(OPENGL)
+		make -C $(OPENGL)
 
 all:		$(NAME)
 

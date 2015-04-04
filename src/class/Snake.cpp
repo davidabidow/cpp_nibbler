@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Fri Mar 27 00:10:35 2015 David Tran
-// Last update Sat Apr  4 15:12:21 2015 David Tran
+// Last update Sat Apr  4 15:39:03 2015 David Tran
 //
 
 #include "Snake.hpp"
@@ -97,19 +97,12 @@ Way	Snake::getDirection() const
 
 void	Snake::addQueue()
 {
-  std::pair<double, double>	*add = new std::pair<double, double>;
+  std::pair<double, double>		*add = new std::pair<double, double>;
+  std::vector<std::pair<double, double> *>::iterator	it;
 
-  /*  add = *(snake.end() - 1);
-    if (direction == NORTH)
-    add.second += 1;
-  else if (direction == WEST)
-    add.first += 1;
-  else if (direction == SOUTH)
-    add.second -= 1;
-  else
-  add.first -= 1;*/
-  add->first = 0;
-  add->second = 0;
+  it = snake.end() - 1;
+  add->first = (*it)->first;
+  add->second = (*it)->second;
   snake.push_back(add);
 }
 
