@@ -5,7 +5,7 @@
 // Login   <prenat_h@epitech.eu>
 //
 // Started on  Wed Apr  1 14:18:50 2015 Hugo Prenat
-// Last update Fri Apr  3 23:51:08 2015 Hugo Prenat
+// Last update Sat Apr  4 18:13:13 2015 Hugo Prenat
 //
 
 #ifndef LIBNCURSES_HPP_
@@ -21,6 +21,8 @@
 # define CORP_CHAR			'o'
 # define APPL_CHAR			'P'
 
+# define KEY_PAUSE			'p'
+
 class		LibNcurses : public ILibGraph
 {
 public:
@@ -28,11 +30,10 @@ public:
   ~LibNcurses();
 
 public:
-  bool		Init(int, int);
-  bool		DrawMap(std::string const &, bool const);
+  void		Init(int, int);
+  void		DrawMap(std::string const &, bool const, bool const);
   void		Destroy();
-  bool		DrawQuadra(std::string const &);
-  bool		DrawHUD(int, double);
+  void		DrawHUD(int, double);
   char		HandleEvent();
 
 private:

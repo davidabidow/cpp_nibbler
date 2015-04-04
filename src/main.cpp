@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Mon Mar  9 14:49:22 2015 David Tran
-// Last update Sat Apr  4 15:40:00 2015 David Tran
+// Last update Sat Apr  4 18:28:48 2015 Hugo Prenat
 //
 
 #include "Map.hpp"
@@ -56,6 +56,7 @@ void		launch_game(Map *map, ILibGraph *lib)
     }
   catch (Nibbler_Error_Lib const &e)
     {
+      lib->Destroy();
       std::cout << e.what() << std::endl;
     }
 }

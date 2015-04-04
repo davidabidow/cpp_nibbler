@@ -5,7 +5,7 @@
 // Login   <prenat_h@epitech.eu>
 //
 // Started on  Wed Apr  1 14:24:29 2015 Hugo Prenat
-// Last update Fri Apr  3 23:51:14 2015 Hugo Prenat
+// Last update Sat Apr  4 18:43:05 2015 Hugo Prenat
 //
 
 #include "LibNcurses.hpp"
@@ -47,7 +47,7 @@ LibNcurses::LibNcurses()
 {
 }
 
-bool	LibNcurses::Init(int x, int y)
+void	LibNcurses::Init(int x, int y)
 {
   int	sizeY, sizeX;
 
@@ -58,12 +58,8 @@ bool	LibNcurses::Init(int x, int y)
   if (y < 15)
     maxY = 14;
   if (sizeX < (maxX + 31) || sizeY < (maxY + 1))
-    {
-      endwin();
-      std::cerr << "Error: Please enter a size that is not greater than"
-		<< " the terminal size" << std::endl;
-      return (false);
-    }
+    throw Nibbler_Error_Lib("Error: Please enter a size that is not"
+			    " greater than the terminal size");
   maxY = y;
   nodelay(stdscr, true);
   keypad(stdscr, true);
@@ -71,14 +67,16 @@ bool	LibNcurses::Init(int x, int y)
   curs_set(0);
   init_screen(x, y);
   refresh();
-  return (true);
 }
 
-bool	LibNcurses::DrawMap(std::string const &map, bool const apple)
+void	LibNcurses::DrawMap(std::string const &map, bool const apple,
+			    bool const pau)
 {
-  for (int i = 0; i < maxY * maxX; i++)
+  if (!pau)
     {
-      move(i / maxY + 1, i % maxX + 1);
+      for (int i = 0; i < maxY * maxX; i++)
+	{
+	  move(i / maxY + 1, i % maxX + 1);
       if (map[i] == 1)
 	addch(CORP_CHAR);
       else if (map[i] == 3)
@@ -87,9 +85,13 @@ bool	LibNcurses::DrawMap(std::string const &map, bool const apple)
 	addch(APPL_CHAR);
       else
 	addch(PLAN_CHAR);
+	}
+    }
+  else
+    {
+      mvprintw(maxY / 2, (maxX / 2) - 4, "Game Paused");
     }
   refresh();
-  return (true);
 }
 
 void	LibNcurses::Destroy()
@@ -100,16 +102,10 @@ void	LibNcurses::Destroy()
   endwin();
 }
 
-bool	LibNcurses::DrawQuadra(std::string const &map)
-{
-  return (true);
-}
-
-bool	LibNcurses::DrawHUD(int score, double time)
+void	LibNcurses::DrawHUD(int const score, double const time)
 {
   mvprintw(4, maxX + 12, "% 17d", score);
   mvprintw(12, maxX + 18, "% 5g", time);
-  return (true);
 }
 
 char	LibNcurses::HandleEvent()
@@ -125,6 +121,8 @@ char	LibNcurses::HandleEvent()
     button = 1;
   else if (tmp == KEY_RIGHT)
     button = 2;
+  else if (tmp == KEY_PAUSE)
+    button = 3;
   return (button);
 }
 
