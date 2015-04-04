@@ -5,7 +5,7 @@
 ## Login   <tran_0@epitech.net>
 ##
 ## Started on  Mon Mar  9 14:56:07 2015 David Tran
-## Last update Fri Apr  3 23:45:24 2015 Hugo Prenat
+## Last update Sun Apr  5 01:49:13 2015 Jean-Baptiste Grégoire
 ##
 
 DEBUG		= 	yes
@@ -47,27 +47,26 @@ CPPFLAGS	+= -O3
 endif
 
 $(NAME):	$(OBJ)
+		@rm -f src/class/Error.o
+		make --no-print-directory -C $(SDL)
+		make --no-print-directory -C $(NCURSES)
+		make --no-print-directory -C $(OPENGL)
+		make --no-print-directory $(OBJ)
 		$(CC) -o $(NAME) $(OBJ) -ldl
-		rm -f src/class/Error.o
-		make -C $(SDL)
-		rm -f src/class/Error.o
-		make -C $(NCURSES)
-		rm -f src/class/Error.o
-		make -C $(OPENGL)
 
 all:		$(NAME)
 
 clean:
 		$(RM) $(OBJ)
-		make -C $(SDL) clean
-		make -C $(NCURSES) clean
-		make -C $(OPENGL) clean
+		make --no-print-directory -C $(SDL) clean
+		make --no-print-directory -C $(NCURSES) clean
+		make --no-print-directory -C $(OPENGL) clean
 
 fclean:		clean
 		$(RM) $(NAME)
-		make -C $(SDL) fclean
-		make -C $(NCURSES) fclean
-		make -C $(OPENGL) fclean
+		make --no-print-directory -C $(SDL) fclean
+		make --no-print-directory -C $(NCURSES) fclean
+		make --no-print-directory -C $(OPENGL) fclean
 
 re:		fclean all
 

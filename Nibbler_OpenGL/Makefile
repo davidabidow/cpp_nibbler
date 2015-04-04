@@ -1,18 +1,23 @@
 ##
-## Makefile for cpp_nibbler in /home/patoche/rendu/CPP/cpp_nibbler/src/Nibbler_Ncurses
+## Makefile for Nibbler in /home/jibb/rendu/cpp_nibbler
 ##
-## Made by Hugo Prenat
-## Login   <prenat_h@epitech.eu>
+## Made by Jean-Baptiste Grégoire
+## Login   <jibb@epitech.net>
 ##
-## Started on  Wed Apr  1 14:08:16 2015 Hugo Prenat
-## Last update Fri Apr  3 23:11:08 2015 David Tran
+## Started on  Sun Apr  1 01:23:03 2015 Jean-Baptiste Grégoire
+## Last update Sun Apr  5 01:40:25 2015 Jean-Baptiste Grégoire
 ##
 
 SRC		=	OpenGlib.cpp		\
 			OpenGlib_utils.cpp	\
-			../src/class/Error.cpp	\
+
+NIBSRC		=	../src/class/Error.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
+
+NIBOBJ		=	$(NIBSRC:.cpp=.o)
+
+NIBOBJFILE	=	Error.o
 
 NAME		=	lib_nibbler_opengl.so
 
@@ -25,11 +30,8 @@ INCLUDES 	=	-I ./SFML-2.2/include/ -I ../includes/
 CPPFLAGS	=	-W -Wall -Wextra $(INCLUDES) -fPIC
 
 LDFLAGS		=	-lGL -lGLU
-
 LDFLAGS		+=	./SFML-2.2/lib/libsfml-graphics.so.2.2.0
-
 LDFLAGS		+=	./SFML-2.2/lib/libsfml-window.so.2.2.0
-
 LDFLAGS		+=	./SFML-2.2/lib/libsfml-system.so.2.2.0
 
 ifeq ($(DEBUG),yes)
@@ -38,18 +40,20 @@ else
 	CFLAGS	+= -O3
 endif
 
-$(NAME):	$(OBJ)
-		g++ -shared -o $(NAME) $(OBJ) $(LDFLAGS)
+$(NAME):	$(OBJ) $(NIBOBJ)
+		@mv $(NIBOBJ) .
+		g++ -shared -o $(NAME) $(OBJ) $(NIBOBJFILE) $(LDFLAGS)
 		@(cp $(NAME) ..)
 
 all:		$(NAME)
 
 clean:
 		$(RM) $(OBJ)
+		$(RM) $(NIBOBJ)
 
 fclean: 	clean
 		$(RM) $(NAME)
-		$(RM) ../../$(NAME)
+		$(RM) ../$(NAME)
 
 re: 		fclean all
 

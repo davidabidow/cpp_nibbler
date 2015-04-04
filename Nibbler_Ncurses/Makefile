@@ -1,17 +1,22 @@
 ##
 ## Makefile for cpp_nibbler in /home/patoche/rendu/CPP/cpp_nibbler/src/Nibbler_Ncurses
-## 
+##
 ## Made by Hugo Prenat
 ## Login   <prenat_h@epitech.eu>
-## 
+##
 ## Started on  Wed Apr  1 14:08:16 2015 Hugo Prenat
-## Last update Fri Apr  3 23:11:48 2015 David Tran
+## Last update Sun Apr  5 01:40:36 2015 Jean-Baptiste Grégoire
 ##
 
-SRC		=	LibNcurses.cpp		\
-			../src/class/Error.cpp	\
+SRC		=	LibNcurses.cpp
+
+NIBSRC		=	../src/class/Error.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
+
+NIBOBJ		=	$(NIBSRC:.cpp=.o)
+
+NIBOBJFILE	=	Error.o
 
 NAME		=	lib_nibbler_ncurses.so
 
@@ -33,7 +38,8 @@ else
 	CXXFLAGS	+= -O3
 endif
 
-$(NAME):	$(OBJ)
+$(NAME):	$(OBJ) $(NIBOBJ)
+		@mv $(NIBOBJ) .
 		g++ -shared -o $(NAME) $(OBJ) $(LIB)
 		@(cp $(NAME) ../)
 
@@ -41,6 +47,7 @@ all:		$(NAME)
 
 clean:
 		$(RM) $(OBJ)
+		$(RM) $(NIBOBJ)
 
 fclean: 	clean
 		$(RM) $(NAME)
