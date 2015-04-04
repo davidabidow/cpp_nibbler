@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Wed Mar 25 14:27:26 2015 David Tran
-// Last update Sat Apr  4 13:30:09 2015 David Tran
+// Last update Sat Apr  4 16:25:55 2015 David Tran
 //
 
 #ifndef MAP_HPP_
@@ -55,6 +55,7 @@ private:
   Score		score;
   int		maxX;
   int		maxY;
+  bool		pau;
 };
 
 # include "ILibGraph.hpp"

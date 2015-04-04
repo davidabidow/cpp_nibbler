@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Fri Mar 27 00:10:35 2015 David Tran
-// Last update Sat Apr  4 15:39:03 2015 David Tran
+// Last update Sat Apr  4 15:50:24 2015 David Tran
 //
 
 #include "Snake.hpp"
@@ -78,7 +78,7 @@ void	Snake::isAlive(int maxX, int maxY)
   std::vector<std::pair<double, double> *>::iterator	it = snake.begin();
   std::pair<double, double>				*first;
 
-  if ((*it)->first < 0 || (*it)->first > maxX || (*it)->second < 0 || (*it)->second >= maxY)
+  if ((*it)->first < 0 || (*it)->first >= maxX || (*it)->second < 0 || (*it)->second >= maxY)
     throw Nibbler_Error_Lib("Snake ate the wall.. Exiting");
   first = *it;
   it++;

@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Tue Mar 24 21:56:30 2015 David Tran
-// Last update Sat Apr  4 15:37:28 2015 David Tran
+// Last update Sat Apr  4 16:27:37 2015 David Tran
 //
 
 # include "Nibbler_SDL.hpp"
@@ -68,31 +68,39 @@ void		N_SDL::init_pos(int x, int y)
   pos = tmp;
 }
 
-void		N_SDL::fill_point_rect(std::string const &it, int i, bool const apple)
+void		N_SDL::fill_point_rect(std::string const &it, int i,
+				       bool const apple, bool const pau)
 {
+  int		minus;
+
+  if (pau == false)
+    minus = 0;
+  else
+    minus = 50;
   if (it[i] == 1)
     {
-      if (SDL_FillRect(screen, &pos, SDL_MapRGB(screen->format, 51, 204, 51)) != 0)
+      if (SDL_FillRect(screen, &pos, SDL_MapRGB(screen->format, 51 - minus, 204 - minus, 51 - minus)) != 0)
 	throw Nibbler_Error_Lib("Cannot Fill Map for SDL : fill_point_rect l.76");
     }
   else if (it[i] == 2 && apple == true)
     {
-      if (SDL_FillRect(screen, &pos, SDL_MapRGB(screen->format, 251, 0, 0)) != 0)
+      if (SDL_FillRect(screen, &pos, SDL_MapRGB(screen->format, 251 - minus, 0, 0)) != 0)
 	throw Nibbler_Error_Lib("Cannot Fill Map for SDL : fill_point_rect l.81");
     }
   else if (it[i] == 3)
     {
-      if (SDL_FillRect(screen, &pos, SDL_MapRGB(screen->format, 0, 0, 204)) != 0)
+      if (SDL_FillRect(screen, &pos, SDL_MapRGB(screen->format, 0, 0, 204 - minus)) != 0)
 	throw Nibbler_Error_Lib("Cannot Fill Map for SDL : fill_point_rect l.86");
     }
   else
     {
-      if (SDL_FillRect(screen, &pos, SDL_MapRGB(screen->format, 69, 69, 69)) != 0)
+      if (SDL_FillRect(screen, &pos, SDL_MapRGB(screen->format, 69 - minus, 69 - minus, 69 - minus)) != 0)
 	throw Nibbler_Error_Lib("Cannot Fill Map for SDL : fill_point_rect l.91");
     }
 }
 
-void		N_SDL::DrawMap(std::string const &pars, bool const apple)
+void		N_SDL::DrawMap(std::string const &pars, bool const apple,
+			       bool const pau)
 {
   int		i;
   int		x;
@@ -106,7 +114,7 @@ void		N_SDL::DrawMap(std::string const &pars, bool const apple)
       while (x < maxX / 10)
 	{
 	  init_pos(x, y);
-	  fill_point_rect(pars, i, apple);
+	  fill_point_rect(pars, i, apple, pau);
 	  x++;
 	  i++;
 	}
@@ -114,7 +122,7 @@ void		N_SDL::DrawMap(std::string const &pars, bool const apple)
     }
 }
 
-void			N_SDL::DrawHUD(int score, double time)
+void			N_SDL::DrawHUD(int const score, double const time)
 {
   std::ostringstream	os;
 
@@ -130,14 +138,14 @@ void			N_SDL::DrawHUD(int score, double time)
   os << time;
   std::string		contain(os.str());
   pos.x = 0;
-  pos.y = maxY + 10;
+  pos.y = maxY + 5;
   color.r = 255;
   color.g = 255;
   color.b = 255;
   if (!(text = TTF_RenderText_Blended(police, contain.c_str(), color)))
     throw Nibbler_Error_Lib("Cannot Write Text on Map for SDL : DrawHUD l.139");
   SDL_BlitSurface(text, NULL, screen, &pos);
-  hlineColor(screen, 0, maxX, maxY, 0xCCFF00);
+  hlineColor(screen, 0, maxX, maxY, 0xFFFFFF);
   SDL_Flip(screen);
   SDL_FreeSurface(text);
 }
@@ -159,6 +167,8 @@ char		N_SDL::HandleEvent()
 	    button = 1;
 	  else if (even.key.keysym.sym == SDLK_RIGHT)
 	    button = 2;
+	  else if (even.key.keysym.sym == SDLK_p)
+	    button = 3;
 	}
     }
   return (button);

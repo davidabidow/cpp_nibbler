@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Tue Mar 24 21:39:31 2015 David Tran
-// Last update Sat Apr  4 15:33:31 2015 David Tran
+// Last update Sat Apr  4 16:26:15 2015 David Tran
 //
 
 #ifndef NIBBLER_SDL_HPP
@@ -29,11 +29,11 @@ public:
   N_SDL();
   virtual ~N_SDL();
   void		Init(int x, int y);
-  void		DrawMap(std::string const &, bool const);
+  void		DrawMap(std::string const &, bool const, bool const);
   void		Destroy();
-  void		DrawHUD(int, double);
+  void		DrawHUD(int const, double const);
   char		HandleEvent();
-  void		fill_point_rect(std::string const &, int, bool const);
+  void		fill_point_rect(std::string const &, int, bool const, bool const);
   void		init_pos(int, int);
 private:
   SDL_Rect	pos;

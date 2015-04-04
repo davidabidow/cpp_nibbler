@@ -5,12 +5,12 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Wed Mar 25 15:29:59 2015 David Tran
-// Last update Sat Apr  4 15:37:40 2015 David Tran
+// Last update Sat Apr  4 16:27:07 2015 David Tran
 //
 
 #include "Map.hpp"
 
-Map::Map(int const x, int const y) : maxX(x), maxY(y)
+Map::Map(int const x, int const y) : maxX(x), maxY(y), pau(0)
 {
   std::string	newmap(x * y, 0);
   apple = false;
@@ -122,20 +122,26 @@ void	Map::loop_game(ILibGraph *lib)
   while (42)
     {
       fill_string();
+      snake->isAlive(maxX, maxY);
       if (apple == false)
 	genObj();
       if ((press = lib->HandleEvent()) == -1)
 	throw Nibbler_Error_Lib("Key pressed : Game Closing");
-      else if (press == 1)
+      else if (press == 3)
+	(pau == true) ? pau = false : pau = true;
+      else if (press == 1 && pau == false)
 	snake->turnLeft();
-      else if (press == 2)
+      else if (press == 2 && pau == false)
 	snake->turnRight();
-      snake->moveAhead();
-      snake->isAlive(maxX, maxY);
-      lib->DrawMap(map, apple);
+      if (pau == false)
+	snake->moveAhead();
+      lib->DrawMap(map, apple, pau);
       lib->DrawHUD(score.getScore(), score.getTime());
-      eat_apple();
-      usleep(100000);
-      score.setTime(score.getTime() + 0.1);
+      if (pau == false)
+	{
+	  eat_apple();
+	  usleep(100000);
+	  score.setTime(score.getTime() + 0.1);
+	}
     }
 }
