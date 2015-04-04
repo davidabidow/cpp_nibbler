@@ -5,12 +5,12 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Mon Mar  9 14:49:22 2015 David Tran
-// Last update Fri Apr  3 21:37:00 2015 David Tran
+// Last update Sat Apr  4 15:16:14 2015 David Tran
 //
 
 #include "Map.hpp"
 
-int			check_args(char **av, Map **map)
+void			check_args(char **av, Map **map)
 {
   std::stringstream	s(av[1]);
   int			tmpx;
@@ -20,38 +20,60 @@ int			check_args(char **av, Map **map)
   std::stringstream	ss(av[2]);
   ss >> tmpy;
   if (tmpx < 10 || tmpy < 10)
-    return (-1);
+    throw Nibbler_Error_Pars("Invalid Size for Map");
   *map = new Map(tmpx, tmpy);
-  std::cout << tmpx  << " " << tmpy << std::endl;
-  // map.setMaxX(tmpx);
-  // map.setMaxY(tmpy);
-  return (0);
+}
+
+int		check_invalid_arg(char **av, Map **map,
+				  ILibGraph **lib, void **dlHandler)
+{
+  ILibGraph	*(*external_creator)();
+
+  try
+    {
+      check_args(av, map);
+      if (!(*dlHandler = dlopen(av[3], RTLD_LAZY)))
+	throw Nibbler_Error_Pars(dlerror());
+      if (!(external_creator = reinterpret_cast<ILibGraph *(*)()>(dlsym(*dlHandler, "instanciate_lib"))))
+	throw Nibbler_Error_Pars(dlerror());
+      *lib = external_creator();
+    }
+  catch (Nibbler_Error_Pars	const &e)
+    {
+      std::cout << e.what() << std::endl;
+      return (EXIT_FAILURE);
+    }
+  return (EXIT_SUCCESS);
+}
+
+void		launch_game(Map *map, ILibGraph *lib)
+{
+  try
+    {
+      lib->Init(map->getMaxX(), map->getMaxY());
+      map->loop_game(lib);
+      lib->Destroy();
+    }
+  catch (Nibbler_Error_Lib const &e)
+    {
+      std::cout << e.what() << std::endl;
+    }
 }
 
 int		main(int ac, char **av)
 {
   Map		*map;
+  ILibGraph	*lib;
   void		*dlHandler;
-  ILibGraph	*(*external_creator)();
 
   if (ac != 4)
     {
       std::cout << "USAGE : " << av[0] << " [witdh][height][lib.so]" << std::endl;
       return (EXIT_FAILURE);
     }
-  if (check_args(av, &map) == -1)
-    return (-1);
-  if (!(dlHandler = dlopen(av[3], RTLD_LAZY)))
+  if (check_invalid_arg(av, &map, &lib, &dlHandler) == EXIT_FAILURE)
     return (EXIT_FAILURE);
-  std::cout << "toto" << std::endl;
-  if (!(external_creator = reinterpret_cast<ILibGraph *(*)()>(dlsym(dlHandler, "instanciate_lib"))))
-    return (EXIT_FAILURE);
-  ILibGraph		*lib = external_creator();
-  if (lib->Init(map->getMaxX(), map->getMaxY()))
-    {
-      map->loop_game(lib);
-      lib->Destroy();
-    }
+  launch_game(map, lib);
   dlclose(dlHandler);
   return (0);
 }

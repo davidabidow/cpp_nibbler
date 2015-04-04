@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Wed Mar 25 14:27:26 2015 David Tran
-// Last update Fri Apr  3 21:25:22 2015 David Tran
+// Last update Sat Apr  4 13:30:09 2015 David Tran
 //
 
 #ifndef MAP_HPP_
@@ -24,6 +24,7 @@
 # include <SDL/SDL_gfxPrimitives.h>
 # include "Snake.hpp"
 # include "Score.hpp"
+# include "Error.hpp"
 
 class	ILibGraph;
 

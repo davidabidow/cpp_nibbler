@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Wed Mar 25 14:15:03 2015 David Tran
-// Last update Fri Apr  3 18:59:41 2015 David Tran
+// Last update Sat Apr  4 15:33:25 2015 David Tran
 //
 
 #ifndef ILIBGRAPH_HPP_
@@ -22,11 +22,10 @@ class		ILibGraph
 public:
   virtual	~ILibGraph() {}
   ILibGraph(){}
-  virtual bool		Init(int, int) = 0;
-  virtual bool		DrawMap(std::string const &, bool const) = 0;
+  virtual void		Init(int, int) = 0;
+  virtual void		DrawMap(std::string const &, bool const) = 0;
   virtual void		Destroy() = 0;
-  virtual bool		DrawQuadra(std::string const &) = 0;
-  virtual bool		DrawHUD(int, double) = 0;
+  virtual void		DrawHUD(int, double) = 0;
   virtual char		HandleEvent() = 0;
 };
 

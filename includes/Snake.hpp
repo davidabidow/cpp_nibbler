@@ -5,7 +5,7 @@
 ** Login   <gregoi_j@epitech.net>
 **
 ** Started on  Tue Mar  24 16:11:37 2015 Jean-Baptiste Grégoire
-// Last update Tue Mar 31 22:44:33 2015 David Tran
+// Last update Sat Apr  4 15:13:59 2015 David Tran
 */
 
 #ifndef SNAKE_HPP_
@@ -15,6 +15,7 @@
 # include <string>
 # include <vector>
 # include <utility>
+# include "Error.hpp"
 
 # define WIN_WIDTH  1280
 # define WIN_HEIGHT 720
@@ -31,8 +32,8 @@ public:
   void							turnLeft();
   void							turnRight();
   void							moveAhead();
-  bool							isAlive(int maxX, int maxY);
-  std::vector<std::pair<double, double> *>			getVector() {return (snake);}
+  void							isAlive(int maxX, int maxY);
+  std::vector<std::pair<double, double> *>		getVector() {return (snake);}
   Way							getDirection() const;
   void							addQueue();
   ~Snake();

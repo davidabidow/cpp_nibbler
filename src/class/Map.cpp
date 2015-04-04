@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Wed Mar 25 15:29:59 2015 David Tran
-// Last update Fri Apr  3 23:39:51 2015 David Tran
+// Last update Sat Apr  4 15:37:40 2015 David Tran
 //
 
 #include "Map.hpp"
@@ -92,13 +92,9 @@ void	Map::fill_string()
   it++;
   while (it != snak.end())
     {
-      // std::cout << "write toto" << std::endl;
-      // std::cout << (*it)->second * maxY + (*it)->first << std::endl;
-      // std::cout << (*it)->first  << ";" << (*it)->second << std::endl;
       map[(*it)->second * maxX + (*it)->first] = 1;
       it++;
     }
-  //  std::cout << "out" << std::endl;
 }
 
 void	Map::eat_apple()
@@ -129,20 +125,15 @@ void	Map::loop_game(ILibGraph *lib)
       if (apple == false)
 	genObj();
       if ((press = lib->HandleEvent()) == -1)
-	{
-	  lib->Destroy();
-	  return ;
-	}
+	throw Nibbler_Error_Lib("Key pressed : Game Closing");
       else if (press == 1)
 	snake->turnLeft();
       else if (press == 2)
 	snake->turnRight();
-      if (snake->isAlive(maxX, maxY) == false)
-	return ;
       snake->moveAhead();
+      snake->isAlive(maxX, maxY);
       lib->DrawMap(map, apple);
       lib->DrawHUD(score.getScore(), score.getTime());
-      //     lib->DrawQuadra(*this);
       eat_apple();
       usleep(100000);
       score.setTime(score.getTime() + 0.1);
