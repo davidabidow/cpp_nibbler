@@ -5,7 +5,7 @@
 ## Login   <jibb@epitech.net>
 ##
 ## Started on  Sun Apr  1 01:23:03 2015 Jean-Baptiste Grégoire
-## Last update Sun Apr  5 19:35:53 2015 Jean-Baptiste Grégoire
+## Last update Sun Apr  5 22:53:43 2015 Jean-Baptiste Grégoire
 ##
 
 SRC		=	OpenGlib.cpp		\
@@ -27,14 +27,14 @@ RM		=	rm -f
 
 DEBUG		=	no
 
-INCLUDES 	=	-I ./SFML-2.2/include/ -I ../includes/
+INCLUDES 	=	-I ./SFML-2.2/include/ -I ../includes/ -I ./GLEW/includes/GL/
 
 CPPFLAGS	=	-W -Wall -Wextra $(INCLUDES) -fPIC
 
 LDFLAGS		=	-lGL -lGLU
-LDFLAGS		+=	-L./SFML-2.2/lib
+LDFLAGS		+=	-L./SFML-2.2/lib -L./GLEW
 LDFLAGS		+=	-lsfml-graphics -lsfml-system -lsfml-window -lGLEW
-LDFLAGS		+=	-Wl,-rpath=./Nibbler_OpenGL/SFML-2.2/lib
+LDFLAGS		+=	-Wl,-rpath=./Nibbler_OpenGL/SFML-2.2/lib:./Nibbler_OpenGL/GLEW
 
 ifeq ($(DEBUG),yes)
 	CFLAGS 	+= -g3
