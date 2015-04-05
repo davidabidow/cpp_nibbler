@@ -5,7 +5,7 @@
 ## Login   <jibb@epitech.net>
 ##
 ## Started on  Sun Apr  1 01:23:03 2015 Jean-Baptiste Grégoire
-## Last update Sun Apr  5 02:28:15 2015 Jean-Baptiste Grégoire
+## Last update Sun Apr  5 16:58:06 2015 Jean-Baptiste Grégoire
 ##
 
 SRC		=	OpenGlib.cpp		\
@@ -31,9 +31,8 @@ INCLUDES 	=	-I ./SFML-2.2/include/ -I ../includes/
 CPPFLAGS	=	-W -Wall -Wextra $(INCLUDES) -fPIC
 
 LDFLAGS		=	-lGL -lGLU
-LDFLAGS		+=	-L./SFML-2.2/lib/libsfml-graphics.so.2.2.0
-LDFLAGS		+=	-L./SFML-2.2/lib/libsfml-window.so.2.2.0
-LDFLAGS		+=	-L./SFML-2.2/lib/libsfml-system.so.2.2.0
+LDFLAGS		+=	-L./SFML-2.2/lib
+LDFLAGS		+=	-lsfml-graphics -lsfml-system -lsfml-window -lGLEW
 
 ifeq ($(DEBUG),yes)
 	CFLAGS 	+= -g3
