@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Tue Mar 24 21:56:30 2015 David Tran
-// Last update Sat Apr  4 16:27:37 2015 David Tran
+// Last update Sun Apr  5 20:22:18 2015 David Tran
 //
 
 # include "Nibbler_SDL.hpp"
@@ -28,11 +28,13 @@ N_SDL::~N_SDL()
 
 void		N_SDL::Init(int x, int y)
 {
+  if (x > 190 || y > 90)
+    throw Nibbler_Error_Lib("Sizes are too high [x <= 190 && y <= 90]");
   maxX = x * 10;
   maxY = y * 10;
   if (SDL_Init(SDL_INIT_VIDEO) != 0)
     throw Nibbler_Error_Lib("Unable to launch Library SDL");
-  if (!(screen = SDL_SetVideoMode(maxX, maxY + 100, 32, SDL_HWSURFACE)))
+  if (!(screen = SDL_SetVideoMode(maxX, maxY + 50, 32, SDL_HWSURFACE)))
     {
       SDL_Quit();
       throw Nibbler_Error_Lib("Unable to set VideoMode for SDL");
@@ -43,8 +45,14 @@ void		N_SDL::Init(int x, int y)
   color.r = 255;
   color.g = 255;
   color.b = 255;
-  if (!(police = TTF_OpenFont("./gomarice_the_past.ttf", 40)))
-    throw Nibbler_Error_Lib("Unable to Open Font for SDL");
+  if (x < 50)
+    {
+      if (!(police = TTF_OpenFont("./gomarice_the_past.ttf", 20)))
+	throw Nibbler_Error_Lib("Unable to Open Font for SDL");
+    }
+  else
+    if (!(police = TTF_OpenFont("./gomarice_the_past.ttf", 40)))
+      throw Nibbler_Error_Lib("Unable to Open Font for SDL");
 }
 
 void		N_SDL::Destroy()
@@ -130,20 +138,38 @@ void			N_SDL::DrawHUD(int const score, double const time)
   pos.y = maxY;
   pos.w = maxX;
   pos.h = 100;
-  if (SDL_FillRect(screen, &pos, SDL_MapRGB(screen->format, 69, 69, 69)) != 0)
-    throw Nibbler_Error_Lib("Cannot Fill Map for SDL : DrawHUD l.127");
-  os << "score : ";
-  os << score;
-  os << "  time : ";
-  os << time;
-  std::string		contain(os.str());
-  pos.x = 0;
-  pos.y = maxY + 5;
   color.r = 255;
   color.g = 255;
   color.b = 255;
-  if (!(text = TTF_RenderText_Blended(police, contain.c_str(), color)))
-    throw Nibbler_Error_Lib("Cannot Write Text on Map for SDL : DrawHUD l.139");
+  if (SDL_FillRect(screen, &pos, SDL_MapRGB(screen->format, 69, 69, 69)) != 0)
+    throw Nibbler_Error_Lib("Cannot Fill Map for SDL : DrawHUD l.127");
+  os << "score: ";
+  os << score;
+  pos.x = 0;
+  pos.y = maxY + 5;
+  if (maxX / 10 < 50)
+    {
+      std::string		contain_l(os.str());
+      if (!(text = TTF_RenderText_Blended(police, contain_l.c_str(), color)))
+	throw Nibbler_Error_Lib("Cannot Write Text on Map for SDL : DrawHUD l.139");
+      SDL_BlitSurface(text, NULL, screen, &pos);
+      std::ostringstream	oss;
+      oss << "time : ";
+      oss << time;
+      std::string		contain_li(oss.str());
+      pos.x = 0;
+      pos.y = maxY + 25;
+      if (!(text = TTF_RenderText_Blended(police, contain_li.c_str(), color)))
+	throw Nibbler_Error_Lib("Cannot Write Text on Map for SDL : DrawHUD l.139");
+    }
+  else
+    {
+      os << "  time : ";
+      os << time;
+      std::string		contain(os.str());
+      if (!(text = TTF_RenderText_Blended(police, contain.c_str(), color)))
+	throw Nibbler_Error_Lib("Cannot Write Text on Map for SDL : DrawHUD l.139");
+    }
   SDL_BlitSurface(text, NULL, screen, &pos);
   hlineColor(screen, 0, maxX, maxY, 0xFFFFFF);
   SDL_Flip(screen);
