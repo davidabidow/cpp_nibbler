@@ -5,7 +5,7 @@
 // Login   <prenat_h@epitech.eu>
 //
 // Started on  Wed Apr  1 14:18:50 2015 Hugo Prenat
-// Last update Sun Apr  5 17:13:23 2015 Hugo Prenat
+// Last update Sun Apr  5 22:03:03 2015 David Tran
 //
 
 #ifndef LIBNCURSES_HPP_
@@ -13,6 +13,7 @@
 
 # include <curses.h>
 
+# include "Error.hpp"
 # include "Map.hpp"
 
 # define WALL_CHAR			'*'

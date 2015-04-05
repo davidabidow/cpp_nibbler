@@ -5,7 +5,7 @@
 // Login   <prenat_h@epitech.eu>
 //
 // Started on  Wed Apr  1 14:24:29 2015 Hugo Prenat
-// Last update Sun Apr  5 17:52:20 2015 Hugo Prenat
+// Last update Sun Apr  5 22:05:36 2015 David Tran
 //
 
 #include "LibNcurses.hpp"
@@ -66,8 +66,9 @@ void	LibNcurses::Init(int x, int y)
   if (y < 15)
     maxY = 14;
   if (sizeX < (maxX + 31) || sizeY < (maxY + 1))
-    throw Nibbler_Error_Lib("Error: Please enter a size that is not"
-			    " greater than the terminal size");
+    {
+      throw Nibbler_Error_Lib("Error: Please enter a size that is not greater than the terminal size");
+    }
   maxY = y;
   nodelay(stdscr, true);
   keypad(stdscr, true);

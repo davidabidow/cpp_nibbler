@@ -5,7 +5,7 @@
 ## Login   <prenat_h@epitech.eu>
 ##
 ## Started on  Wed Apr  1 14:08:16 2015 Hugo Prenat
-## Last update Sun Apr  5 01:40:36 2015 Jean-Baptiste Grégoire
+## Last update Sun Apr  5 22:07:04 2015 David Tran
 ##
 
 SRC		=	LibNcurses.cpp
@@ -40,7 +40,7 @@ endif
 
 $(NAME):	$(OBJ) $(NIBOBJ)
 		@mv $(NIBOBJ) .
-		g++ -shared -o $(NAME) $(OBJ) $(LIB)
+		g++ -shared -o $(NAME) $(OBJ) $(NIBOBJFILE) $(LIB)
 		@(cp $(NAME) ../)
 
 all:		$(NAME)
