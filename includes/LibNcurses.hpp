@@ -5,7 +5,7 @@
 // Login   <prenat_h@epitech.eu>
 //
 // Started on  Wed Apr  1 14:18:50 2015 Hugo Prenat
-// Last update Sat Apr  4 18:13:13 2015 Hugo Prenat
+// Last update Sun Apr  5 17:13:23 2015 Hugo Prenat
 //
 
 #ifndef LIBNCURSES_HPP_
@@ -22,6 +22,7 @@
 # define APPL_CHAR			'P'
 
 # define KEY_PAUSE			'p'
+# define KEY_ESC			27
 
 class		LibNcurses : public ILibGraph
 {

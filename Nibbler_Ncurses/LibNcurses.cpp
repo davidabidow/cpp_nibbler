@@ -5,22 +5,31 @@
 // Login   <prenat_h@epitech.eu>
 //
 // Started on  Wed Apr  1 14:24:29 2015 Hugo Prenat
-// Last update Sat Apr  4 18:43:05 2015 Hugo Prenat
+// Last update Sun Apr  5 17:14:08 2015 Hugo Prenat
 //
 
 #include "LibNcurses.hpp"
 
 void	init_screen(int x, int y)
 {
-  for (int i = 0; i <= x + 1; i++)
+  int	line = 0, side = 0;
+
+  while (side <= x)
     {
-      mvaddch(i, x + 1, WALL_CHAR);
-      mvaddch(x + 1, i, WALL_CHAR);
+      mvaddch(line, side, WALL_CHAR);
+      side++;
     }
-  for (int i = 0; i < y + 1; i++)
+  while (line <= y)
     {
-      mvaddch(0, i, WALL_CHAR);
-      mvaddch(i, 0, WALL_CHAR);
+      mvaddch(line, 0, WALL_CHAR);
+      mvaddch(line, x + 1, WALL_CHAR);
+      line++;
+    }
+  side = 0;
+  while (side <= x + 1)
+    {
+      mvaddch(line, side, WALL_CHAR);
+      side++;
     }
   for (int i = 0; i <= 6; i++)
     {
@@ -39,7 +48,6 @@ void	init_screen(int x, int y)
       mvaddch(14, i + x + 10, ACS_DIAMOND);
     }
   mvprintw(1, x + 18, "Score");
-  mvprintw(4, x + 12, "00000000000000000");
   mvprintw(9, x + 18, "Timer");
 }
 
@@ -72,25 +80,32 @@ void	LibNcurses::Init(int x, int y)
 void	LibNcurses::DrawMap(std::string const &map, bool const apple,
 			    bool const pau)
 {
+  int	i = 0, y = 0, x;
+
   if (!pau)
     {
-      for (int i = 0; i < maxY * maxX; i++)
+      while (y < maxY)
 	{
-	  move(i / maxY + 1, i % maxX + 1);
-      if (map[i] == 1)
-	addch(CORP_CHAR);
-      else if (map[i] == 3)
-	addch(HEAD_CHAR);
-      else if (map[i] == 2 && apple == true)
-	addch(APPL_CHAR);
-      else
-	addch(PLAN_CHAR);
+	  x = 0;
+	  while (x < maxX)
+	    {
+	      move(y + 1, x + 1);
+	      if (map[i] == 1)
+		addch(CORP_CHAR);
+	      else if (map[i] == 3)
+		addch(HEAD_CHAR);
+	      else if (map[i] == 2 && apple == true)
+		addch(APPL_CHAR);
+	      else
+	      	addch(PLAN_CHAR);
+	      x++;
+	      i++;
+	    }
+	  y++;
 	}
     }
   else
-    {
-      mvprintw(maxY / 2, (maxX / 2) - 4, "Game Paused");
-    }
+    mvprintw(maxY / 2, (maxX / 2) - 4, "Game Paused");
   refresh();
 }
 
@@ -115,7 +130,7 @@ char	LibNcurses::HandleEvent()
 
   tmp = getch();
   button = 0;
-  if (tmp == 27)
+  if (tmp == KEY_ESC)
     button = -1;
   else if (tmp == KEY_LEFT)
     button = 1;
