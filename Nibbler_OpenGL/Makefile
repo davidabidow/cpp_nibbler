@@ -5,7 +5,7 @@
 ## Login   <jibb@epitech.net>
 ##
 ## Started on  Sun Apr  1 01:23:03 2015 Jean-Baptiste Grégoire
-## Last update Sun Apr  5 16:58:06 2015 Jean-Baptiste Grégoire
+## Last update Sun Apr  5 19:35:53 2015 Jean-Baptiste Grégoire
 ##
 
 SRC		=	OpenGlib.cpp		\
@@ -21,6 +21,7 @@ NIBOBJFILE	=	Error.o
 
 NAME		=	lib_nibbler_opengl.so
 
+CC		=	g++
 
 RM		=	rm -f
 
@@ -33,6 +34,7 @@ CPPFLAGS	=	-W -Wall -Wextra $(INCLUDES) -fPIC
 LDFLAGS		=	-lGL -lGLU
 LDFLAGS		+=	-L./SFML-2.2/lib
 LDFLAGS		+=	-lsfml-graphics -lsfml-system -lsfml-window -lGLEW
+LDFLAGS		+=	-Wl,-rpath=./Nibbler_OpenGL/SFML-2.2/lib
 
 ifeq ($(DEBUG),yes)
 	CFLAGS 	+= -g3
@@ -42,7 +44,7 @@ endif
 
 $(NAME):	$(OBJ) $(NIBOBJ)
 		@mv $(NIBOBJ) .
-		g++ -shared -o $(NAME) $(OBJ) $(NIBOBJFILE) $(LDFLAGS)
+		$(CC) -shared -o $(NAME) $(OBJ) $(NIBOBJFILE) $(LDFLAGS)
 		@(cp $(NAME) ..)
 
 all:		$(NAME)
