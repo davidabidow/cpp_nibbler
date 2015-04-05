@@ -5,7 +5,7 @@
 // Login   <prenat_h@epitech.eu>
 //
 // Started on  Wed Apr  1 14:24:29 2015 Hugo Prenat
-// Last update Sun Apr  5 17:14:08 2015 Hugo Prenat
+// Last update Sun Apr  5 17:52:20 2015 Hugo Prenat
 //
 
 #include "LibNcurses.hpp"
@@ -123,6 +123,16 @@ void	LibNcurses::DrawHUD(int const score, double const time)
   mvprintw(12, maxX + 18, "% 5g", time);
 }
 
+void handle_winch(int x, int y)
+{
+  int	sizeY, sizeX;
+
+  getmaxyx(stdscr, sizeY, sizeX);
+  if (sizeX < (x + 31) || sizeY < (y + 1))
+    throw Nibbler_Error_Lib("Error: size of the game is greater than the"
+			    " terminal size");
+}
+
 char	LibNcurses::HandleEvent()
 {
   int	tmp;
@@ -138,6 +148,8 @@ char	LibNcurses::HandleEvent()
     button = 2;
   else if (tmp == KEY_PAUSE)
     button = 3;
+  else if (tmp == KEY_RESIZE)
+    handle_winch(maxX, maxY);
   return (button);
 }
 
