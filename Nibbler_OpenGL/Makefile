@@ -5,11 +5,11 @@
 ## Login   <jibb@epitech.net>
 ##
 ## Started on  Sun Apr  1 01:23:03 2015 Jean-Baptiste Grégoire
-## Last update Sun Apr  5 01:40:25 2015 Jean-Baptiste Grégoire
+## Last update Sun Apr  5 02:28:15 2015 Jean-Baptiste Grégoire
 ##
 
 SRC		=	OpenGlib.cpp		\
-			OpenGlib_utils.cpp	\
+			OpenGlib_utils.cpp
 
 NIBSRC		=	../src/class/Error.cpp
 
@@ -21,6 +21,7 @@ NIBOBJFILE	=	Error.o
 
 NAME		=	lib_nibbler_opengl.so
 
+
 RM		=	rm -f
 
 DEBUG		=	no
@@ -30,9 +31,9 @@ INCLUDES 	=	-I ./SFML-2.2/include/ -I ../includes/
 CPPFLAGS	=	-W -Wall -Wextra $(INCLUDES) -fPIC
 
 LDFLAGS		=	-lGL -lGLU
-LDFLAGS		+=	./SFML-2.2/lib/libsfml-graphics.so.2.2.0
-LDFLAGS		+=	./SFML-2.2/lib/libsfml-window.so.2.2.0
-LDFLAGS		+=	./SFML-2.2/lib/libsfml-system.so.2.2.0
+LDFLAGS		+=	-L./SFML-2.2/lib/libsfml-graphics.so.2.2.0
+LDFLAGS		+=	-L./SFML-2.2/lib/libsfml-window.so.2.2.0
+LDFLAGS		+=	-L./SFML-2.2/lib/libsfml-system.so.2.2.0
 
 ifeq ($(DEBUG),yes)
 	CFLAGS 	+= -g3
