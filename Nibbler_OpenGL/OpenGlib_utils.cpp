@@ -5,7 +5,7 @@
 // Login   <gregoi_j@epitech.net>
 //
 // Started on  Tue Mar 31 01:52:17 2015 Jean-Baptiste Grégoire
-// Last update Sun Apr  5 20:44:14 2015 Jean-Baptiste Grégoire
+// Last update Sun Apr  5 22:19:26 2015 Jean-Baptiste Grégoire
 //
 
 #include "OpenGlib.hpp"
@@ -48,37 +48,32 @@ void		drawCube(double x, double y, double z, double size)
 
   glGetFloatv(GL_CURRENT_COLOR, current_color);
   glBegin(GL_QUADS);
-  // première face
+
   glVertex3d(x + size, y + size, z + size);
   glVertex3d(x + size, y + size, z - size);
   glVertex3d(x - size, y + size, z - size);
   glVertex3d(x - size, y + size, z + size);
 
-  // seconde face
   glVertex3d(x + size, y - size, z + size);
   glVertex3d(x + size, y - size, z - size);
   glVertex3d(x + size, y + size, z - size);
   glVertex3d(x + size, y + size, z + size);
 
-  // toisième face
   glVertex3d(x - size, y - size, z + size);
   glVertex3d(x - size, y - size, z - size);
   glVertex3d(x + size, y - size, z - size);
   glVertex3d(x + size, y - size, z + size);
 
-  // quatrième face
   glVertex3d(x - size, y + size, z + size);
   glVertex3d(x - size, y + size, z - size);
   glVertex3d(x - size, y - size, z - size);
   glVertex3d(x - size, y - size, z + size);
 
-  // cinquième face
   glVertex3d(x + size, y + size, z - size);
   glVertex3d(x + size, y - size, z - size);
   glVertex3d(x - size, y - size, z - size);
   glVertex3d(x - size, y + size, z - size);
 
-  // denière face
   glVertex3d(x + size, y - size, z + size);
   glVertex3d(x + size, y + size, z + size);
   glVertex3d(x - size, y + size, z + size);

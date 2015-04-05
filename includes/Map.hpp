@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Wed Mar 25 14:27:26 2015 David Tran
-// Last update Sat Apr  4 16:25:55 2015 David Tran
+// Last update Sun Apr  5 22:27:16 2015 Jean-Baptiste Grégoire
 //
 
 #ifndef MAP_HPP_
@@ -34,7 +34,7 @@ public:
   Map(int const x, int const y);
   ~Map();
   bool			genObj();
-  bool			CheckinSnake(std::pair<double, double> const *t_check, std::vector<std::pair<double, double> *> const snake);
+  bool			CheckinSnake(std::pair<double, double> const *t_check, std::vector<std::pair<double, double> *> const &snake) const;
   int			getMaxX() const;
   int			getMaxY() const;
   std::string const	&getMap() const;

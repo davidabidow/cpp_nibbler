@@ -5,7 +5,7 @@
 // Login   <prenat_h@epitech.eu>
 //
 // Started on  Wed Apr  1 14:24:29 2015 Hugo Prenat
-// Last update Sun Apr  5 22:05:36 2015 David Tran
+// Last update Sun Apr  5 22:17:11 2015 Jean-Baptiste Grégoire
 //
 
 #include "LibNcurses.hpp"

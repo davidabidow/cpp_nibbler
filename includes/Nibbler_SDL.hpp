@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Tue Mar 24 21:39:31 2015 David Tran
-// Last update Sat Apr  4 16:26:15 2015 David Tran
+// Last update Sun Apr  5 22:16:03 2015 Jean-Baptiste Grégoire
 //
 
 #ifndef NIBBLER_SDL_HPP

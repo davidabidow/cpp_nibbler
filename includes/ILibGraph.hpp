@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Wed Mar 25 14:15:03 2015 David Tran
-// Last update Sat Apr  4 16:28:24 2015 David Tran
+// Last update Sun Apr  5 22:16:22 2015 Jean-Baptiste Grégoire
 //
 
 #ifndef ILIBGRAPH_HPP_

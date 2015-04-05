@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Tue Mar 24 21:56:30 2015 David Tran
-// Last update Sun Apr  5 20:22:18 2015 David Tran
+// Last update Sun Apr  5 22:17:01 2015 Jean-Baptiste Grégoire
 //
 
 # include "Nibbler_SDL.hpp"
@@ -65,10 +65,6 @@ void		N_SDL::init_pos(int x, int y)
 {
   SDL_Rect	tmp;
 
-  /*  tmp.x = WIN_WIDTH / getMaxX() * x;
-  tmp.y = WIN_HEIGHT / getMaxY() * y;
-  tmp.w = WIN_WIDTH / getMaxX();
-  tmp.h = WIN_HEIGHT / getMaxY();*/
   tmp.x = 10 * x;
   tmp.y = 10 * y;
   tmp.w = 10;

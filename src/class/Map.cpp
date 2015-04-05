@@ -5,7 +5,7 @@
 // Login   <tran_0@epitech.net>
 //
 // Started on  Wed Mar 25 15:29:59 2015 David Tran
-// Last update Sat Apr  4 19:13:15 2015 David Tran
+// Last update Sun Apr  5 22:27:49 2015 Jean-Baptiste Grégoire
 //
 
 #include "Map.hpp"
@@ -21,7 +21,7 @@ Map::Map(int const x, int const y) : maxX(x), maxY(y), pau(0)
 Map::~Map()
 {}
 
-bool	Map::CheckinSnake(std::pair<double, double> const *t_check, std::vector<std::pair<double, double> *> const snake)
+bool	Map::CheckinSnake(std::pair<double, double> const *t_check, std::vector<std::pair<double, double> *> const &snake) const
 {
   std::vector<std::pair<double, double> *>::const_iterator it = snake.begin();
 

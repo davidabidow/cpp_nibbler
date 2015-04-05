@@ -5,7 +5,7 @@
 // Login   <prenat_h@epitech.eu>
 //
 // Started on  Wed Apr  1 14:18:50 2015 Hugo Prenat
-// Last update Sun Apr  5 22:03:03 2015 David Tran
+// Last update Sun Apr  5 22:16:10 2015 Jean-Baptiste Grégoire
 //
 
 #ifndef LIBNCURSES_HPP_

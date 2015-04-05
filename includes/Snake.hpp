@@ -5,7 +5,7 @@
 ** Login   <gregoi_j@epitech.net>
 **
 ** Started on  Tue Mar  24 16:11:37 2015 Jean-Baptiste Grégoire
-// Last update Sat Apr  4 15:13:59 2015 David Tran
+// Last update Sun Apr  5 22:22:26 2015 Jean-Baptiste Grégoire
 */
 
 #ifndef SNAKE_HPP_
@@ -32,7 +32,7 @@ public:
   void							turnLeft();
   void							turnRight();
   void							moveAhead();
-  void							isAlive(int maxX, int maxY);
+  void							isAlive(int maxX, int maxY) const;
   std::vector<std::pair<double, double> *>		getVector() {return (snake);}
   Way							getDirection() const;
   void							addQueue();
